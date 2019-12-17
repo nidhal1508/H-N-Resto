@@ -13,7 +13,7 @@
 
     <script src="../../cdn-cgi/apps/head/-mEFVS8y7qx5pVzWHQTCQu5gnVM.js"></script>
     <link rel="shortcut icon" href="img/favicon.ico">
-    <script src="C:\Users\Asus\Desktop\Nouveau dossier (3)\adminlte.io\themes\projet\js\main1.js"></script>
+    <script src="C:\Users\Asus\Desktop\Nouveau dossier (3)\adminlte.io\themes\AdminLTE\pages\examples\js\main1.js"></script>
 
     <meta name="viewport" content="width=device-width">
 
@@ -26,7 +26,7 @@
         <![endif]-->
 </head>
 
-<body onload="user_connected_verif() ">
+<body  onload="user_connected_verif();AfficherCatInscri()">
     <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -90,12 +90,9 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <select class="form-control"
-                                style="margin-top: 10px;margin-bottom: 20px;">
+                            <select class="form-control" style="margin-top: 10px;margin-bottom: 20px;" id="selectcategory">
                                 <option selected>selectionner votre categorie</option>
-                                <option value="1">Pizzeria</option>
-                                <option value="2">Restaurant rapide</option>
-                                <option value="3">Restaurant gastronomique</option>
+                               
                             </select>
                         </div>
                         <div class="col-md-4">

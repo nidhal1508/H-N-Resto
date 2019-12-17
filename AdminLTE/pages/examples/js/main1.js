@@ -217,3 +217,10 @@ cat.innerHTML +=`
 <option>${catdb[i].categoryname}</option>
 `
 }
+function registerResto() {
+  // if ( ctrlprenom() && passverif()  && ctrltel()  && ctrladresse() && ctrlnom() && ctrlemail() ) {
+
+  AddResto();
+
+  // }
+}
