@@ -115,12 +115,7 @@ function connexAdmin() {
   }
 
 }
-function AffichePanier() {
-  //document.getElementById("addtask").classList.toggle="show";
 
-  document.getElementById("tabdisplay").style.display = "none";
-  document.getElementById("addtask").style.display = "block";
-}
 function user_connected_verif() {
   var logged = JSON.parse(localStorage.getItem('connecteduser'))
   var tab = document.getElementById("connexsection");
@@ -193,4 +188,32 @@ function user_connected_verif() {
                 </li>
   `
   }
+}
+function AddCat(){
+  var catdb = JSON.parse(localStorage.getItem('cats'));
+let category= document.getElementById('category-name').value;
+let objet = {
+  categoryname: category,
+  idcat: Math.floor(Math.random() * 10000) + 1,
+  
+}
+if (category===""){
+  alert('category vide')
+}else{
+  if (catdb === null) {
+  catdb = [];
+}
+console.log(objet);
+catdb.push(objet);
+console.log(catdb);
+localStorage.setItem("cats", JSON.stringify(catdb));
+}
+}
+function AfficherCatInscri(){
+  var catdb = JSON.parse(localStorage.getItem('cats'));
+  let cat = document.getElementById("selectcategory");
+for(i=0;i<catdb.length;i++)
+cat.innerHTML +=`
+<option>${catdb[i].categoryname}</option>
+`
 }

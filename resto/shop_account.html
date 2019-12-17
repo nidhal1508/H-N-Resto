@@ -9,6 +9,7 @@
 
 <meta name="description" content="Tomato is a Responsive HTML5 Template for Restaurants and food related services.">
 <meta name="keywords" content="tomato, responsive, html5, restaurant, template, food, reservation">
+<script src="C:\Users\Asus\Desktop\Nouveau dossier (3)\adminlte.io\themes\projet\js\main1.js"></script>
 
 <script src="../../cdn-cgi/apps/head/-mEFVS8y7qx5pVzWHQTCQu5gnVM.js"></script><link rel="shortcut icon" href="img/favicon.ico">
 
@@ -22,7 +23,7 @@
             <script src="js/vendor/html5-3.6-respond-1.4.2.min.js"></script>
         <![endif]-->
 </head>
-<body>
+<body onload="AfficherCatInscri()">
 <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -165,10 +166,8 @@
                 <div >
                         <div class="form-group">
                                 <label for="exampleInputEmail1">Categorie</label>
-                               <select class="form-control" id="">
-                                   <option>1</option>
-                                   <option>2</option>
-                                   <option>3</option>
+                               <select class="form-control" id="selectcategory">
+                                  
                                </select>
                                 </div>
                     
