@@ -281,7 +281,8 @@ function AddResto(){
     pwdR: document.getElementById("pwdresto").value,
     role: "Resto",
     status:"inactive",
-    
+    resN:"0",
+    cmdN:"0",
   }
   if (restodb === null) {
     restodb = [];
@@ -294,3 +295,43 @@ function AddResto(){
 
   alert('vous etes bien enregitrer')
 }
+function AfficherListeResto(){
+  var restodb = JSON.parse(localStorage.getItem('restos'));
+  let listeResto = document.getElementById("listerestoadmin");
+  listeResto.innerHTML = '';
+  if (restodb === null) {
+    listeResto.innerHTML = `
+    <tr>
+    <th>aucune Resto est ajouter</th>
+   
+
+  </tr> 
+  `
+  } else {
+    
+    for (let i = 0; i < restodb.length; i++) {
+      listeResto += `
+        <tr>
+          <td >${restodb[i].idresto}</td>
+          <td >${restodb[i].nomresto}</td>
+          <td >${restodb[i].emailR}</td>
+          <td >${restodb[i].pwdR}</td>
+          <td >${restodb[i].resN}</td>
+          <td >${restodb[i].cmdN}</td>
+          <td >${restodb[i].status}</td>
+         
+          <td >
+          <button class="btn btn-info btn-flat" onclick="ActiveRestoA(${restodb[i].idresto})">Activer</button>
+          <button class="btn btn-info btn-flat" onclick="EditerRestoA(${restodb[i].idresto})">Editer</button>
+          </td>
+
+        </tr>
+        `
+     
+    }
+    document.getElementById("listerestoadmin").innerHTML = listeResto;
+
+  }
+}
+
+

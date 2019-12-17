@@ -32,7 +32,7 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" onload="AfficherListeResto()">
 <!-- Site wrapper -->
 <div class="wrapper">
 
@@ -209,64 +209,14 @@
                   <th>PWD</th>
                   <th>N.res</th>
                   <th>N.cmd</th>
+                  <th>status</th>
+                  <th>action</th>
+                  
                 </tr>
                 
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>569</td>
-                    <td>mon Resto
-                    </td>
-                    <td>mohamed@gmail.com</td>
-                    <td> 1234567896</td>
-                    <td>15</td>
-                    <td>20</td>
-                  </tr>
-                  <tr>
-                    <td>569</td>
-                    <td>mon retso
-                    </td>
-                    <td>mohamed@gmail.com</td>
-                    <td> 1234567896</td>
-                    <td>15</td>
-                    <td>20</td>
-                  </tr>
-                  <tr>
-                    <td>569</td>
-                    <td>mon retso
-                    </td>
-                    <td>mohamed@gmail.com</td>
-                    <td> 1234567896</td>
-                    <td>15</td>
-                    <td>20</td>
-                  </tr>
-                  <tr>
-                    <td>569</td>
-                    <td>mon retso
-                    </td>
-                    <td>mohamed@gmail.com</td>
-                    <td> 1234567896</td>
-                    <td>15</td>
-                    <td>20</td>
-                  </tr>
-                  <tr>
-                    <td>569</td>
-                    <td>mohamed
-                    </td>
-                    <td>mohamed@gmail.com</td>
-                    <td> 1234567896</td>
-                    <td>15</td>
-                    <td>20</td>
-                  </tr>
-                  <tr>
-                    <td>569</td>
-                    <td>mohamed
-                    </td>
-                    <td>mohamed@gmail.com</td>
-                    <td> 1234567896</td>
-                    <td>15</td>
-                    <td>20</td>
-                  </tr>
+                <tbody id="listerestoadmin">
+                  
 
                 </tbody>
                 <tfoot>
@@ -277,6 +227,8 @@
                   <th>PWD</th>
                   <th>N.res</th>
                   <th>N.cmd</th>
+                  <th>status</th>
+                  <th>action</th>
                 </tr>
                 </tfoot>
               </table>
