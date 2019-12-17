@@ -1,0 +1,56 @@
+.btnSupMenu,
+.btnEditMenu {
+    margin: 5px;
+    background-color: #f9c56a;
+    border: 1px solid #f9c56a;
+    color: white;
+}
+
+.btnSupMenu:hover {
+    background-color: #f7b239;
+    border: 1px solid #f7b239;
+    color: white;
+}
+
+.btnEditMenu:hover {
+    background-color: #f7b239;
+    border: 1px solid #f7b239;
+    color: white;
+}
+
+hr {
+    color: black;
+}
+
+.AjouterMenu {
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+#Sandwish,
+#Makloub,
+#Libanais,
+#Plats,
+#Salades,
+#Pizzas {
+    width: 40%;
+}
+
+.btnAjouterMenu {
+    background-color: #f9c56a;
+    border: 1px solid #f9c56a;
+    font-size: 18px;
+    color: white;
+    width: 150px;
+    border-radius: 10px;
+}
+
+.btnAjouterMenu:hover {
+    background-color: #f7b239;
+    border: 1px solid #f7b239;
+    color: white;
+}
+
+.rowTabMenu {
+    padding-bottom: 30px;
+}
