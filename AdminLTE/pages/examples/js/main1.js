@@ -333,5 +333,65 @@ function AfficherListeResto(){
 
   }
 }
+function ActiveRestoA(indice){
+  var restodb = JSON.parse(localStorage.getItem('restos'));
+  console.log(restodb);
+
+
+  for (i = 0; i < restodb.length; i++) {
+
+    if (restodb[i].idresto== indice) {
+
+      restodb[i].status="active"
+    }
+  }
+  localStorage.setItem("restos", JSON.stringify(restodb));
+  AfficherListeResto();
+}
+function connexResto() {
+  var email = document.getElementById("EmailConnexResto").value;
+  var passcnx = document.getElementById("PwdConnexResto").value;
+  var loggedResto = JSON.parse(localStorage.getItem('connectedResto'))
+
+  var restodb = JSON.parse(localStorage.getItem('restos'));
+  if (restodb === null) {
+    restodb = [];
+    alert("Data base null");
+  }
+  let test = false;
+  for (let i = 0; i < restodb.length; i++) {
+    if (restodb[i].emailR == email && restodb[i].pwdR == passcnx && restodb[i].status === "inactive") {
+      alert("restaurant deactivé contacter Admin")
+      return;
+    }
+    if (restodb[i].emailR == email && restodb[i].pwdR == passcnx && restodb[i].status === "active") {
+      localStorage.setItem('connectedResto', JSON.stringify(restodb[i]));
+      location.href = 'home.html';
+
+      return;
+    }
+
+  }
+
+  if (!test) {
+    alert("mot dde passe incorrect.");
+
+  }
+
+}
+function RestoConnectedVerif(){
+  var logged = JSON.parse(localStorage.getItem('connectedResto'))
+  var BotDeconnecter = document.getElementById("connexResto");
+  if (logged === null) {
+
+    location.href = 'shop_account.html';
+
+    return;
+}else{
+  BotDeconnecter = `
+  <button type="submit" class="btn btn-default" >déconnecter</button>`
+}
+document.getElementById("connexResto").innerHTML = BotDeconnecter;
+}
 
 
