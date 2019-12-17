@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index-2.html">
+                <a class="navbar-brand" href="C:\Users\Asus\Desktop\Nouveau dossier (3)\adminlte.io\themes\resto\shop_account.html">
                     <img src="img/nav-logo.png" alt="nav-logo">
                 </a>
 
@@ -59,19 +59,19 @@
                     <li style="margin-right: 10px;">
                         <div class="form-group">
                             Email address
-                            <input type="email" class="form-control" id="exampleInputEmail1"
+                            <input type="email" class="form-control" id="EmailConnexResto"
                                 placeholder="Email"> </div>
                     </li>
 
                     <li style="margin-right: 10px;">
                         <div class="form-group"> Password
-                            <input type="password" class="form-control" id="exampleInputPassword1"
+                            <input type="password" class="form-control" id="PwdConnexResto"
                                 placeholder="Password">
                                
                             </div>
                     </li>
-                    <li style="margin-right: 10px;margin-top: 20px;"><button type="submit"
-                            class="btn btn-default">Submit</button></li>
+                    <li style="margin-right: 10px;margin-top: 20px;"><input 
+                            class="btn btn-default" value="Se Connecter"></li>
 
 
 
@@ -111,7 +111,7 @@
 <div class="form-group">
 <div class="col-md-12">
 <label>E-mail </label>
-<input type="text" value="" class="form-control">
+<input type="text" value="" class="form-control"  id="emailResto">
 </div>
 </div>
 </div>
@@ -120,36 +120,40 @@
 <div class="form-group">
 <div class="col-md-6">
 <label>Prenom</label>
-<input type="text" value="" class="form-control">
+<input type="text" value="" class="form-control" id="nomAdminResto">
 </div>
 <div class="col-md-6">
 <label>Nom</label>
-<input type="text" value="" class="form-control">
+<input type="text" value="" class="form-control" id="prenomAdminResto">
 </div>
 </div>
 </div>
 
     <div class="form-group">
     <label for="exampleInputEmail1">Nom Restaurant</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" >
+    <input type="text" class="form-control" id="Nomresto" >
     </div>
     <div class="form-group">
     <label for="exampleInputPassword1">Adresse</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" >
+    <input type="text" class="form-control" id="addresseresto" >
     </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Tel</label>
+        <input type="text" class="form-control" id="Telresto" >
+        </div>
     <div class="form-group">
         <label for="exampleInputPassword1">Ville</label>
         
-        <select class="form-control">
+        <select class="form-control" id="villeresto">
         <option selected>selectionner votre ville</option>
-        <option value="1">Tunis</option>
-        <option value="2">Ariana</option>
-        <option value="3">Ben Arous</option>
+        <option value="Tunis">Tunis</option>
+        <option value="Ariana">Ariana</option>
+        <option value="Ben Arous">Ben Arous</option>
     </select>
         </div>
     <div class="form-group">
     <label for="exampleInputFile">logo</label>
-    <input type="file" id="exampleInputFile">
+    <input type="file" id="logoresto">
   
     </div>
  
@@ -157,21 +161,33 @@
         <div class="form-group">
         <div class="col-md-6">
         <label>Registre de commerce</label>
-        <input type="text" value="" class="form-control">
+        <input type="text" value="" class="form-control" id="C-registreresto">
         </div>
         <div class="col-md-6">
         <label>Re-enter R.de commerce</label>
-        <input type="text" value="" class="form-control">
+        <input type="text" value="" class="form-control" id="C-registreresto1">
         </div>
         </div>
         </div>
+        <div class="row">
+            <div class="form-group">
+            <div class="col-md-6">
+            <label>Password</label>
+            <input type="password" value="" class="form-control" id="pwdresto">
+            </div>
+            <div class="col-md-6">
+            <label>Re-enter Password</label>
+            <input type="password" value="" class="form-control" id="pwdresto1">
+            </div>
+            </div>
+            </div>
         <div class="form-group">
             <label for="exampleInputFile">Carte D'identification Fiscale</label>
-            <input type="text" value="" class="form-control">
+            <input type="text" value="" class="form-control" id="idfiscale">
             </div>
             <div >
                 <label>Slogan Restaurant</label>
-                <input type="text" value="" class="form-control">
+                <input type="text"  class="form-control" id="sloganresto" >
                 </div>
                 <div >
                         <div class="form-group">
@@ -185,7 +201,7 @@
 <div class="row">
 <div class="col-md-12">
 <div class="space20"></div>
-<button type="submit" class="btn btn-default pull-right">Register</button>
+<input type="submit" class="btn btn-default pull-right" value="Register" onclick="registerResto()">
 </div>
 </div>
 </form>

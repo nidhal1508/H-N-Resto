@@ -53,11 +53,11 @@ function passverif() {
   return true
 }
 function registerUser() {
-  // if ( ctrlprenom() && passverif()  && ctrltel()  && ctrladresse() && ctrlnom() && ctrlemail() ) {
+  if ( ctrlprenom() && passverif()  && ctrltel()  && ctrladresse() && ctrlnom() && ctrlemail() ) {
 
   AddUser();
 
-  // }
+   }
 }
 
 
@@ -217,10 +217,80 @@ cat.innerHTML +=`
 <option>${catdb[i].categoryname}</option>
 `
 }
+function ctrlnomadminResto() {
+  let nom = document.getElementById("nomAdminResto").value;
+  console.log(nom)
+  if (nom === "") {
+    alert("entrer un nom");
+    return (false);
+
+  }
+  return (true);
+}
+function ctrlemailrest() {
+  var mail = document.getElementById("emailResto").value;
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
+  return re.test(String(mail).toLowerCase());
+}
+function ctrlprenomResto() {
+  let prenom = document.getElementById("prenomAdminResto").value;
+  console.log(prenom)
+  if (prenom === "") {
+    alert("entrer un nom");
+    return (false);
+
+  }
+  return (true);
+}
+function ctrlnomResto() {
+  let nomresto = document.getElementById("Nomresto").value;
+  console.log(nomresto)
+  if (nomresto === "") {
+    alert("entrer un nom");
+    return (false);
+
+  }
+  return (true);
+}
+
 function registerResto() {
-  // if ( ctrlprenom() && passverif()  && ctrltel()  && ctrladresse() && ctrlnom() && ctrlemail() ) {
+   if ( ctrlnomadminResto() && ctrlemailrest()  && ctrlprenomResto()  && ctrlnomResto() ) {
 
   AddResto();
 
-  // }
+   }
+}
+function AddResto(){
+  var restodb = JSON.parse(localStorage.getItem('restos'));
+  //var loggedresto = JSON.parse(localStorage.getItem('connectedresto'))
+
+  let objet = {
+    idresto: Math.floor(Math.random() * 10000) + 1,
+    nomresto:document.getElementById("Nomresto").value,
+    nomR: document.getElementById("nomAdminResto").value,
+    prenomR: document.getElementById("prenomAdminResto").value,
+    emailR: document.getElementById("emailResto").value,
+    adresseR: document.getElementById("addresseresto").value,
+    telR: document.getElementById("Telresto").value,
+    villeR:document.getElementById("villeresto").value,
+    registreN:document.getElementById("C-registreresto").value,
+    Nfiscale:document.getElementById("idfiscale").value,
+    logo:document.getElementById("logoresto").value,
+    slogan:document.getElementById("sloganresto").value,
+    categoryR:document.getElementById("selectcategory").value,
+    pwdR: document.getElementById("pwdresto").value,
+    role: "Resto",
+    status:"inactive",
+    
+  }
+  if (restodb === null) {
+    restodb = [];
+  }
+  console.log(objet);
+  restodb.push(objet);
+  console.log(restodb);
+  localStorage.setItem("restos", JSON.stringify(restodb));
+//localStorage.setItem('connectedresto',JSON.stringify(objet));
+
+  alert('vous etes bien enregitrer')
 }
