@@ -389,7 +389,7 @@ function RestoConnectedVerif(){
     return;
 }else{
   BotDeconnecter = `
-  <button type="submit" class="btn btn-default" >déconnecter</button>`
+  <button type="submit" class="btn btn-default">déconnecter</button>`
 }
 document.getElementById("connexResto").innerHTML = BotDeconnecter;
 }
