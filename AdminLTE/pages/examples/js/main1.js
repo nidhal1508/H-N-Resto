@@ -115,9 +115,31 @@ function connexAdmin() {
   }
 
 }
+function admin_connected_verif() {
+  var loggedAdmin = JSON.parse(localStorage.getItem('connectedadmin'))
+  var connexsection = document.getElementById("connexsectionadmin");
+  if (loggedAdmin === null) {
+location.href='file:///C:/Users/Asus/Desktop/Nouveau%20dossier%20(3)/adminlte.io/themes/AdminLTE/pages/examples/login.html';
+
+  } else {
+    
+    connexsection.innerHTML += `
+    <li><button type="submit"
+    class="btn btn-info btn-flat" onclick="deconnexAdmin()"> se déconnecter</button></li>
+    <br>
+                                    
+                                    
+  `
+  }
+}
+function deconnexAdmin(){
+  
+  localStorage.removeItem('connectedadmin');
+  location.href = 'login.html';
+}
 
 function user_connected_verif() {
-  var logged = JSON.parse(localStorage.getItem('connecteduser'))
+  var logged = JSON.parse(localStorage.getItem('connectedUser'))
   var tab = document.getElementById("connexsection");
   if (logged === null) {
 
@@ -125,20 +147,20 @@ function user_connected_verif() {
     <li style="margin-right: 10px;" id="connexsection">
         <div class="form-group">
             Email address
-            <input type="email" class="form-control" id="exampleInputEmail1"
+            <input type="email" class="form-control" id="UserEmail"
                 placeholder="Email"> </div>
     </li>
 
     <li style="margin-right: 10px;" id="connexsection"> 
         <div class="form-group"> Password
-            <input type="password" class="form-control" id="exampleInputPassword1"
+            <input type="password" class="form-control" id="UserPassword"
                 placeholder="Password">
                 <a href="shop_account.html" style="color: white;">S'inscrire</a>
             </div>
     </li>
 
-    <li style="margin-right: 10px;margin-top: 20px;" id="connexsection"><button type="submit"
-            class="btn btn-default">Submit</button></li>
+    <li style="margin-right: 10px;margin-top: 20px;" id="connexsection"><input Value="Se connecter"
+            class="btn btn-default" onclick="connexUser()"></li>
 
             
 
@@ -148,7 +170,7 @@ function user_connected_verif() {
     
     tab.innerHTML = `
     <li style="margin-right: 10px;margin-top: 20px;" id="connexsection"><button type="submit"
-                                    class="btn btn-default"> se déconnecter</button></li>
+                                    class="btn btn-default" onclick="deconnexUser()"> se déconnecter</button></li>
                                     
                                     <li class="dropdown" id="cartdisplay" >
                 <a class="css-pointer dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-shopping-cart fsc pull-left"></i><span class="cart-number">3</span><span class="caret"></span></a>
@@ -189,6 +211,47 @@ function user_connected_verif() {
   `
   }
 }
+
+function user_connected_verifPannier() {
+  var logged = JSON.parse(localStorage.getItem('connectedUser'))
+ 
+  if (logged === null) {
+    location.href = 'home.html';
+  }
+}
+function connexUser() {
+  var email = document.getElementById("UserEmail").value;
+  var passcnx = document.getElementById("UserPassword").value;
+  var logged = JSON.parse(localStorage.getItem('connectedUser'))
+
+  var userdb = JSON.parse(localStorage.getItem('users'));
+  if (userdb === null) {
+    userdb = [];
+    alert("Data base null");
+  }
+  let test = false;
+  for (let i = 0; i < userdb.length; i++) {
+    if (userdb[i].email == email && userdb[i].pwd == passcnx && userdb[i].role === "user") {
+      localStorage.setItem('connectedUser', JSON.stringify(userdb[i]));
+      location.href = 'file:///C:/Users/Asus/Desktop/Nouveau%20dossier%20(3)/adminlte.io/themes/projet/home.html';
+
+      return;
+    }
+
+  }
+
+  if (!test) {
+    alert("mot dde passe incorrect.");
+
+  }
+
+}
+function deconnexUser(){
+  localStorage.removeItem('connectedUser');
+  location.href = 'inscription.html';
+}
+
+
 function AddCat(){
   var catdb = JSON.parse(localStorage.getItem('cats'));
 let category= document.getElementById('category-name').value;
@@ -390,9 +453,14 @@ function RestoConnectedVerif(){
     return;
 }else{
   BotDeconnecter = `
-  <button type="submit" class="btn btn-default">déconnecter</button>`
+  <button type="submit" class="btn btn-default" onclick="deconnexResto()">déconnecter</button>`
 }
 document.getElementById("connexResto").innerHTML = BotDeconnecter;
 }
+function deconnexResto(){
+  localStorage.removeItem('connectedResto');
+  location.href = 'shop_account.html';
+}
+
 
 

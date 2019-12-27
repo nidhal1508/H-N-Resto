@@ -32,7 +32,7 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" onload="admin_connected_verif()">
 <div class="wrapper">
 
   <header class="main-header">
@@ -170,14 +170,15 @@
         Dashboard
        
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="\adminlte.io\themes\AdminLTE\index2.html"><i class="fa fa-dashboard"></i> Home</a></li>
+      <ol class="breadcrumb" id="connexsectionadmin">
+        <li><a href="file:///C:/Users/Asus/Desktop/Nouveau%20dossier%20(3)/adminlte.io/themes/AdminLTE/index2.html"><i class="fa fa-dashboard"></i> Home</a></li>
         
       </ol>
     </section>
 
 
     <!-- Main content -->
+    <br>
     <form action="#" method="get" class="sidebar-form">
       <div class="input-group">
         <input type="text" name="q" class="form-control" placeholder="Search...">
