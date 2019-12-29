@@ -53,11 +53,11 @@ function passverif() {
   return true
 }
 function registerUser() {
-  if ( ctrlprenom() && passverif()  && ctrltel()  && ctrladresse() && ctrlnom() && ctrlemail() ) {
+  if (ctrlprenom() && passverif() && ctrltel() && ctrladresse() && ctrlnom() && ctrlemail()) {
 
-  AddUser();
+    AddUser();
 
-   }
+  }
 }
 
 
@@ -83,7 +83,7 @@ function AddUser() {
   userdb.push(objet);
   console.log(userdb);
   localStorage.setItem("users", JSON.stringify(userdb));
-localStorage.setItem('connecteduser',JSON.stringify(objet));
+  localStorage.setItem('connecteduser', JSON.stringify(objet));
 
   location.href = 'recipe_4col.html';
   console.log('tsd');
@@ -119,10 +119,10 @@ function admin_connected_verif() {
   var loggedAdmin = JSON.parse(localStorage.getItem('connectedadmin'))
   var connexsection = document.getElementById("connexsectionadmin");
   if (loggedAdmin === null) {
-location.href='file:///C:/Users/Asus/Desktop/Nouveau%20dossier%20(3)/adminlte.io/themes/AdminLTE/pages/examples/login.html';
+    location.href = 'file:///C:/Users/Asus/Desktop/Nouveau%20dossier%20(3)/adminlte.io/themes/AdminLTE/pages/examples/login.html';
 
   } else {
-    
+
     connexsection.innerHTML += `
     <li><button type="submit"
     class="btn btn-info btn-flat" onclick="deconnexAdmin()"> se déconnecter</button></li>
@@ -132,8 +132,8 @@ location.href='file:///C:/Users/Asus/Desktop/Nouveau%20dossier%20(3)/adminlte.io
   `
   }
 }
-function deconnexAdmin(){
-  
+function deconnexAdmin() {
+
   localStorage.removeItem('connectedadmin');
   location.href = 'login.html';
 }
@@ -167,7 +167,7 @@ function user_connected_verif() {
 </ul>
 `
   } else {
-    
+
     tab.innerHTML = `
     <li style="margin-right: 10px;margin-top: 20px;" id="connexsection"><button type="submit"
                                     class="btn btn-default" onclick="deconnexUser()"> se déconnecter</button></li>
@@ -214,7 +214,7 @@ function user_connected_verif() {
 
 function user_connected_verifPannier() {
   var logged = JSON.parse(localStorage.getItem('connectedUser'))
- 
+
   if (logged === null) {
     location.href = 'home.html';
   }
@@ -246,37 +246,37 @@ function connexUser() {
   }
 
 }
-function deconnexUser(){
+function deconnexUser() {
   localStorage.removeItem('connectedUser');
   location.href = 'inscription.html';
 }
 
 
-function AddCat(){
+function AddCat() {
   var catdb = JSON.parse(localStorage.getItem('cats'));
-let category= document.getElementById('category-name').value;
-let objet = {
-  categoryname: category,
-  idcat: Math.floor(Math.random() * 10000) + 1,
-  
+  let category = document.getElementById('category-name').value;
+  let objet = {
+    categoryname: category,
+    idcat: Math.floor(Math.random() * 10000) + 1,
+
+  }
+  if (category === "") {
+    alert('category vide')
+  } else {
+    if (catdb === null) {
+      catdb = [];
+    }
+    console.log(objet);
+    catdb.push(objet);
+    console.log(catdb);
+    localStorage.setItem("cats", JSON.stringify(catdb));
+  }
 }
-if (category===""){
-  alert('category vide')
-}else{
-  if (catdb === null) {
-  catdb = [];
-}
-console.log(objet);
-catdb.push(objet);
-console.log(catdb);
-localStorage.setItem("cats", JSON.stringify(catdb));
-}
-}
-function AfficherCatInscri(){
+function AfficherCatInscri() {
   var catdb = JSON.parse(localStorage.getItem('cats'));
   let cat = document.getElementById("selectcategory");
-for(i=0;i<catdb.length;i++)
-cat.innerHTML +=`
+  for (i = 0; i < catdb.length; i++)
+    cat.innerHTML += `
 <option>${catdb[i].categoryname}</option>
 `
 }
@@ -317,36 +317,36 @@ function ctrlnomResto() {
 }
 
 function registerResto() {
-   if ( ctrlnomadminResto() && ctrlemailrest()  && ctrlprenomResto()  && ctrlnomResto() ) {
+  if (ctrlnomadminResto() && ctrlemailrest() && ctrlprenomResto() && ctrlnomResto()) {
 
-  AddResto();
+    AddResto();
 
-   }
+  }
 }
-function AddResto(){
+function AddResto() {
   var restodb = JSON.parse(localStorage.getItem('restos'));
   //var loggedresto = JSON.parse(localStorage.getItem('connectedresto'))
 
   let objet = {
     idresto: Math.floor(Math.random() * 10000) + 1,
-    nomresto:document.getElementById("Nomresto").value,
+    nomresto: document.getElementById("Nomresto").value,
     nomR: document.getElementById("nomAdminResto").value,
     prenomR: document.getElementById("prenomAdminResto").value,
     emailR: document.getElementById("emailResto").value,
     adresseR: document.getElementById("addresseresto").value,
     telR: document.getElementById("Telresto").value,
-    villeR:document.getElementById("villeresto").value,
-    registreN:document.getElementById("C-registreresto").value,
-    Nfiscale:document.getElementById("idfiscale").value,
-    logo:document.getElementById("logoresto").files[0].name,
-    slogan:document.getElementById("sloganresto").value,
-    categoryR:document.getElementById("selectcategory").value,
+    villeR: document.getElementById("villeresto").value,
+    registreN: document.getElementById("C-registreresto").value,
+    Nfiscale: document.getElementById("idfiscale").value,
+    logo: document.getElementById("logoresto").files[0].name,
+    slogan: document.getElementById("sloganresto").value,
+    categoryR: document.getElementById("selectcategory").value,
     pwdR: document.getElementById("pwdresto").value,
     role: "Resto",
-    status:"inactive",
-    resN:"0",
-    cmdN:"0",
-    
+    status: "inactive",
+    resN: "0",
+    cmdN: "0",
+
   }
   if (restodb === null) {
     restodb = [];
@@ -355,11 +355,11 @@ function AddResto(){
   restodb.push(objet);
   console.log(restodb);
   localStorage.setItem("restos", JSON.stringify(restodb));
-//localStorage.setItem('connectedresto',JSON.stringify(objet));
+  //localStorage.setItem('connectedresto',JSON.stringify(objet));
 
   alert('vous etes bien enregitrer')
 }
-function AfficherListeResto(){
+function AfficherListeResto() {
   var restodb = JSON.parse(localStorage.getItem('restos'));
   let listeResto = document.getElementById("listerestoadmin");
   listeResto.innerHTML = '';
@@ -372,7 +372,7 @@ function AfficherListeResto(){
   </tr> 
   `
   } else {
-    
+
     for (let i = 0; i < restodb.length; i++) {
       listeResto += `
         <tr>
@@ -391,22 +391,22 @@ function AfficherListeResto(){
 
         </tr>
         `
-     
+
     }
     document.getElementById("listerestoadmin").innerHTML = listeResto;
 
   }
 }
-function ActiveRestoA(indice){
+function ActiveRestoA(indice) {
   var restodb = JSON.parse(localStorage.getItem('restos'));
   console.log(restodb);
 
 
   for (i = 0; i < restodb.length; i++) {
 
-    if (restodb[i].idresto== indice) {
+    if (restodb[i].idresto == indice) {
 
-      restodb[i].status="active"
+      restodb[i].status = "active"
     }
   }
   localStorage.setItem("restos", JSON.stringify(restodb));
@@ -443,7 +443,7 @@ function connexResto() {
   }
 
 }
-function RestoConnectedVerif(){
+function RestoConnectedVerif() {
   var logged = JSON.parse(localStorage.getItem('connectedResto'))
   var BotDeconnecter = document.getElementById("connexResto");
   if (logged === null) {
@@ -451,44 +451,44 @@ function RestoConnectedVerif(){
     location.href = 'shop_account.html';
 
     return;
-}else{
-  BotDeconnecter = `
+  } else {
+    BotDeconnecter = `
   <button type="submit" class="btn btn-default" onclick="deconnexResto()">déconnecter</button>`
+  }
+  document.getElementById("connexResto").innerHTML = BotDeconnecter;
 }
-document.getElementById("connexResto").innerHTML = BotDeconnecter;
-}
-function deconnexResto(){
+function deconnexResto() {
   localStorage.removeItem('connectedResto');
   location.href = 'shop_account.html';
 }
 
 
 
- function addpublication(){
+function addpublication() {
   var pubdb = JSON.parse(localStorage.getItem('pubs'));
   var restologged = JSON.parse(localStorage.getItem('connectedResto'))
   let objet = {
     idPub: Math.floor(Math.random() * 10000) + 1,
-    nomPub:document.getElementById("pubname").value,
+    nomPub: document.getElementById("pubname").value,
     prix: document.getElementById("pubprice").value,
     date: document.getElementById("pubdate").value,
-   deadline: document.getElementById("pubdeadline").value,
+    deadline: document.getElementById("pubdeadline").value,
     description: document.getElementById("pubdescription").value,
-    img:document.getElementById("pubimg").files[0].name,
-    pubowner:restologged.idresto, 
-}
-if (pubdb === null) {
-  pubdb = [];
-}
-console.log(objet);
-pubdb.push(objet);
-console.log(pubdb);
-localStorage.setItem("pubs", JSON.stringify(pubdb));
+    img: document.getElementById("pubimg").files[0].name,
+    pubowner: restologged.idresto,
+  }
+  if (pubdb === null) {
+    pubdb = [];
+  }
+  console.log(objet);
+  pubdb.push(objet);
+  console.log(pubdb);
+  localStorage.setItem("pubs", JSON.stringify(pubdb));
 
 
-var tab = document.getElementById("tableauPub");
+  var tab = document.getElementById("tableauPub");
   tab.innerHTML = '';
-  if (pubdb=== null) {
+  if (pubdb === null) {
     tab.innerHTML = `
     <tr>
     <th>aucune Pub est ajouter</th>
@@ -521,20 +521,20 @@ var tab = document.getElementById("tableauPub");
     }
     document.getElementById("tableauPub").innerHTML = tab;
   }
-  document.getElementById("pubname").value= "";
-document.getElementById("pubprice").value= "";
-document.getElementById("pubdate").value= "";
-document.getElementById("pubdeadline").value= "";
-document.getElementById("pubdescription").value= "";
-document.getElementById("pubimg").value= "";
+  document.getElementById("pubname").value = "";
+  document.getElementById("pubprice").value = "";
+  document.getElementById("pubdate").value = "";
+  document.getElementById("pubdeadline").value = "";
+  document.getElementById("pubdescription").value = "";
+  document.getElementById("pubimg").value = "";
 
 }
-function AfficherPublication(){
+function AfficherPublication() {
   var pubdb = JSON.parse(localStorage.getItem('pubs'));
   var restologged = JSON.parse(localStorage.getItem('connectedResto'))
   var tab = document.getElementById("ConsulterPub");
   tab.innerHTML = '';
-  if (pubdb=== null) {
+  if (pubdb === null) {
     tab.innerHTML = `
     <tr>
     <th>aucune Pub est ajouter</th>
@@ -563,8 +563,8 @@ function AfficherPublication(){
           <td >${pubdb[i].deadline}</td>
           <td >${pubdb[i].description}</td>
           <td >${pubdb[i].prix}</td>
-          <td> <button class="btn btn-default"   onclick="EditerPub(${pubdb[i].pubowner})">Editer</button>
-          <button class="btn btn-danger"  style="  margin-right: 15px; " onclick="DeletePub(${pubdb[i].ipubowner})">Delete</button></td>
+          <td> <button class="btn btn-default"   onclick="EditerPub(${pubdb[i].idPub})">Editer</button>
+          <button class="btn btn-danger"  style="  margin-right: 15px; " onclick="DeletePub(${pubdb[i].idPub})">Delete</button></td>
           
 
 
@@ -574,6 +574,98 @@ function AfficherPublication(){
     }
     document.getElementById("ConsulterPub").innerHTML = tab;
   }
+
+}
+function DeletePub(indicePub) {
+
+  var pubdb = JSON.parse(localStorage.getItem('pubs'));
+  console.log(pubdb);
+
+
+  for (i = 0; i < pubdb.length; i++) {
+
+    if (pubdb[i].idPub == indicePub) {
+
+      pubdb.splice(i, 1);
+    }
+  }
+  localStorage.setItem("pubs", JSON.stringify(pubdb));
+  AfficherPublication();
+}
+
+function EditerPub(indicePub) {
+
+  console.log(indicePub);
+  var tab = document.getElementById("editpub");
+  var pubdb = JSON.parse(localStorage.getItem('pubs'));
+
+  tab = `
+  <div class="form-group">
+  <div class="col-md-4" style="margin-bottom: 20px;">
+<label for="exampleInputPassword1">Name Publication </label>
+<input type="text" class="form-control" maxlength="50" id="pubnameEditer">
+</div>
+<div class="col-md-4">
+<label for="exampleInputPassword1">Date</label>
+<input type="date" class="form-control" id="pubdateEditer">
+
+
+  </div>
+<div class="col-md-4">
+<label for="exampleInputPassword1">Deadline</label>
+<input type="date" class="form-control" id="pubdeadlineEditer">
+</div>
+<br>
+<button id="applyPub" class="btn btn-default" style="margin-bottom: 20px;" onclick="applyPub(${indicePub})"> Apply </button>
+
+<button id="cancelPub" class="btn btn-default" style="margin-bottom: 20px;" onclick="cancelPub()"> Cancel </button>
   
+  </div>
+  `
+  document.getElementById("editpub").innerHTML = tab;
+  document.getElementById("editpub").style.display = "block";
+  document.getElementById("ConsulterPub").style.display = "none";
+  for (i = 0; i < pubdb.length; i++) {
+
+    if (pubdb[i].idPub == indicePub) {
+      let NameAediter = pubdb[i].nomPub;
+      console.log(NameAediter);
+      let DateAediter = pubdb[i].date;
+      console.log(DateAediter);
+      let DeadAediter = pubdb[i].deadline;
+      document.getElementById("pubnameEditer").value = NameAediter;
+      document.getElementById("pubdateEditer").value = DateAediter;
+      document.getElementById("pubdeadlineEditer").value = DeadAediter;
+    }
+  }
+}
+function cancelPub() {
+  document.getElementById("editpub").style.display = "none";
+  document.getElementById("ConsulterPub").style.display = "table";
+  AfficherPublication();
+}
+function applyPub(indicePub) {
+  var pubdb = JSON.parse(localStorage.getItem('pubs'));
+  let datenow = new Date();
+  let secondnow = parseInt(datenow.valueOf(), 10);
+
+  for (i = 0; i < pubdb.length; i++) {
+    if (pubdb[i].idPub == indicePub) {
+      let stringdate = document.getElementById("pubdeadlineEditer").value;
+      var day1 = new Date(stringdate);
+      seconddead = parseInt(day1.valueOf(), 10);
+      if (secondnow < seconddead) {
+        pubdb[i].nomPub = document.getElementById("pubnameEditer").value;
+        pubdb[i].date = document.getElementById("pubdateEditer").value;
+        pubdb[i].deadline = document.getElementById("pubdeadlineEditer").value;
+        localStorage.setItem("pubs", JSON.stringify(pubdb));
+        document.getElementById("editpub").style.display = "none";
+        document.getElementById("ConsulterPub").style.display = "table";
+        AfficherPublication();
+      } else {
+        alert("deadline invalid");
+      }
+    }
+  }
 }
 
