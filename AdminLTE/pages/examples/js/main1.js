@@ -464,3 +464,116 @@ function deconnexResto(){
 
 
 
+ function addpublication(){
+  var pubdb = JSON.parse(localStorage.getItem('pubs'));
+  var restologged = JSON.parse(localStorage.getItem('connectedResto'))
+  let objet = {
+    idPub: Math.floor(Math.random() * 10000) + 1,
+    nomPub:document.getElementById("pubname").value,
+    prix: document.getElementById("pubprice").value,
+    date: document.getElementById("pubdate").value,
+   deadline: document.getElementById("pubdeadline").value,
+    description: document.getElementById("pubdescription").value,
+    img:document.getElementById("pubimg").files[0].name,
+    pubowner:restologged.idresto, 
+}
+if (pubdb === null) {
+  pubdb = [];
+}
+console.log(objet);
+pubdb.push(objet);
+console.log(pubdb);
+localStorage.setItem("pubs", JSON.stringify(pubdb));
+
+
+var tab = document.getElementById("tableauPub");
+  tab.innerHTML = '';
+  if (pubdb=== null) {
+    tab.innerHTML = `
+    <tr>
+    <th>aucune Pub est ajouter</th>
+   
+
+  </tr> 
+  `
+  } else {
+    tab = `
+    <tr>
+    <th>Publication Name</th>
+    <th>Date</th>
+    <th>Deadline</th>
+    <th>Prix</th>
+
+</tr>
+      `
+    for (let i = 0; i < pubdb.length; i++) {
+      if (restologged.idresto === pubdb[i].pubowner) {
+        tab += `
+        <tr>
+          <td >${pubdb[i].nomPub}</td>
+          <td >${pubdb[i].date}</td>
+          <td >${pubdb[i].deadline}</td>
+          <td >${pubdb[i].prix}</td>
+
+        </tr>
+       `
+      }
+    }
+    document.getElementById("tableauPub").innerHTML = tab;
+  }
+  document.getElementById("pubname").value= "";
+document.getElementById("pubprice").value= "";
+document.getElementById("pubdate").value= "";
+document.getElementById("pubdeadline").value= "";
+document.getElementById("pubdescription").value= "";
+document.getElementById("pubimg").value= "";
+
+}
+function AfficherPublication(){
+  var pubdb = JSON.parse(localStorage.getItem('pubs'));
+  var restologged = JSON.parse(localStorage.getItem('connectedResto'))
+  var tab = document.getElementById("ConsulterPub");
+  tab.innerHTML = '';
+  if (pubdb=== null) {
+    tab.innerHTML = `
+    <tr>
+    <th>aucune Pub est ajouter</th>
+   
+
+  </tr> 
+  `
+  } else {
+    tab = `
+    <tr>
+    <th>Publication Name</th>
+    <th>Date</th>
+    <th>Deadline</th>
+    <th>Description</th>
+    <th>Prix</th>
+    <th>Action</th>
+
+</tr>
+      `
+    for (let i = 0; i < pubdb.length; i++) {
+      if (restologged.idresto === pubdb[i].pubowner) {
+        tab += `
+        <tr>
+          <td >${pubdb[i].nomPub}</td>
+          <td >${pubdb[i].date}</td>
+          <td >${pubdb[i].deadline}</td>
+          <td >${pubdb[i].description}</td>
+          <td >${pubdb[i].prix}</td>
+          <td> <button class="btn btn-default"   onclick="EditerPub(${pubdb[i].pubowner})">Editer</button>
+          <button class="btn btn-danger"  style="  margin-right: 15px; " onclick="DeletePub(${pubdb[i].ipubowner})">Delete</button></td>
+          
+
+
+        </tr>
+       `
+      }
+    }
+    document.getElementById("ConsulterPub").innerHTML = tab;
+  }
+  
+}
+
