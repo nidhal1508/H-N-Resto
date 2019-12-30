@@ -10,12 +10,14 @@
 
     <meta name="description" content="Tomato is a Responsive HTML5 Template for Restaurants and food related services.">
     <meta name="keywords" content="tomato, responsive, html5, restaurant, template, food, reservation">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
     <script src="../../cdn-cgi/apps/head/-mEFVS8y7qx5pVzWHQTCQu5gnVM.js"></script>
     <link rel="shortcut icon" href="img/favicon.ico">
-    <script src="C:\Users\Asus\Desktop\Nouveau dossier (3)\adminlte.io\themes\AdminLTE\pages\examples\js\main1.js"></script>
 
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/style2.css" />
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
@@ -75,6 +77,7 @@
 
                             <li><a href="cmd.html">Commande</a></li>
 
+                            <li><a href="cmd.html">Commande</a></li>
 
 
 
@@ -96,72 +99,34 @@
                 </div>
             </section>
 
-            <section class="reservation">
+            <section class="Menu">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="page-header wow fadeInDown">
-                                <h1>Reservations<small>Book a table online. Leads will reach in your email.</small></h1>
-                            </div>
+                        <div class="col-md-12 AjouterMenu">
+                            <center>
+                                <input type="text" name="NosSandwish" id="Sandwish" placeholder="Sandwish a ajouter">
+                                <input type="text" name="prixSandwish" id="PrixSandwish" placeholder="Prix Sandwish a ajouter">
+                                <button class="btnAjouterMenu">Ajouter</button><br><br>
+                                <input type="text" name="Makloub" id="Makloub" placeholder="Makloub a ajouter">
+                                <input type="text" name="prixMakloub" id="PrixMakloub" placeholder="Prix Makloub a ajouter">
+                                <button class="btnAjouterMenu">Ajouter</button><br><br>
+                                <input type="text" name="Libanais" id="Libanais" placeholder="Libanai a ajouter">
+                                <input type="text" name="prixlibanais" id="Prixlibanais" placeholder="Prix Libanai a ajouter">
+                                <button class="btnAjouterMenu">Ajouter</button><br><br>
+                                <input type="text" name="NosPlats" id="Plats" placeholder="Plat a ajouter">
+                                <input type="text" name="prixPlats" id="PrixPlats" placeholder="Prix Plat a ajouter">
+                                <button class="btnAjouterMenu">Ajouter</button><br><br>
+                                <input type="text" name="NosSalades" id="Salades" placeholder="Salade a ajouter">
+                                <input type="text" name="prixSalades" id="PrixSalade" placeholder="Prix Salade a ajouter">
+                                <button class="btnAjouterMenu">Ajouter</button><br><br>
+                                <input type="text" name="NosPizzas" id="Pizzas" placeholder="Pizza a ajouter">
+                                <input type="text" name="prixPizza" id="PrixPizza" placeholder="Prix Pizza a ajouter">
+                                <button class="btnAjouterMenu">Ajouter</button><br><br>
+
+                            </center>
+
+
                         </div>
-                    </div>
-                    <div class="reservation-form wow fadeInUp">
-                        <form action="https://demo.web3canvas.com/themeforest/tomato/php/reservation.php" id="reservationform" method="POST">
-                            <div class="row">
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="datepicker">Date</label>
-                                        <input type="text" name="date" class="form-control" id="datepicker" placeholder="Pick a date" title="Please choose a date" required>
-                                        <i class="fa fa-calendar-o"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="name">Your Name</label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" title="Your Full Name please" required>
-                                        <i class="fa fa-pencil-square-o"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="timepicker">Time</label>
-                                        <input type="text" class="form-control" id="timepicker" name="time" placeholder="Pick a time" title="Choose Preferred Time" required>
-                                        <i class="fa fa-clock-o"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="email">Email Address</label>
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Your Email ID" title="Please enter your email id" required>
-                                        <i class="fa fa-envelope-o"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="guests">Guests</label>
-                                        <input class="form-control" type="number" id="guests" name="guests" placeholder="How many of you?" title="Please enter number of guests" required>
-                                        <i class="fa fa-user"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="phone">Phone Number</label>
-                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your Phone Number" title="Please enter your phone number" required>
-                                        <i class="fa fa-phone"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="reservation-btn">
-                                        <button type="submit" class="btn btn-default btn-lg" id="js-reservation-btn">Make Reservation</button>
-                                        <div id="js-reservation-result" data-success-msg="Form submitted successfully." data-error-msg="Oops. Something went wrong."></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="reservation-footer">
-                        <p>You can also call: <strong>+1 224 6787 004</strong> to make a reservation.</p>
-                        <span></span>
                     </div>
                 </div>
             </section>

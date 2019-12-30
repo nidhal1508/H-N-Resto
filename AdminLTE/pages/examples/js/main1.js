@@ -275,7 +275,7 @@ function AddResto(){
     villeR:document.getElementById("villeresto").value,
     registreN:document.getElementById("C-registreresto").value,
     Nfiscale:document.getElementById("idfiscale").value,
-    logo:document.getElementById("logoresto").value,
+    logo:document.getElementById("logoresto").files[0].name,
     slogan:document.getElementById("sloganresto").value,
     categoryR:document.getElementById("selectcategory").value,
     pwdR: document.getElementById("pwdresto").value,
@@ -283,6 +283,7 @@ function AddResto(){
     status:"inactive",
     resN:"0",
     cmdN:"0",
+    
   }
   if (restodb === null) {
     restodb = [];
