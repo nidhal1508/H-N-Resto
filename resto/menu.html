@@ -27,6 +27,8 @@
     <!--[if lt IE 9]>
             <script src="js/vendor/html5-3.6-respond-1.4.2.min.js"></script>
         <![endif]-->
+    <script src="js/mainMenu.js"></script>
+
 </head>
 
 <body onload="RestoConnectedVerif()">
@@ -114,20 +116,27 @@
                                     <div class="col-md-5">
                                         <label for="exampleInputPassword1">Types </label>
 
-                                        <select class="form-control">
-                                                        <option selected value="0">selectionner votre Menu</option>
+                                        <select class="form-control" id="selectMenu">
+                                                        <option value="selectionner">selectionner votre Menu</option>
                                                         <option value="Plats">Plats</option>
                                                         <option value="SANDWITCHS">SANDWITCHS</option>
                                                         <option value="BURGERS">BURGERS</option>
+                                                        <option value="Makloub">Makloub</option>
+                                                        <option value="libanais">Libanais</option>
+                                                        <option value="Pizzas">Pizzas</option>
+                                                        <option value="Salade">Salade</option>
+                                                        <option value="Boisson">Boisson</option>
+
+
                                                     </select>
                                     </div>
                                     <div class="col-md-5">
                                         <label>Name menu</label>
-                                        <input type="text" value="" class="form-control" id="pwdresto1">
+                                        <input type="text" class="form-control" name="nomArticle" id="Article" placeholder="Name">
                                     </div>
                                     <div class="col-md-2">
                                         <label>prix</label>
-                                        <input type="text" value="" class="form-control" id="pwdresto1">
+                                        <input type="text" name="Prix" class="form-control" id="PrixArticle" placeholder="Prix">
                                     </div>
                                     <br>
                                 </div>
@@ -136,7 +145,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="space20"></div>
-                                        <input type="submit" class="btn btn-default pull-right" style="width: 200px; margin-top: 20px; " value="Ajouter">
+                                        <input type="submit" onclick="AjouterMenu()" class="btn btn-default pull-right" style="width: 200px; margin-top: 20px; " value="Ajouter">
                                     </div>
                                 </div>
 
