@@ -668,4 +668,136 @@ function applyPub(indicePub) {
     }
   }
 }
+function EditerRestoA(idrestaurant) {
+  let objet = {
+    restoEditID: idrestaurant,
+  }
+  localStorage.setItem('Restoeditid', JSON.stringify(objet));
+  console.log(objet);
+  location.href = 'gestion-cpt1.html'
+}
+function EditerRestoAdmin() {
 
+  var restodb = JSON.parse(localStorage.getItem('restos'));
+  let idrestaurant = JSON.parse(localStorage.getItem('Restoeditid'));
+  let idrestaurant1 = idrestaurant.restoEditID;
+  var RestoEditAdmin = document.getElementById("editerRestoAdmin");
+  RestoEditAdmin.innerHTML = '';
+  if (restodb === null) {
+    RestoEditAdmin.innerHTML =
+      `<p>aucune Resto est ajouter</p>
+    `
+  } else {
+    RestoEditAdmin.innerHTML =
+      `
+    <div class="box-body">
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="EmailResto" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="PasswordResto" placeholder="Password">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Tel</label>
+
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="TelResto" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Nom Restaurant</label>
+
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="NomResto" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Adresse</label>
+
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="AdresseResto" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Slogan</label>
+
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="SloganResto" placeholder="Email">
+                </div>
+              </div>
+             
+
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <input  class="btn btn-info pull-right" style="margin-right: 10px;" onclick="BloquerRestoA(${idrestaurant1})" value="Bloquer">
+              <input  class="btn btn-info pull-right" style="margin-right: 10px;" onclick="DeleteRestoA(${idrestaurant1})" value="Delete">
+              <input  class="btn btn-info pull-right" style="margin-right: 10px;" onclick="EditRestoA(${idrestaurant1})" value="Edit">
+            </div>
+           
+         
+    `
+  }
+  for (let i = 0; i < restodb.length; i++) {
+    if (restodb[i].idresto === idrestaurant1) {
+
+      document.getElementById("EmailResto").value = restodb[i].emailR;
+      document.getElementById("PasswordResto").value = restodb[i].pwdR;
+      document.getElementById("TelResto").value = restodb[i].telR;
+      document.getElementById("NomResto").value = restodb[i].nomresto;
+      document.getElementById("AdresseResto").value = restodb[i].adresseR;
+      document.getElementById("SloganResto").value = restodb[i].slogan;
+
+    }
+  }
+}
+function BloquerRestoA(indiceresto) {
+  var restodb = JSON.parse(localStorage.getItem('restos'));
+  console.log(indiceresto);
+  for (let i = 0; i < restodb.length; i++) {
+    if (restodb[i].idresto === indiceresto) {
+      restodb[i].status = "inactive";
+      localStorage.setItem("restos", JSON.stringify(restodb));
+      location.href = 'gestion-cpt.html'
+
+
+    }
+  }
+}
+function DeleteRestoA(indiceresto) {
+  var restodb = JSON.parse(localStorage.getItem('restos'));
+  console.log(indiceresto);
+  for (let i = 0; i < restodb.length; i++) {
+    if (restodb[i].idresto === indiceresto) {
+      restodb.splice(i, 1);
+      localStorage.setItem("restos", JSON.stringify(restodb));
+      location.href = 'gestion-cpt.html'
+    }
+  }
+}
+function EditRestoA(indiceresto) {
+  var restodb = JSON.parse(localStorage.getItem('restos'));
+  console.log(indiceresto);
+  for (let i = 0; i < restodb.length; i++) {
+    if (restodb[i].idresto === indiceresto) {
+      console.log(i);
+      restodb[i].emailR = document.getElementById("EmailResto").value;
+      restodb[i].pwdR = document.getElementById("PasswordResto").value;
+      restodb[i].telR = document.getElementById("TelResto").value;
+      restodb[i].nomresto = document.getElementById("NomResto").value;
+      restodb[i].adresseR = document.getElementById("AdresseResto").value;
+      console.log( restodb[i].adresseR );
+      restodb[i].slogan = document.getElementById("SloganResto").value;
+      localStorage.setItem("restos", JSON.stringify(restodb));
+      location.href = 'gestion-cpt1.html'
+    }
+  }
+}
