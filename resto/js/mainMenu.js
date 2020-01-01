@@ -1,4 +1,5 @@
 function AjouterMenu() {
+    var loggedResto = JSON.parse(localStorage.getItem('connectedResto'));
     let type = document.getElementById("selectMenu").value;
     let Nom = document.getElementById("Article").value;
     let Prx = document.getElementById("PrixArticle").value;

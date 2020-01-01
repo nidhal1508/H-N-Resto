@@ -1,158 +1,158 @@
 function ctrlnom() {
-    let nom = document.getElementById("nom-user").value;
-    console.log(nom)
-    if (nom === "") {
-        alert("entrer un nom");
-        return (false);
+  let nom = document.getElementById("nom-user").value;
+  console.log(nom)
+  if (nom === "") {
+    alert("entrer un nom");
+    return (false);
 
-    }
-    return (true);
+  }
+  return (true);
 }
 
 function ctrlprenom() {
-    let prenom = document.getElementById("prenom-user").value;
-    console.log(prenom)
-    if (prenom === "") {
-        alert("entrer votre prenom");
-        return (false);
+  let prenom = document.getElementById("prenom-user").value;
+  console.log(prenom)
+  if (prenom === "") {
+    alert("entrer votre prenom");
+    return (false);
 
-    }
-    return (true);
+  }
+  return (true);
 }
 
 function ctrladresse() {
-    let adresse = document.getElementById("adresse-user").value;
-    console.log(adresse)
-    if (adresse === "") {
-        alert("entrer l'adresse");
-        return (false);
+  let adresse = document.getElementById("adresse-user").value;
+  console.log(adresse)
+  if (adresse === "") {
+    alert("entrer l'adresse");
+    return (false);
 
-    }
-    return (true);
+  }
+  return (true);
 }
 
 function ctrltel() {
-    let tel = document.getElementById("tel-user").value;
-    console.log(tel)
-    if (tel === "") {
-        alert("entrer un numero de tel");
-        return (false);
+  let tel = document.getElementById("tel-user").value;
+  console.log(tel)
+  if (tel === "") {
+    alert("entrer un numero de tel");
+    return (false);
 
-    }
-    return (true);
+  }
+  return (true);
 }
 
 function ctrlemail() {
-    var mail = document.getElementById("email-user").value;
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
-    return re.test(String(mail).toLowerCase());
+  var mail = document.getElementById("email-user").value;
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
+  return re.test(String(mail).toLowerCase());
 }
 
 function passverif() {
-    var pass1 = document.getElementById("pwd-user").value;
-    var pass2 = document.getElementById("cpwd-user").value;
-    if (pass1 != pass2) {
-        alert("mot de passe invalid");
-        return (false);
-    }
-    return true
+  var pass1 = document.getElementById("pwd-user").value;
+  var pass2 = document.getElementById("cpwd-user").value;
+  if (pass1 != pass2) {
+    alert("mot de passe invalid");
+    return (false);
+  }
+  return true
 }
 
 function registerUser() {
-    if (ctrlprenom() && passverif() && ctrltel() && ctrladresse() && ctrlnom() && ctrlemail()) {
+  if (ctrlprenom() && passverif() && ctrltel() && ctrladresse() && ctrlnom() && ctrlemail()) {
 
-        AddUser();
+    AddUser();
 
-    }
+  }
 }
 
 
 function AddUser() {
 
-    var userdb = JSON.parse(localStorage.getItem('users'));
-    var logged = JSON.parse(localStorage.getItem('connecteduser'))
+  var userdb = JSON.parse(localStorage.getItem('users'));
+  var logged = JSON.parse(localStorage.getItem('connecteduser'))
 
-    let objet = {
-        nom: document.getElementById("nom-user").value,
-        prenom: document.getElementById("prenom-user").value,
-        email: document.getElementById("email-user").value,
-        adresse: document.getElementById("adresse-user").value,
-        tel: document.getElementById("tel-user").value,
-        pwd: document.getElementById("pwd-user").value,
-        iduser: Math.floor(Math.random() * 10000) + 1,
-        role: "user",
-    }
-    if (userdb === null) {
-        userdb = [];
-    }
-    console.log(objet);
-    userdb.push(objet);
-    console.log(userdb);
-    localStorage.setItem("users", JSON.stringify(userdb));
-    localStorage.setItem('connecteduser', JSON.stringify(objet));
+  let objet = {
+    nom: document.getElementById("nom-user").value,
+    prenom: document.getElementById("prenom-user").value,
+    email: document.getElementById("email-user").value,
+    adresse: document.getElementById("adresse-user").value,
+    tel: document.getElementById("tel-user").value,
+    pwd: document.getElementById("pwd-user").value,
+    iduser: Math.floor(Math.random() * 10000) + 1,
+    role: "user",
+  }
+  if (userdb === null) {
+    userdb = [];
+  }
+  console.log(objet);
+  userdb.push(objet);
+  console.log(userdb);
+  localStorage.setItem("users", JSON.stringify(userdb));
+  localStorage.setItem('connecteduser', JSON.stringify(objet));
 
-    location.href = 'recipe_4col.html';
-    console.log('tsd');
+  location.href = 'recipe_4col.html';
+  console.log('tsd');
 }
 
 function connexAdmin() {
-    var email = document.getElementById("adminemail").value;
-    var passcnx = document.getElementById("adminpws").value;
-    var logged = JSON.parse(localStorage.getItem('connectedadmin'))
+  var email = document.getElementById("adminemail").value;
+  var passcnx = document.getElementById("adminpws").value;
+  var logged = JSON.parse(localStorage.getItem('connectedadmin'))
 
-    var userdb = JSON.parse(localStorage.getItem('users'));
-    if (userdb === null) {
-        userdb = [];
-        alert("Data base null");
-    }
-    let test = false;
-    for (let i = 0; i < userdb.length; i++) {
-        if (userdb[i].email == email && userdb[i].pwd == passcnx && userdb[i].role === "admin") {
-            localStorage.setItem('connectedadmin', JSON.stringify(userdb[i]));
-            location.href = 'C:\Users\Asus\Desktop\Nouveau dossier (3)\adminlte.io\themes\AdminLTE \index2.html';
+  var userdb = JSON.parse(localStorage.getItem('users'));
+  if (userdb === null) {
+    userdb = [];
+    alert("Data base null");
+  }
+  let test = false;
+  for (let i = 0; i < userdb.length; i++) {
+    if (userdb[i].email == email && userdb[i].pwd == passcnx && userdb[i].role === "admin") {
+      localStorage.setItem('connectedadmin', JSON.stringify(userdb[i]));
+      location.href = 'C:\Users\Asus\Desktop\Nouveau dossier (3)\adminlte.io\themes\AdminLTE \index2.html';
 
-            return;
-        }
-
+      return;
     }
 
-    if (!test) {
-        alert("mot dde passe incorrect.");
+  }
 
-    }
+  if (!test) {
+    alert("mot dde passe incorrect.");
+
+  }
 
 }
 
 function admin_connected_verif() {
-    var loggedAdmin = JSON.parse(localStorage.getItem('connectedadmin'))
-    var connexsection = document.getElementById("connexsectionadmin");
-    if (loggedAdmin === null) {
-        location.href = 'file:///C:/Users/Asus/Desktop/Nouveau%20dossier%20(3)/adminlte.io/themes/AdminLTE/pages/examples/login.html';
+  var loggedAdmin = JSON.parse(localStorage.getItem('connectedadmin'))
+  var connexsection = document.getElementById("connexsectionadmin");
+  if (loggedAdmin === null) {
+    location.href = 'file:///C:/Users/Asus/Desktop/Nouveau%20dossier%20(3)/adminlte.io/themes/AdminLTE/pages/examples/login.html';
 
-    } else {
+  } else {
 
-        connexsection.innerHTML += `
+    connexsection.innerHTML += `
     <li><button type="submit"
     class="btn btn-info btn-flat" onclick="deconnexAdmin()"> se déconnecter</button></li>
     <br>
                                     
                                     
   `
-    }
+  }
 }
 
 function deconnexAdmin() {
 
-    localStorage.removeItem('connectedadmin');
-    location.href = 'login.html';
+  localStorage.removeItem('connectedadmin');
+  location.href = 'login.html';
 }
 
 function user_connected_verif() {
-    var logged = JSON.parse(localStorage.getItem('connectedUser'))
-    var tab = document.getElementById("connexsection");
-    if (logged === null) {
+  var logged = JSON.parse(localStorage.getItem('connectedUser'))
+  var tab = document.getElementById("connexsection");
+  if (logged === null) {
 
-        tab.innerHTML = `
+    tab.innerHTML = `
     <li style="margin-right: 10px;" id="connexsection">
         <div class="form-group">
             Email address
@@ -175,9 +175,9 @@ function user_connected_verif() {
 
 </ul>
 `
-    } else {
+  } else {
 
-        tab.innerHTML = `
+    tab.innerHTML = `
     <li style="margin-right: 10px;margin-top: 20px;" id="connexsection"><button type="submit"
                                     class="btn btn-default" onclick="deconnexUser()"> se déconnecter</button></li>
                                     
@@ -218,181 +218,181 @@ function user_connected_verif() {
                 </div>
                 </li>
   `
-    }
+  }
 }
 
 function user_connected_verifPannier() {
-    var logged = JSON.parse(localStorage.getItem('connectedUser'))
+  var logged = JSON.parse(localStorage.getItem('connectedUser'))
 
-    if (logged === null) {
-        location.href = 'home.html';
-    }
+  if (logged === null) {
+    location.href = 'home.html';
+  }
 }
 
 function connexUser() {
-    var email = document.getElementById("UserEmail").value;
-    var passcnx = document.getElementById("UserPassword").value;
-    var logged = JSON.parse(localStorage.getItem('connectedUser'))
+  var email = document.getElementById("UserEmail").value;
+  var passcnx = document.getElementById("UserPassword").value;
+  var logged = JSON.parse(localStorage.getItem('connectedUser'))
 
-    var userdb = JSON.parse(localStorage.getItem('users'));
-    if (userdb === null) {
-        userdb = [];
-        alert("Data base null");
-    }
-    let test = false;
-    for (let i = 0; i < userdb.length; i++) {
-        if (userdb[i].email == email && userdb[i].pwd == passcnx && userdb[i].role === "user") {
-            localStorage.setItem('connectedUser', JSON.stringify(userdb[i]));
-            location.href = 'file:///C:/Users/Asus/Desktop/Nouveau%20dossier%20(3)/adminlte.io/themes/projet/home.html';
+  var userdb = JSON.parse(localStorage.getItem('users'));
+  if (userdb === null) {
+    userdb = [];
+    alert("Data base null");
+  }
+  let test = false;
+  for (let i = 0; i < userdb.length; i++) {
+    if (userdb[i].email == email && userdb[i].pwd == passcnx && userdb[i].role === "user") {
+      localStorage.setItem('connectedUser', JSON.stringify(userdb[i]));
+      location.href = 'file:///C:/Users/Asus/Desktop/Nouveau%20dossier%20(3)/adminlte.io/themes/projet/home.html';
 
-            return;
-        }
-
+      return;
     }
 
-    if (!test) {
-        alert("mot dde passe incorrect.");
+  }
 
-    }
+  if (!test) {
+    alert("mot dde passe incorrect.");
+
+  }
 
 }
 
 function deconnexUser() {
-    localStorage.removeItem('connectedUser');
-    location.href = 'inscription.html';
+  localStorage.removeItem('connectedUser');
+  location.href = 'inscription.html';
 }
 
 
 function AddCat() {
-    var catdb = JSON.parse(localStorage.getItem('cats'));
-    let category = document.getElementById('category-name').value;
-    let objet = {
-        categoryname: category,
-        idcat: Math.floor(Math.random() * 10000) + 1,
+  var catdb = JSON.parse(localStorage.getItem('cats'));
+  let category = document.getElementById('category-name').value;
+  let objet = {
+    categoryname: category,
+    idcat: Math.floor(Math.random() * 10000) + 1,
 
+  }
+  if (category === "") {
+    alert('category vide')
+  } else {
+    if (catdb === null) {
+      catdb = [];
     }
-    if (category === "") {
-        alert('category vide')
-    } else {
-        if (catdb === null) {
-            catdb = [];
-        }
-        console.log(objet);
-        catdb.push(objet);
-        console.log(catdb);
-        localStorage.setItem("cats", JSON.stringify(catdb));
-    }
+    console.log(objet);
+    catdb.push(objet);
+    console.log(catdb);
+    localStorage.setItem("cats", JSON.stringify(catdb));
+  }
 }
 
 function AfficherCatInscri() {
-    var catdb = JSON.parse(localStorage.getItem('cats'));
-    let cat = document.getElementById("selectcategory");
-    for (i = 0; i < catdb.length; i++)
-        cat.innerHTML += `
+  var catdb = JSON.parse(localStorage.getItem('cats'));
+  let cat = document.getElementById("selectcategory");
+  for (i = 0; i < catdb.length; i++)
+    cat.innerHTML += `
 <option>${catdb[i].categoryname}</option>
 `
 }
 
 function ctrlnomadminResto() {
-    let nom = document.getElementById("nomAdminResto").value;
-    console.log(nom)
-    if (nom === "") {
-        alert("entrer un nom");
-        return (false);
+  let nom = document.getElementById("nomAdminResto").value;
+  console.log(nom)
+  if (nom === "") {
+    alert("entrer un nom");
+    return (false);
 
-    }
-    return (true);
+  }
+  return (true);
 }
 
 function ctrlemailrest() {
-    var mail = document.getElementById("emailResto").value;
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
-    return re.test(String(mail).toLowerCase());
+  var mail = document.getElementById("emailResto").value;
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
+  return re.test(String(mail).toLowerCase());
 }
 
 function ctrlprenomResto() {
-    let prenom = document.getElementById("prenomAdminResto").value;
-    console.log(prenom)
-    if (prenom === "") {
-        alert("entrer un nom");
-        return (false);
+  let prenom = document.getElementById("prenomAdminResto").value;
+  console.log(prenom)
+  if (prenom === "") {
+    alert("entrer un nom");
+    return (false);
 
-    }
-    return (true);
+  }
+  return (true);
 }
 
 function ctrlnomResto() {
-    let nomresto = document.getElementById("Nomresto").value;
-    console.log(nomresto)
-    if (nomresto === "") {
-        alert("entrer un nom");
-        return (false);
+  let nomresto = document.getElementById("Nomresto").value;
+  console.log(nomresto)
+  if (nomresto === "") {
+    alert("entrer un nom");
+    return (false);
 
-    }
-    return (true);
+  }
+  return (true);
 }
 
 function registerResto() {
-    if (ctrlnomadminResto() && ctrlemailrest() && ctrlprenomResto() && ctrlnomResto()) {
+  if (ctrlnomadminResto() && ctrlemailrest() && ctrlprenomResto() && ctrlnomResto()) {
 
-        AddResto();
+    AddResto();
 
-    }
+  }
 }
 
 function AddResto() {
-    var restodb = JSON.parse(localStorage.getItem('restos'));
-    //var loggedresto = JSON.parse(localStorage.getItem('connectedresto'))
+  var restodb = JSON.parse(localStorage.getItem('restos'));
+  //var loggedresto = JSON.parse(localStorage.getItem('connectedresto'))
 
-    let objet = {
-        idresto: Math.floor(Math.random() * 10000) + 1,
-        nomresto: document.getElementById("Nomresto").value,
-        nomR: document.getElementById("nomAdminResto").value,
-        prenomR: document.getElementById("prenomAdminResto").value,
-        emailR: document.getElementById("emailResto").value,
-        adresseR: document.getElementById("addresseresto").value,
-        telR: document.getElementById("Telresto").value,
-        villeR: document.getElementById("villeresto").value,
-        registreN: document.getElementById("C-registreresto").value,
-        Nfiscale: document.getElementById("idfiscale").value,
-        logo: document.getElementById("logoresto").files[0].name,
-        slogan: document.getElementById("sloganresto").value,
-        categoryR: document.getElementById("selectcategory").value,
-        pwdR: document.getElementById("pwdresto").value,
-        role: "Resto",
-        status: "inactive",
-        resN: "0",
-        cmdN: "0",
+  let objet = {
+    idresto: Math.floor(Math.random() * 10000) + 1,
+    nomresto: document.getElementById("Nomresto").value,
+    nomR: document.getElementById("nomAdminResto").value,
+    prenomR: document.getElementById("prenomAdminResto").value,
+    emailR: document.getElementById("emailResto").value,
+    adresseR: document.getElementById("addresseresto").value,
+    telR: document.getElementById("Telresto").value,
+    villeR: document.getElementById("villeresto").value,
+    registreN: document.getElementById("C-registreresto").value,
+    Nfiscale: document.getElementById("idfiscale").value,
+    logo: document.getElementById("logoresto").files[0].name,
+    slogan: document.getElementById("sloganresto").value,
+    categoryR: document.getElementById("selectcategory").value,
+    pwdR: document.getElementById("pwdresto").value,
+    role: "Resto",
+    status: "inactive",
+    resN: "0",
+    cmdN: "0",
 
-    }
-    if (restodb === null) {
-        restodb = [];
-    }
-    console.log(objet);
-    restodb.push(objet);
-    console.log(restodb);
-    localStorage.setItem("restos", JSON.stringify(restodb));
-    //localStorage.setItem('connectedresto',JSON.stringify(objet));
+  }
+  if (restodb === null) {
+    restodb = [];
+  }
+  console.log(objet);
+  restodb.push(objet);
+  console.log(restodb);
+  localStorage.setItem("restos", JSON.stringify(restodb));
+  //localStorage.setItem('connectedresto',JSON.stringify(objet));
 
-    alert('vous etes bien enregitrer')
+  alert('vous etes bien enregitrer')
 }
 
 function AfficherListeResto() {
-    var restodb = JSON.parse(localStorage.getItem('restos'));
-    let listeResto = document.getElementById("listerestoadmin");
-    listeResto.innerHTML = '';
-    if (restodb === null) {
-        listeResto.innerHTML = `
+  var restodb = JSON.parse(localStorage.getItem('restos'));
+  let listeResto = document.getElementById("listerestoadmin");
+  listeResto.innerHTML = '';
+  if (restodb === null) {
+    listeResto.innerHTML = `
     <tr>
     <th>aucune Resto est ajouter</th>
    
 
   </tr> 
   `
-    } else {
+  } else {
 
-        for (let i = 0; i < restodb.length; i++) {
-            listeResto += `
+    for (let i = 0; i < restodb.length; i++) {
+      listeResto += `
         <tr>
           <td >${restodb[i].idresto}</td>
           <td >${restodb[i].nomresto}</td>
@@ -410,116 +410,116 @@ function AfficherListeResto() {
         </tr>
         `
 
-        }
-        document.getElementById("listerestoadmin").innerHTML = listeResto;
-
     }
+    document.getElementById("listerestoadmin").innerHTML = listeResto;
+
+  }
 }
 
 function ActiveRestoA(indice) {
-    var restodb = JSON.parse(localStorage.getItem('restos'));
-    console.log(restodb);
+  var restodb = JSON.parse(localStorage.getItem('restos'));
+  console.log(restodb);
 
 
-    for (i = 0; i < restodb.length; i++) {
+  for (i = 0; i < restodb.length; i++) {
 
-        if (restodb[i].idresto == indice) {
+    if (restodb[i].idresto == indice) {
 
-            restodb[i].status = "active"
-        }
+      restodb[i].status = "active"
     }
-    localStorage.setItem("restos", JSON.stringify(restodb));
-    AfficherListeResto();
+  }
+  localStorage.setItem("restos", JSON.stringify(restodb));
+  AfficherListeResto();
 }
 
 function connexResto() {
-    var email = document.getElementById("EmailConnexResto").value;
-    var passcnx = document.getElementById("PwdConnexResto").value;
-    var loggedResto = JSON.parse(localStorage.getItem('connectedResto'))
+  var email = document.getElementById("EmailConnexResto").value;
+  var passcnx = document.getElementById("PwdConnexResto").value;
+  var loggedResto = JSON.parse(localStorage.getItem('connectedResto'))
 
-    var restodb = JSON.parse(localStorage.getItem('restos'));
-    if (restodb === null) {
-        restodb = [];
-        alert("Data base null");
+  var restodb = JSON.parse(localStorage.getItem('restos'));
+  if (restodb === null) {
+    restodb = [];
+    alert("Data base null");
+  }
+  let test = false;
+  for (let i = 0; i < restodb.length; i++) {
+    if (restodb[i].emailR == email && restodb[i].pwdR == passcnx && restodb[i].status === "inactive") {
+      alert("restaurant deactivé contacter Admin")
+      return;
     }
-    let test = false;
-    for (let i = 0; i < restodb.length; i++) {
-        if (restodb[i].emailR == email && restodb[i].pwdR == passcnx && restodb[i].status === "inactive") {
-            alert("restaurant deactivé contacter Admin")
-            return;
-        }
-        if (restodb[i].emailR == email && restodb[i].pwdR == passcnx && restodb[i].status === "active") {
-            localStorage.setItem('connectedResto', JSON.stringify(restodb[i]));
-            location.href = 'home.html';
+    if (restodb[i].emailR == email && restodb[i].pwdR == passcnx && restodb[i].status === "active") {
+      localStorage.setItem('connectedResto', JSON.stringify(restodb[i]));
+      location.href = 'home.html';
 
-            return;
-        }
-
+      return;
     }
 
-    if (!test) {
-        alert("mot dde passe incorrect.");
+  }
 
-    }
+  if (!test) {
+    alert("mot dde passe incorrect.");
+
+  }
 
 }
 
 function RestoConnectedVerif() {
-    var logged = JSON.parse(localStorage.getItem('connectedResto'))
-    var BotDeconnecter = document.getElementById("connexResto");
-    if (logged === null) {
+  var logged = JSON.parse(localStorage.getItem('connectedResto'))
+  var BotDeconnecter = document.getElementById("connexResto");
+  if (logged === null) {
 
-        location.href = 'shop_account.html';
+    location.href = 'shop_account.html';
 
-        return;
-    } else {
-        BotDeconnecter = `
+    return;
+  } else {
+    BotDeconnecter = `
   <button type="submit" class="btn btn-default" onclick="deconnexResto()">déconnecter</button>`
-    }
-    document.getElementById("connexResto").innerHTML = BotDeconnecter;
+  }
+  document.getElementById("connexResto").innerHTML = BotDeconnecter;
 }
 
 function deconnexResto() {
-    localStorage.removeItem('connectedResto');
-    location.href = 'shop_account.html';
+  localStorage.removeItem('connectedResto');
+  location.href = 'shop_account.html';
 }
 
 
 
 function addpublication() {
-    var pubdb = JSON.parse(localStorage.getItem('pubs'));
-    var restologged = JSON.parse(localStorage.getItem('connectedResto'))
-    let objet = {
-        idPub: Math.floor(Math.random() * 10000) + 1,
-        nomPub: document.getElementById("pubname").value,
-        prix: document.getElementById("pubprice").value,
-        date: document.getElementById("pubdate").value,
-        deadline: document.getElementById("pubdeadline").value,
-        description: document.getElementById("pubdescription").value,
-        img: document.getElementById("pubimg").files[0].name,
-        pubowner: restologged.idresto,
-    }
-    if (pubdb === null) {
-        pubdb = [];
-    }
-    console.log(objet);
-    pubdb.push(objet);
-    console.log(pubdb);
-    localStorage.setItem("pubs", JSON.stringify(pubdb));
+  var pubdb = JSON.parse(localStorage.getItem('pubs'));
+  var restologged = JSON.parse(localStorage.getItem('connectedResto'))
+  let objet = {
+    idPub: Math.floor(Math.random() * 10000) + 1,
+    nomPub: document.getElementById("pubname").value,
+    prix: document.getElementById("pubprice").value,
+    date: document.getElementById("pubdate").value,
+    deadline: document.getElementById("pubdeadline").value,
+    description: document.getElementById("pubdescription").value,
+    img: document.getElementById("pubimg").files[0].name,
+    pubowner: restologged.idresto,
+  }
+  if (pubdb === null) {
+    pubdb = [];
+  }
+  console.log(objet);
+  pubdb.push(objet);
+  console.log(pubdb);
+  localStorage.setItem("pubs", JSON.stringify(pubdb));
 
 
-    var tab = document.getElementById("tableauPub");
-    tab.innerHTML = '';
-    if (pubdb === null) {
-        tab.innerHTML = `
+  var tab = document.getElementById("tableauPub");
+  tab.innerHTML = '';
+  if (pubdb === null) {
+    tab.innerHTML = `
     <tr>
     <th>aucune Pub est ajouter</th>
    
 
   </tr> 
   `
-    } else {
-        tab = `
+  } else {
+    tab = `
     <tr>
     <th>Publication Name</th>
     <th>Date</th>
@@ -528,9 +528,9 @@ function addpublication() {
 
 </tr>
       `
-        for (let i = 0; i < pubdb.length; i++) {
-            if (restologged.idresto === pubdb[i].pubowner) {
-                tab += `
+    for (let i = 0; i < pubdb.length; i++) {
+      if (restologged.idresto === pubdb[i].pubowner) {
+        tab += `
         <tr>
           <td >${pubdb[i].nomPub}</td>
           <td >${pubdb[i].date}</td>
@@ -539,34 +539,34 @@ function addpublication() {
 
         </tr>
        `
-            }
-        }
-        document.getElementById("tableauPub").innerHTML = tab;
+      }
     }
-    document.getElementById("pubname").value = "";
-    document.getElementById("pubprice").value = "";
-    document.getElementById("pubdate").value = "";
-    document.getElementById("pubdeadline").value = "";
-    document.getElementById("pubdescription").value = "";
-    document.getElementById("pubimg").value = "";
+    document.getElementById("tableauPub").innerHTML = tab;
+  }
+  document.getElementById("pubname").value = "";
+  document.getElementById("pubprice").value = "";
+  document.getElementById("pubdate").value = "";
+  document.getElementById("pubdeadline").value = "";
+  document.getElementById("pubdescription").value = "";
+  document.getElementById("pubimg").value = "";
 
 }
 
 function AfficherPublication() {
-    var pubdb = JSON.parse(localStorage.getItem('pubs'));
-    var restologged = JSON.parse(localStorage.getItem('connectedResto'))
-    var tab = document.getElementById("ConsulterPub");
-    tab.innerHTML = '';
-    if (pubdb === null) {
-        tab.innerHTML = `
+  var pubdb = JSON.parse(localStorage.getItem('pubs'));
+  var restologged = JSON.parse(localStorage.getItem('connectedResto'))
+  var tab = document.getElementById("ConsulterPub");
+  tab.innerHTML = '';
+  if (pubdb === null) {
+    tab.innerHTML = `
     <tr>
     <th>aucune Pub est ajouter</th>
    
 
   </tr> 
   `
-    } else {
-        tab = `
+  } else {
+    tab = `
     <tr>
     <th>Publication Name</th>
     <th>Date</th>
@@ -577,9 +577,9 @@ function AfficherPublication() {
 
 </tr>
       `
-        for (let i = 0; i < pubdb.length; i++) {
-            if (restologged.idresto === pubdb[i].pubowner) {
-                tab += `
+    for (let i = 0; i < pubdb.length; i++) {
+      if (restologged.idresto === pubdb[i].pubowner) {
+        tab += `
         <tr>
           <td >${pubdb[i].nomPub}</td>
           <td >${pubdb[i].date}</td>
@@ -593,37 +593,37 @@ function AfficherPublication() {
 
         </tr>
        `
-            }
-        }
-        document.getElementById("ConsulterPub").innerHTML = tab;
+      }
     }
+    document.getElementById("ConsulterPub").innerHTML = tab;
+  }
 
 }
 
 function DeletePub(indicePub) {
 
-    var pubdb = JSON.parse(localStorage.getItem('pubs'));
-    console.log(pubdb);
+  var pubdb = JSON.parse(localStorage.getItem('pubs'));
+  console.log(pubdb);
 
 
-    for (i = 0; i < pubdb.length; i++) {
+  for (i = 0; i < pubdb.length; i++) {
 
-        if (pubdb[i].idPub == indicePub) {
+    if (pubdb[i].idPub == indicePub) {
 
-            pubdb.splice(i, 1);
-        }
+      pubdb.splice(i, 1);
     }
-    localStorage.setItem("pubs", JSON.stringify(pubdb));
-    AfficherPublication();
+  }
+  localStorage.setItem("pubs", JSON.stringify(pubdb));
+  AfficherPublication();
 }
 
 function EditerPub(indicePub) {
 
-    console.log(indicePub);
-    var tab = document.getElementById("editpub");
-    var pubdb = JSON.parse(localStorage.getItem('pubs'));
+  console.log(indicePub);
+  var tab = document.getElementById("editpub");
+  var pubdb = JSON.parse(localStorage.getItem('pubs'));
 
-    tab = `
+  tab = `
   <div class="form-group">
   <div class="col-md-4" style="margin-bottom: 20px;">
 <label for="exampleInputPassword1">Name Publication </label>
@@ -646,28 +646,28 @@ function EditerPub(indicePub) {
   
   </div>
   `
-    document.getElementById("editpub").innerHTML = tab;
-    document.getElementById("editpub").style.display = "block";
-    document.getElementById("ConsulterPub").style.display = "none";
-    for (i = 0; i < pubdb.length; i++) {
+  document.getElementById("editpub").innerHTML = tab;
+  document.getElementById("editpub").style.display = "block";
+  document.getElementById("ConsulterPub").style.display = "none";
+  for (i = 0; i < pubdb.length; i++) {
 
-        if (pubdb[i].idPub == indicePub) {
-            let NameAediter = pubdb[i].nomPub;
-            console.log(NameAediter);
-            let DateAediter = pubdb[i].date;
-            console.log(DateAediter);
-            let DeadAediter = pubdb[i].deadline;
-            document.getElementById("pubnameEditer").value = NameAediter;
-            document.getElementById("pubdateEditer").value = DateAediter;
-            document.getElementById("pubdeadlineEditer").value = DeadAediter;
-        }
+    if (pubdb[i].idPub == indicePub) {
+      let NameAediter = pubdb[i].nomPub;
+      console.log(NameAediter);
+      let DateAediter = pubdb[i].date;
+      console.log(DateAediter);
+      let DeadAediter = pubdb[i].deadline;
+      document.getElementById("pubnameEditer").value = NameAediter;
+      document.getElementById("pubdateEditer").value = DateAediter;
+      document.getElementById("pubdeadlineEditer").value = DeadAediter;
     }
+  }
 }
 
 function cancelPub() {
-    document.getElementById("editpub").style.display = "none";
-    document.getElementById("ConsulterPub").style.display = "table";
-    AfficherPublication();
+  document.getElementById("editpub").style.display = "none";
+  document.getElementById("ConsulterPub").style.display = "table";
+  AfficherPublication();
 }
 function EditerRestoA(idrestaurant) {
   let objet = {
@@ -795,7 +795,7 @@ function EditRestoA(indiceresto) {
       restodb[i].telR = document.getElementById("TelResto").value;
       restodb[i].nomresto = document.getElementById("NomResto").value;
       restodb[i].adresseR = document.getElementById("AdresseResto").value;
-      console.log( restodb[i].adresseR );
+      console.log(restodb[i].adresseR);
       restodb[i].slogan = document.getElementById("SloganResto").value;
       localStorage.setItem("restos", JSON.stringify(restodb));
       location.href = 'gestion-cpt1.html'
@@ -803,26 +803,80 @@ function EditRestoA(indiceresto) {
   }
 }
 function applyPub(indicePub) {
-    var pubdb = JSON.parse(localStorage.getItem('pubs'));
-    let datenow = new Date();
-    let secondnow = parseInt(datenow.valueOf(), 10);
+  var pubdb = JSON.parse(localStorage.getItem('pubs'));
+  let datenow = new Date();
+  let secondnow = parseInt(datenow.valueOf(), 10);
 
-    for (i = 0; i < pubdb.length; i++) {
-        if (pubdb[i].idPub == indicePub) {
-            let stringdate = document.getElementById("pubdeadlineEditer").value;
-            var day1 = new Date(stringdate);
-            seconddead = parseInt(day1.valueOf(), 10);
-            if (secondnow < seconddead) {
-                pubdb[i].nomPub = document.getElementById("pubnameEditer").value;
-                pubdb[i].date = document.getElementById("pubdateEditer").value;
-                pubdb[i].deadline = document.getElementById("pubdeadlineEditer").value;
-                localStorage.setItem("pubs", JSON.stringify(pubdb));
-                document.getElementById("editpub").style.display = "none";
-                document.getElementById("ConsulterPub").style.display = "table";
-                AfficherPublication();
-            } else {
-                alert("deadline invalid");
-            }
-        }
+  for (i = 0; i < pubdb.length; i++) {
+    if (pubdb[i].idPub == indicePub) {
+      let stringdate = document.getElementById("pubdeadlineEditer").value;
+      var day1 = new Date(stringdate);
+      seconddead = parseInt(day1.valueOf(), 10);
+      if (secondnow < seconddead) {
+        pubdb[i].nomPub = document.getElementById("pubnameEditer").value;
+        pubdb[i].date = document.getElementById("pubdateEditer").value;
+        pubdb[i].deadline = document.getElementById("pubdeadlineEditer").value;
+        localStorage.setItem("pubs", JSON.stringify(pubdb));
+        document.getElementById("editpub").style.display = "none";
+        document.getElementById("ConsulterPub").style.display = "table";
+        AfficherPublication();
+      } else {
+        alert("deadline invalid");
+      }
     }
+  }
 }
+function DisplayPubAdmin() {
+  var pubdb = JSON.parse(localStorage.getItem('pubs'));
+  var restodb = JSON.parse(localStorage.getItem('restos'));
+  let listePubli = document.getElementById("listepubAdmin");
+  listePubli.innerHTML = '';
+  if (pubdb === null) {
+    listePubli.innerHTML = `
+    <tr>
+    <td>aucune Pub est ajouter</td>
+   
+
+  </tr> 
+  `
+  } else {
+
+    for (let i = 0; i < pubdb.length; i++) {
+      for (let j = 0; j < restodb.length; j++) {
+        if (restodb[j].idresto === pubdb[i].pubowner) {
+          listePubli += `
+          <tr>
+          <td >${pubdb[i].idPub}</td>
+          <td >${pubdb[i].nomPub}</td>
+          <td >${restodb[j].nomresto}</td>
+          <td >${pubdb[i].description}</td>
+          <td >${pubdb[i].deadline}</td>
+          <td >${pubdb[i].prix}</td>
+          
+         
+          <td >
+          <button class="btn btn-info btn-flat" onclick="DeletePubliAdmin(${pubdb[i].idPub})">Delete</button>
+          
+          </td>
+
+         </tr>
+         `
+        }
+      }
+    }
+    document.getElementById("listepubAdmin").innerHTML = listePubli;
+
+  }
+}
+function DeletePubliAdmin(indicepublication) {
+  var pubdb = JSON.parse(localStorage.getItem('pubs'));
+  for (let i = 0; i < pubdb.length; i++) {
+    if (pubdb[i].idPub === indicepublication) {
+      pubdb.splice(i, 1);
+      localStorage.setItem("pubs", JSON.stringify(pubdb));
+      DisplayPubAdmin();
+    }
+
+  }
+}
+

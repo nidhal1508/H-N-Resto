@@ -32,7 +32,7 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini" onload="admin_connected_verif()">
+<body class="hold-transition skin-blue sidebar-mini" onload="admin_connected_verif();DisplayPubAdmin()">
 <!-- Site wrapper -->
 <div class="wrapper">
 
@@ -201,67 +201,23 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped"  >
                 <thead>
                 <tr>
                   <th>pubication Id</th>
-                  <th>Resto id</th>
+                  <th>Pub Name</th>
                   <th>Resto Name</th>
-                  <th>Date</th>
+                  <th>Description</th>
                   <th>Deadline</th>
+                  <th>Prix</th>
+                  <th>Action</th>
                   
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                  <td>5698</td>
-                  <td>859
-                  </td>
-                  <td>Mon resto</td>
-                  <td> 24-05-2019</td>
-                  <td>28-05-2019</td>
-                </tr>
-                <tr>
-                  <td>5698</td>
-                  <td>859
-                  </td>
-                  <td>Mon resto</td>
-                  <td> 24-05-2019</td>
-                  <td>28-05-2019</td>
-                </tr>
-                <tr>
-                  <td>5698</td>
-                  <td>859
-                  </td>
-                  <td>Mon resto</td>
-                  <td> 24-05-2019</td>
-                  <td>28-05-2019</td>
-                </tr>
-                <tr>
-                  <td>5698</td>
-                  <td>859
-                  </td>
-                  <td>Mon resto</td>
-                  <td> 24-05-2019</td>
-                  <td>28-05-2019</td>
-                </tr>
-                <tr>
-                  <td>5698</td>
-                  <td>859
-                  </td>
-                  <td>Mon resto</td>
-                  <td> 24-05-2019</td>
-                  <td>28-05-2019</td>
-                </tr>
-                <tr>
-                  <td>5698</td>
-                  <td>859
-                  </td>
-                  <td>Mon resto</td>
-                  <td> 24-05-2019</td>
-                  <td>28-05-2019</td>
-                </tr>
-               
+                <tbody id="listepubAdmin">
+                  
+
+                </tbody>
                 <tfoot>
                 <tr>
                   <th>pubication Id</th>
@@ -269,6 +225,8 @@
                   <th>Resto Name</th>
                   <th>Date</th>
                   <th>Deadline</th>
+                  <th>Prix</th>
+                  <th>Action</th>
                 </tr>
                 </tfoot>
               </table>
