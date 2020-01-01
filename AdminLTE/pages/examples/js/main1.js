@@ -80,7 +80,7 @@ function AddUser() {
         tel: document.getElementById("tel-user").value,
         pwd: document.getElementById("pwd-user").value,
         iduser: Math.floor(Math.random() * 10000) + 1,
-        role: "user",
+        role: "admin",
     }
     if (userdb === null) {
         userdb = [];
@@ -91,7 +91,7 @@ function AddUser() {
     localStorage.setItem("users", JSON.stringify(userdb));
     localStorage.setItem('connecteduser', JSON.stringify(objet));
 
-    location.href = 'recipe_4col.html';
+    location.href = 'home.html';
     console.log('tsd');
 }
 
