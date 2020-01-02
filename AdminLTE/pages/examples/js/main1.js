@@ -109,7 +109,7 @@ function connexAdmin() {
     for (let i = 0; i < userdb.length; i++) {
         if (userdb[i].email == email && userdb[i].pwd == passcnx && userdb[i].role === "admin") {
             localStorage.setItem('connectedadmin', JSON.stringify(userdb[i]));
-            location.href = 'C:\Users\Asus\Desktop\Nouveau dossier (3)\adminlte.io\themes\AdminLTE \index2.html';
+            location.href = '../../index2.html';
 
             return;
         }
@@ -127,7 +127,7 @@ function admin_connected_verif() {
     var loggedAdmin = JSON.parse(localStorage.getItem('connectedadmin'))
     var connexsection = document.getElementById("connexsectionadmin");
     if (loggedAdmin === null) {
-        location.href = 'file:///C:/Users/Asus/Desktop/Nouveau%20dossier%20(3)/adminlte.io/themes/AdminLTE/pages/examples/login.html';
+        location.href = 'login.html';
 
     } else {
 
@@ -243,7 +243,7 @@ function connexUser() {
     for (let i = 0; i < userdb.length; i++) {
         if (userdb[i].email == email && userdb[i].pwd == passcnx && userdb[i].role === "user") {
             localStorage.setItem('connectedUser', JSON.stringify(userdb[i]));
-            location.href = 'file:///C:/Users/Asus/Desktop/Nouveau%20dossier%20(3)/adminlte.io/themes/projet/home.html';
+            location.href = 'home.html';
 
             return;
         }
