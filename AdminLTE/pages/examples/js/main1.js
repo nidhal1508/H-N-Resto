@@ -343,11 +343,11 @@ function Apply(i) {
 }
 
 function AfficherCatInscri() {
-    var catdb = JSON.parse(localStorage.getItem('cats'));
-    let cat = document.getElementById("selectcategory");
-    for (i = 0; i < catdb.length; i++)
-        cat.innerHTML += `
-<option>${catdb[i].categoryname}</option>
+    let liste = JSON.parse(localStorage.getItem('Catego'));
+    let cat1 = document.getElementById("selectcategory");
+    for (i = 0; i < liste.length; i++)
+        cat1.innerHTML += `
+<option>${liste[i].cat}</option>
 `
 }
 
