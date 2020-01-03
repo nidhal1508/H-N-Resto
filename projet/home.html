@@ -78,151 +78,38 @@
             <section class="recipie-content">
                 <div class="container">
                     <div class="row">
+                        <div class="col-md-12">
+                            <center>
+                                <h1>Commandez de délicieux repas en ligne</h1>
+                                <h3> Découvrez les restaurants locaux qui livrent à votre porte</h3>
+                                <h3>Réservez-vous</h3>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-4">
 
-                            <select class="form-control" style="margin-top: 10px;margin-bottom: 20px;">
-                                <option selected>selectionner votre ville</option>
-                                <option value="1">Tunis</option>
-                                <option value="2">Ariana</option>
-                                <option value="3">Ben Arous</option>
+                            <select class="form-control" style="margin-top: 10px;margin-bottom: 20px;" id="villeUser">
+                                <option value="0">selectionner votre ville</option>
+                                <option value="Tunis">Tunis</option>
+                                <option value="Ariana">Ariana</option>
+                                <option value="Ben Arous">Ben Arous</option>
                             </select>
                         </div>
                         <div class="col-md-4">
                             <select class="form-control" style="margin-top: 10px;margin-bottom: 20px;" id="selectcategory">
-                                <option selected>selectionner votre categorie</option>
+                                <option value="0">selectionner votre categorie</option>
                                
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <button type="button" class="btn btn-primary" style="margin-top: 10px;margin-bottom: 20px;">Trouvez!</button>
+                            <button type="button" class="btn btn-primary" style="margin-top: 10px;margin-bottom: 20px;" onclick="AfficherListeRestoHomeClient()">Trouvez!</button>
 
                         </div>
                         <br>
                     </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="img/recipie/1.jpg" alt="" />
-                            <div class="rc-info">
-                                <h4>Recipe Name here</h4>
-                                <div class="rc-ratings">
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                </div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-                                <a href="recipe_detail-image.html" class="btn btn-default">View Details</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <img src="img/recipie/2.jpg" alt="" />
-                            <div class="rc-info">
-                                <h4>Recipe Name here</h4>
-                                <div class="rc-ratings">
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                </div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-                                <a href="recipe_detail-image.html" class="btn btn-default">View Details</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <img src="img/recipie/3.jpg" alt="" />
-                            <div class="rc-info">
-                                <h4>Recipe Name here</h4>
-                                <div class="rc-ratings">
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                </div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-                                <a href="recipe_detail-image.html" class="btn btn-default">View Details</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <img src="img/recipie/4.jpg" alt="" />
-                            <div class="rc-info">
-                                <h4>Recipe Name here</h4>
-                                <div class="rc-ratings">
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                </div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-                                <a href="recipe_detail-image.html" class="btn btn-default">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img src="img/recipie/1.jpg" alt="" />
-                            <div class="rc-info">
-                                <h4>Recipe Name here</h4>
-                                <div class="rc-ratings">
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                </div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-                                <a href="recipe_detail-image.html" class="btn btn-default">View Details</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <img src="img/recipie/2.jpg" alt="" />
-                            <div class="rc-info">
-                                <h4>Recipe Name here</h4>
-                                <div class="rc-ratings">
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                </div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-                                <a href="recipe_detail-image.html" class="btn btn-default">View Details</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <img src="img/recipie/3.jpg" alt="" />
-                            <div class="rc-info">
-                                <h4>Recipe Name here</h4>
-                                <div class="rc-ratings">
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                </div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-                                <a href="recipe_detail-image.html" class="btn btn-default">View Details</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <img src="img/recipie/4.jpg" alt="" />
-                            <div class="rc-info">
-                                <h4>Recipe Name here</h4>
-                                <div class="rc-ratings">
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                    <span class="fa fa-star active"></span>
-                                </div>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-                                <a href="recipe_detail-image.html" class="btn btn-default">View Details</a>
-                            </div>
-                        </div>
+                    <div class="row" id="AfiicheListeResto">
+
                     </div>
                 </div>
             </section>

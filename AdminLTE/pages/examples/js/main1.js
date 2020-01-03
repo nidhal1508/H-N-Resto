@@ -347,7 +347,7 @@ function AfficherCatInscri() {
     let cat1 = document.getElementById("selectcategory");
     for (i = 0; i < liste.length; i++)
         cat1.innerHTML += `
-<option>${liste[i].cat}</option>
+<option value="${liste[i].cat}">${liste[i].cat}</option>
 `
 }
 
@@ -941,6 +941,117 @@ function DeletePubliAdmin(indicepublication) {
             pubdb.splice(i, 1);
             localStorage.setItem("pubs", JSON.stringify(pubdb));
             DisplayPubAdmin();
+        }
+
+    }
+}
+
+function AfficherListeRestoHomeClient() {
+    var restodb = JSON.parse(localStorage.getItem('restos'));
+    let listeResto = document.getElementById("listerestoadmin");
+    let ville = document.getElementById("villeUser").value;
+    let CategU = document.getElementById("selectcategory").value;
+    listeResto = '';
+    if (ville == "0" && CategU == "0") {
+        if (restodb === null) {
+            listeResto = `
+      <h1>Aucun resto Activé</h1>
+      `
+        } else {
+
+            for (let i = 0; i < restodb.length; i++) {
+                listeResto += `
+                <div class="col-md-3">
+                <img src="img/${restodb[i].logo}" alt="" />
+                <div class="rc-info">
+                    <h4>${restodb[i].nomresto}</h4>
+                    <div class="rc-ratings">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star active"></span>
+                        <span class="fa fa-star active"></span>
+                        <span class="fa fa-star active"></span>
+                        <span class="fa fa-star active"></span>
+                    </div>
+                    <p>${restodb[i].slogan}</p>
+                    <a href="recipe_detail-image.html" class="btn btn-default" onclick="AfficherRestoU(${restodb[i].idresto}")>View Details</a>
+                </div>
+                </div>
+            `
+
+            }
+            document.getElementById("AfiicheListeResto").innerHTML = listeResto;
+
+        }
+    } else {
+        if (restodb === null) {
+            listeResto = `
+      <h1>Aucun resto Activé</h1>
+      `
+        } else {
+
+            for (let i = 0; i < restodb.length; i++) {
+                if (ville == restodb[i].villeR && CategU == "0") {
+                    listeResto += `
+                  <div class="col-md-3">
+                  <img src="img/${restodb[i].logo}" alt="" />
+                  <div class="rc-info">
+                    <h4>${restodb[i].nomresto}</h4>
+                    <div class="rc-ratings">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star active"></span>
+                        <span class="fa fa-star active"></span>
+                        <span class="fa fa-star active"></span>
+                        <span class="fa fa-star active"></span>
+                    </div>
+                    <p>${restodb[i].slogan}</p>
+                    <a href="recipe_detail-image.html" class="btn btn-default" onclick="AfficherRestoU(${restodb[i].idresto}")>View Details</a>
+                  </div>
+                  </div>
+                  `
+                } else {
+                    if (ville == "0" && CategU == restodb[i].categoryR) {
+                        listeResto += `
+                        <div class="col-md-3">
+                        <img src="img/${restodb[i].logo}" alt="" />
+                        <div class="rc-info">
+                          <h4>${restodb[i].nomresto}</h4>
+                          <div class="rc-ratings">
+                              <span class="fa fa-star"></span>
+                              <span class="fa fa-star active"></span>
+                              <span class="fa fa-star active"></span>
+                              <span class="fa fa-star active"></span>
+                              <span class="fa fa-star active"></span>
+                          </div>
+                          <p>${restodb[i].slogan}</p>
+                          <a href="recipe_detail-image.html" class="btn btn-default" onclick="AfficherRestoU(${restodb[i].idresto}")>View Details</a>
+                        </div>
+                        </div>
+                        `
+                    } else {
+                        if (ville == restodb[i].villeR && CategU == restodb[i].categoryR) {
+                            listeResto += `
+                            <div class="col-md-3">
+                            <img src="img/${restodb[i].logo}" alt="" />
+                            <div class="rc-info">
+                              <h4>${restodb[i].nomresto}</h4>
+                              <div class="rc-ratings">
+                                  <span class="fa fa-star"></span>
+                                  <span class="fa fa-star active"></span>
+                                  <span class="fa fa-star active"></span>
+                                  <span class="fa fa-star active"></span>
+                                  <span class="fa fa-star active"></span>
+                              </div>
+                              <p>${restodb[i].slogan}</p>
+                              <a href="recipe_detail-image.html" class="btn btn-default" onclick="AfficherRestoU(${restodb[i].idresto}")>View Details</a>
+                            </div>
+                            </div>
+                            `
+                        }
+                    }
+                }
+            }
+            document.getElementById("AfiicheListeResto").innerHTML = listeResto;
+
         }
 
     }
