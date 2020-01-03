@@ -91,8 +91,8 @@ function AddUser() {
     localStorage.setItem("users", JSON.stringify(userdb));
     localStorage.setItem('connecteduser', JSON.stringify(objet));
 
-    location.href = 'home.html';
-    // console.log('tsd');
+    location.href = 'recipe_4col.html';
+    console.log('tsd');
 }
 
 function connexAdmin() {
@@ -109,7 +109,7 @@ function connexAdmin() {
     for (let i = 0; i < userdb.length; i++) {
         if (userdb[i].email == email && userdb[i].pwd == passcnx && userdb[i].role === "admin") {
             localStorage.setItem('connectedadmin', JSON.stringify(userdb[i]));
-            location.href = '../../index2.html';
+            location.href = 'C:\Users\Asus\Desktop\Nouveau dossier (3)\adminlte.io\themes\AdminLTE \index2.html';
 
             return;
         }
@@ -127,7 +127,7 @@ function admin_connected_verif() {
     var loggedAdmin = JSON.parse(localStorage.getItem('connectedadmin'))
     var connexsection = document.getElementById("connexsectionadmin");
     if (loggedAdmin === null) {
-        location.href = 'login.html';
+        location.href = 'file:///C:/Users/Asus/Desktop/Nouveau%20dossier%20(3)/adminlte.io/themes/AdminLTE/pages/examples/login.html';
 
     } else {
 
@@ -243,7 +243,7 @@ function connexUser() {
     for (let i = 0; i < userdb.length; i++) {
         if (userdb[i].email == email && userdb[i].pwd == passcnx && userdb[i].role === "user") {
             localStorage.setItem('connectedUser', JSON.stringify(userdb[i]));
-            location.href = 'home.html';
+            location.href = 'file:///C:/Users/Asus/Desktop/Nouveau%20dossier%20(3)/adminlte.io/themes/projet/home.html';
 
             return;
         }
@@ -263,83 +263,25 @@ function deconnexUser() {
 }
 
 
-function Add() {
-    let idC = Math.floor(Math.random() * 1000) + 1;
-    let cat = document.getElementById("categorie").value;
+function AddCat() {
+    var catdb = JSON.parse(localStorage.getItem('cats'));
+    let category = document.getElementById('category-name').value;
+    let objet = {
+        categoryname: category,
+        idcat: Math.floor(Math.random() * 10000) + 1,
 
-    var list = JSON.parse(localStorage.getItem('Catego'))
-    if (list == null) {
-        list = []
     }
-    let tabCat = { idC, cat };
-    list.push(tabCat);
-    let obj = JSON.stringify(list);
-    localStorage.setItem("Catego", obj);
-}
-
-function modifierC() {
-    let tab;
-    tab = "";
-    let liste = JSON.parse(localStorage.getItem('Catego'));
-    if (liste === null) {
-        tab +=
-            `<tr>
-    <th>Categories</th>
-    <th>Actions</th>
-  </tr>`
+    if (category === "") {
+        alert('category vide')
     } else {
-        tab +=
-            `<tr>
-      <th>Categories</th>
-      <th>Actions</th>
-    </tr>`
-        for (let i = 0; i < liste.length; i++) {
-            tab +=
-                ` <tr>
-         <td> ${liste[i].cat} </td>
-         <td> <button onclick="delet(${i})">Delete</button> 
-              <button onclick="Edit(${i})">Edit</button>
-         </td>
-       </tr>`
+        if (catdb === null) {
+            catdb = [];
         }
-
-        document.getElementById("tabCat").innerHTML = tab;
+        console.log(objet);
+        catdb.push(objet);
+        console.log(catdb);
+        localStorage.setItem("cats", JSON.stringify(catdb));
     }
-
-}
-
-function delet(x) {
-    let liste = JSON.parse(localStorage.getItem('Catego'));
-    liste.splice(x, 1);
-    localStorage.setItem("Catego", JSON.stringify(liste));
-    modifierC();
-}
-
-function Edit(x) {
-    document.getElementById("editCat").style.display = "block";
-    let liste = JSON.parse(localStorage.getItem('Catego'));
-    let form = "";
-    form = `
-      <label>Nouvelle Categorie:</label>
-      <input class="Test" type="text" id="editcate" value="${liste[x].cat}"}></br><br>
-      <button onclick="Apply(${x})">Apply</button> 
-      <button onclick="Cancel()">Cancel</button>`
-    document.getElementById("editCat").innerHTML = form;
-}
-
-function Cancel() {
-    document.getElementById("editCat").style.display = "none";
-
-
-}
-
-function Apply(i) {
-    let liste = JSON.parse(localStorage.getItem('Catego'));
-    liste[i].cat = document.getElementById("editcate").value;
-    localStorage.setItem("Catego", JSON.stringify(liste));
-
-    modifierC();
-
 }
 
 function AfficherCatInscri() {
