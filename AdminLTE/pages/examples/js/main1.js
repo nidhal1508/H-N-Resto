@@ -973,7 +973,7 @@ function AfficherListeRestoHomeClient() {
                         <span class="fa fa-star active"></span>
                     </div>
                     <p>${restodb[i].slogan}</p>
-                    <a href="recipe_detail-image.html" class="btn btn-default" onclick="AfficherRestoU(${restodb[i].idresto}")>View Details</a>
+                    <a href="recipe_detail-image.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto}")>View Details</a>
                 </div>
                 </div>
             `
@@ -1004,7 +1004,7 @@ function AfficherListeRestoHomeClient() {
                         <span class="fa fa-star active"></span>
                     </div>
                     <p>${restodb[i].slogan}</p>
-                    <a href="recipe_detail-image.html" class="btn btn-default" onclick="AfficherRestoU(${restodb[i].idresto}")>View Details</a>
+                    <a href="recipe_detail-image.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto}")>View Details</a>
                   </div>
                   </div>
                   `
@@ -1023,7 +1023,7 @@ function AfficherListeRestoHomeClient() {
                               <span class="fa fa-star active"></span>
                           </div>
                           <p>${restodb[i].slogan}</p>
-                          <a href="recipe_detail-image.html" class="btn btn-default" onclick="AfficherRestoU(${restodb[i].idresto}")>View Details</a>
+                          <a href="recipe_detail-image.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto}")>View Details</a>
                         </div>
                         </div>
                         `
@@ -1042,7 +1042,7 @@ function AfficherListeRestoHomeClient() {
                                   <span class="fa fa-star active"></span>
                               </div>
                               <p>${restodb[i].slogan}</p>
-                              <a href="recipe_detail-image.html" class="btn btn-default" onclick="AfficherRestoU(${restodb[i].idresto}")>View Details</a>
+                              <a href="recipe_detail-image.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto}")>View Details</a>
                             </div>
                             </div>
                             `
@@ -1055,4 +1055,138 @@ function AfficherListeRestoHomeClient() {
         }
 
     }
+}
+function ViewResto(indiceRestaurant) {
+    let objet = {
+        restoID: indiceRestaurant,
+    }
+    localStorage.setItem('restoIdUser', JSON.stringify(objet));
+    console.log(objet);
+    location.href = 'resto.html';
+}
+function ViewRestoUser() {
+    var restoid = JSON.parse(localStorage.getItem('restoIdUser'));
+    var restodb = JSON.parse(localStorage.getItem('restos'));
+    var restodetaildb = JSON.parse(localStorage.getItem('detailresto'));
+    var Publicationdb = JSON.parse(localStorage.getItem('pubs'));
+    var Menudb = JSON.parse(localStorage.getItem('MenuResteraunt'));
+    let Name = document.getElementById("restaurantname");
+    let image = document.getElementById("imageRestaurant");
+    let desp = document.getElementById("descriptionRestaurant");
+    let PubcationDiv = document.getElementById("publication");
+    let PubItem = document.getElementById("publicationItem");
+    let ResPhone = document.getElementById("reservationNumber");
+    let ResBtn = document.getElementById("ReservationBtn");
+    let MenuResto = document.getElementById("Menu");
+    let indice = restoid.restoID;
+    let cpt1 = 0;
+    for (let i = 0; i < restodetaildb.length; i++) {
+        if (restodetaildb[i].idResto === indice) {
+            cpt1 = cpt1 + 1;
+            desp.innerHTML = `
+    <p>
+    ${restodetaildb[i].description}
+  </p>
+  <br>
+    `
+        }
+    }
+    console.log(cpt1);
+    if (cpt1 === 0) {
+       
+        alert('Restaurant inactive');
+        Location.href = 'home.html';
+        return;
+    }
+
+    for (let i = 0; i < restodb.length; i++) {
+        if (restodb[i].idresto === indice) {
+            Name.innerHTML = `
+        <h1>${restodb[i].nomresto}<small>${restodb[i].slogan}.</small></h1>
+        `
+            image.innerHTML = `
+        <img src="../img/${restodb[i].logo}" data-mfp-src="img/fullImages/pic1.jpg" class="img-responsive" alt="logo">
+        `
+            ResBtn.innerHTML = `
+        <button type="submit" onclick="MakeRES(${restodb[i].idresto})" class="btn btn-default btn-lg" id="js-reservation-btn">Make Reservation</button>
+                                        <div id="js-reservation-result" data-success-msg="Form submitted successfully." data-error-msg="Oops. Something went wrong."></div>
+        `
+            ResPhone.innerHTML = `
+        <p>You can also call: <strong>${restodb[i].telR}</strong> to make a reservation.</p>
+        <span></span>
+                           
+        `
+        }
+
+    }
+    let compteur = 0;
+   PubItem= ``;
+    for (let i = 0; i < Publicationdb.length; i++) {
+        if (Publicationdb[i].pubowner === indice) {
+          compteur = compteur + 1;
+        PubItem += ` 
+            <li>
+           <div class="slider-img">
+                <img src="../img/${Publicationdb[i].img}" alt="" />
+            </div>
+            <div class="slider-content">
+            <div class="page-header">
+            <h1> ${Publicationdb[i].nomPub}<small>${Publicationdb[i].nomPub}</small></h1>
+            </div>
+            <p>${Publicationdb[i].description}</p>
+            <input class="btn btn-secondary" onclick="AddcartPub(${Publicationdb[i].idPub})" role="button" value="Add to cart">
+           </div>
+            </li>
+          
+            `
+          
+        }
+    }
+    document.getElementById("publicationItem").innerHTML = PubItem;
+
+   if (compteur === 0) {
+     document.getElementById("publication").style.display = "block";
+  }
+  MenuResto=``;
+  for (let i = 0; i < Menudb.length; i++) {
+      if (Menudb[i].MenuOwner===indice) {
+        MenuResto +=`
+        <div class="${Menudb[i].type} menu-item col-sm-6 col-xs-12   ">
+        <div class="clearfix menu-wrapper">
+            <a class="css-pointer dropdown-toggle" onclick="ConsulterMenu(${Menudb[i].idM})"  role="button" aria-haspopup="true" aria-expanded="false">
+            <h4>${Menudb[i].Nom}</h4>
+            </a>
+            <span class="price">${Menudb[i].Prx}DT</span>
+            <div class="dotted-bg"></div>
+         <input class="btn btn-default" style="width: 80px;" onclick="AddcartMenu(${Menudb[i].idM})"  value="Add">
+        </div>
+
+    </div>
+        ` 
+      }
+      
+  }
+  document.getElementById("Menu").innerHTML =  MenuResto;
+}
+
+function AjouterDetailResto() {
+    var restodetail = JSON.parse(localStorage.getItem('detailresto'));
+    var loggedResto = JSON.parse(localStorage.getItem('connectedResto'));
+    let imageResto = document.getElementById("imageResto").files[0].name;
+    let desResto = document.getElementById("DescripResto").value;
+    let objet = {
+        idResto: loggedResto.idresto,
+        image: imageResto,
+        description: desResto,
+    }
+
+    console.log(objet);
+    if (restodetail === null) {
+        restodetail = [];
+    }
+    console.log(objet);
+    restodetail.push(objet);
+
+    localStorage.setItem("detailresto", JSON.stringify(restodetail));
+    alert('modification ajouter avec succès')
 }

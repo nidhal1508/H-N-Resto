@@ -51,7 +51,7 @@
 
 </head>
 
-<body onload="user_connected_verif() ">
+<body onload="user_connected_verif();ViewRestoUser() ">
     <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -92,8 +92,8 @@
                             <img src="img/logo.png" alt="logo">
                         </a>
                     </div>
-                    <h1>DELICIOUS Food</h1>
-                    <h2>Tomato is a delitious restaurant website template</h2>
+                    <h1>H & N Food</h1>
+                    <h2>Connecter Commander C'est Facile</h2>
                 </div>
                 <div class="scroll-down hidden-xs">
                     <a href="#about">
@@ -106,8 +106,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="page-header wow fadeInDown">
-                                <h1>the restaurant<small>A little about us and a breif history of how we started.</small></h1>
+                            <div class="page-header wow fadeInDown" id="restaurantname">
+                               
                             </div>
                         </div>
                     </div>
@@ -116,92 +116,41 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-xs-12 hidden-sm about-photo">
-                                        <div class="image-thumb">
-                                            <img src="img/thumb1.png" data-mfp-src="img/fullImages/pic1.jpg" class="img-responsive" alt="logo">
+                                        <div class="image-thumb" id="imageRestaurant">
+                                         
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-6 about-photo hidden-xs">
-                                        <img src="img/thumb2.png" data-mfp-src="img/fullImages/pic2.jpg" class="img-responsive" alt="logo">
-                                    </div>
-                                    <div class="col-sm-6 about-photo hidden-xs">
-                                        <img src="img/thumb3.png" data-mfp-src="img/fullImages/pic3.jpg" class="img-responsive" alt="logo">
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
-                        <div class="col-md-8">
-                            <p>
-                                Cras ut viverra eros. Phasellus sollicitudin sapien id luctus tempor. Sed hend rerit inter dum sagittis. Donec nunc lacus, dapibus nec interdum eget, ultrices eget justo. Nam purus lacus, efficitur eget laoreet sed, finibus nec neque. Cras eget enim in
-                                diam dapibus sagittis. In massa est, dignissim in libero ac, fringilla ornare mi. Etiam interdum ligula purus.
-                            </p>
-                            <br>
-                            <p>
-                                Ultrices eget justo. Nam purus lacus, efficitur eget laoreet sed, finibus nec neque. Cras eget enim in diam dapibus sagittis. In massa est, dignissim in libero ac, fringilla ornare.
-                            </p>
-                            <img src="img/signature.png" alt="signature">
+                        <div class="col-md-8" id="descriptionRestaurant">
+                            
+                           
+                            
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="special">
+            <section class="special" id="publication">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="page-header wow fadeInDown">
-                                <h1 class="white">today's specials<small>A little about us and a breif history of how we started.</small></h1>
+                                <h1 class="white">Publication<small>Voici Nos Publication</small></h1>
                             </div>
                         </div>
                     </div>
                     <div class="row wow fadeInUp">
                         <div class="col-md-offset-1 col-md-10">
-                            <div class="flexslider special-slider">
-                                <ul class="slides">
-                                    <li>
-                                        <div class="slider-img">
-                                            <img src="img/thumb4.png" alt="" />
-                                        </div>
-                                        <div class="slider-content">
-                                            <div class="page-header">
-                                                <h1>1 Pancake with Caramel<small>If you are a fan of caramel cake, then you'll love our Pancake with caramel icecream. It's not thick, but very tasty.</small></h1>
-                                            </div>
-                                            <p>Ultrices In massa est, dignissim in libero ac, fringilla ornare mi.Ultrices eget justo. Nam purus lacus, efficitur eget laoreet sed, finibus nec neque. Cras eget enim in diam dapibus sagittis. accumsan, habitant
-                                                morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-                                            <a class="btn btn-default" href="index-2.html" role="button">Order now</a>
-                                            <a class="btn btn-secondary" href="index-2.html" role="button">Add to cart</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="slider-img">
-                                            <img src="img/thumb4.png" alt="" />
-                                        </div>
-                                        <div class="slider-content">
-                                            <div class="page-header">
-                                                <h1>2 Pancake with Caramel<small>If you are a fan of caramel cake, then you'll love our Pancake with caramel icecream. It's not thick, but very tasty.</small></h1>
-                                            </div>
-                                            <p>Ultrices In massa est, dignissim in libero ac, fringilla ornare mi.Ultrices eget justo. Nam purus lacus, efficitur eget laoreet sed, finibus nec neque. Cras eget enim in diam dapibus sagittis. accumsan, habitant
-                                                morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-                                            <a class="btn btn-default" href="index-2.html" role="button">Order now</a>
-                                            <a class="btn btn-secondary" href="index-2.html" role="button">Add to cart</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="slider-img">
-                                            <img src="img/thumb4.png" alt="" />
-                                        </div>
-                                        <div class="slider-content">
-                                            <div class="page-header">
-                                                <h1>3 Pancake with Caramel<small>If you are a fan of caramel cake, then you'll love our Pancake with caramel icecream. It's not thick, but very tasty.</small></h1>
-                                            </div>
-                                            <p>Ultrices In massa est, dignissim in libero ac, fringilla ornare mi.Ultrices eget justo. Nam purus lacus, efficitur eget laoreet sed, finibus nec neque. Cras eget enim in diam dapibus sagittis. accumsan, habitant
-                                                morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-                                            <a class="btn btn-default" href="index-2.html" role="button">Order now</a>
-                                            <a class="btn btn-secondary" href="index-2.html" role="button">Add to cart</a>
-                                        </div>
-                                    </li>
+                            <div class="flexslider special-slider"  >
+                                <ul class="slides" id="publicationItem">
+                                    
+
+                                    
                                 </ul>
+                            
                                 <div class="direction-nav hidden-sm">
                                     <div class="next">
                                         <a><img src="img/right-arrow.png" alt="" /></a>
@@ -271,17 +220,15 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
-                                    <div class="reservation-btn">
-                                        <button type="submit" class="btn btn-default btn-lg" id="js-reservation-btn">Make Reservation</button>
-                                        <div id="js-reservation-result" data-success-msg="Form submitted successfully." data-error-msg="Oops. Something went wrong."></div>
+                                    <div class="reservation-btn" id="ReservationBtn">
+                                       
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <div class="reservation-footer">
-                        <p>You can also call: <strong>+1 224 6787 004</strong> to make a reservation.</p>
-                        <span></span>
+                    <div class="reservation-footer" id="reservationNumber">
+                       
                     </div>
                 </div>
             </section>
@@ -301,111 +248,27 @@
                             <div class="col-md-12">
                                 <div class="menu-tags">
                                     <span data-filter="*" class="tagsort-active">All</span>
-                                    <span data-filter=".starter">Plats</span>
-                                    <span data-filter=".breakfast">Sandwitchs</span>
-                                    <span data-filter=".dinner">Burgers</span>
-                                    <span data-filter=".desserts">Pizza</span>
+                                    <span data-filter=".Plats">Plats</span>
+                                    <span data-filter=".Sandwitchs">Sandwitchs</span>
+                                    <span data-filter=".BURGERS">Burgers</span>
+                                    <span data-filter=".Pizzas">Pizza</span>
                                     <span data-filter=".desserts">Salade</span>
-                                    <span data-filter=".desserts">Petit Dej</span>
-                                    <span data-filter=".desserts">Boisson</span>
+                                    <span data-filter=".Makloub">Makloub</span>
+                                    <span data-filter=".Boisson">Boisson</span>
                                 </div>
                             </div>
 
                         </div>
-                        <div class="row menu-items">
-                            <div class="menu-item col-sm-6 col-xs-12 starter dinner desserts">
-                                <div class="clearfix menu-wrapper">
-                                    <a></a>
-                                    <h4>English asparagus</h4>
-                                    </a>
-                                    <span class="price">$14.95</span>
-                                    <div class="dotted-bg"></div>
-                                </div>
-
-                            </div>
-                            <div class="menu-item col-sm-6 col-xs-12 starter">
-                                <div class="clearfix menu-wrapper">
-                                    <a>
-                                        <h4>English asparagus</h4>
-                                    </a>
-                                    <span class="price">$14.95</span>
-                                    <div class="dotted-bg"></div>
-
-                                </div>
-
-                            </div>
-                            <div class="menu-item col-sm-6 col-xs-12 breakfast desserts starter">
-                                <div class="clearfix menu-wrapper">
-                                    <h4>English asparagus</h4>
-                                    <span class="price">$14.95</span>
-                                    <div class="dotted-bg"></div>
-                                </div>
-
-                            </div>
-                            <div class="menu-item col-sm-6 col-xs-12 breakfast">
-                                <div class="clearfix menu-wrapper">
-                                    <h4>English asparagus</h4>
-                                    <span class="price">$14.95</span>
-                                    <div class="dotted-bg"></div>
-                                </div>
-                                <p>pellentesque enim. Aliquam tempor</p>
-                            </div>
-                            <div class="menu-item col-sm-6 col-xs-12 lunch starter breakfast">
-                                <div class="clearfix menu-wrapper">
-                                    <h4>English asparagus</h4>
-                                    <span class="price">$14.95</span>
-                                    <div class="dotted-bg"></div>
-                                </div>
-                                <p>pellentesque enim. Aliquam tempor</p>
-                            </div>
-                            <div class="menu-item col-sm-6 col-xs-12 lunch">
-                                <div class="clearfix menu-wrapper">
-                                    <h4>English asparagus</h4>
-                                    <span class="price">$14.95</span>
-                                    <div class="dotted-bg"></div>
-                                </div>
-                                <p>pellentesque enim. Aliquam tempor</p>
-                            </div>
-                            <div class="menu-item col-sm-6 col-xs-12 dinner breakfast lunch">
-                                <div class="clearfix menu-wrapper">
-                                    <h4>English asparagus</h4>
-                                    <span class="price">$14.95</span>
-                                    <div class="dotted-bg"></div>
-                                </div>
-                                <p>pellentesque enim. Aliquam tempor</p>
-                            </div>
-                            <div class="menu-item col-sm-6 col-xs-12 dinner">
-                                <div class="clearfix menu-wrapper">
-                                    <h4>English asparagus</h4>
-                                    <span class="price">$14.95</span>
-                                    <div class="dotted-bg"></div>
-                                </div>
-                                <p>pellentesque enim. Aliquam tempor</p>
-                            </div>
-                            <div class="menu-item col-sm-6 col-xs-12 desserts lunch dinner">
-                                <div class="clearfix menu-wrapper">
-                                    <h4>English asparagus</h4>
-                                    <span class="price">$14.95</span>
-                                    <div class="dotted-bg"></div>
-                                </div>
-                                <p>pellentesque enim. Aliquam tempor</p>
-                            </div>
-                            <div class="menu-item col-sm-6 col-xs-12 desserts">
-                                <div class="clearfix menu-wrapper">
-                                    <h4>English asparagus</h4>
-                                    <span class="price">$14.95</span>
-                                    <div class="dotted-bg"></div>
-                                </div>
-                                <p>pellentesque enim. Aliquam tempor</p>
-                            </div>
+                        <div class="row menu-items" id="Menu" >
+                                
+                                        
+                                            
+                                                       
+                                                               
+                           
+                            
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="menu-btn">
-                                    <a class="btn btn-default btn-lg" href="menu_all.html" role="button">Explore our menu</a>
-                                </div>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </section>
@@ -511,30 +374,29 @@ Wide
     </div>
 
 
-    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="js/vendor/jquery-1.11.2.min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/vendor/jquery.flexslider-min.js"></script>
-    <script src="js/vendor/spectragram.js"></script>
-    <script src="js/vendor/owl.carousel.min.js"></script>
-    <script src="js/vendor/velocity.min.js"></script>
-    <script src="js/vendor/velocity.ui.min.js"></script>
-    <script src="js/vendor/bootstrap-datepicker.min.js"></script>
-    <script src="js/vendor/bootstrap-clockpicker.min.js"></script>
-    <script src="js/vendor/jquery.magnific-popup.min.js"></script>
-    <script src="js/vendor/isotope.pkgd.min.js"></script>
-    <script src="js/vendor/slick.min.js"></script>
-    <script src="js/vendor/wow.min.js"></script>
-    <script src="js/animation.js"></script>
-    <script src="js/vendor/vegas/vegas.min.js"></script>
-    <script src="js/vendor/jquery.mb.YTPlayer.js"></script>
-    <script src="js/vendor/jquery.stellar.js"></script>
-    <script src="js/vendor/mc/jquery.ketchup.all.min.js"></script>
-    <script src="js/vendor/mc/main.js"></script>
-    <script src="js/vendor/validate.js"></script>
-    <script src="js/reservation.js"></script>
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/vendor/jquery-1.11.2.min.js"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<script src="js/vendor/jquery.flexslider-min.js"></script>
+<script src="js/vendor/spectragram.js"></script>
+<script src="js/vendor/owl.carousel.min.js"></script>
+<script src="js/vendor/velocity.min.js"></script>
+<script src="js/vendor/velocity.ui.min.js"></script>
+<script src="js/vendor/bootstrap-datepicker.min.js"></script>
+<script src="js/vendor/bootstrap-clockpicker.min.js"></script>
+<script src="js/vendor/jquery.magnific-popup.min.js"></script>
+<script src="js/vendor/isotope.pkgd.min.js"></script>
+<script src="js/vendor/slick.min.js"></script>
+<script src="js/vendor/wow.min.js"></script>
+<script src="js/animation.js"></script>
+<script src="js/vendor/vegas/vegas.min.js"></script>
+<script src="js/vendor/jquery.mb.YTPlayer.js"></script>
+<script src="js/vendor/jquery.stellar.js"></script>
+<script src="js/vendor/mc/jquery.ketchup.all.min.js"></script>
+<script src="js/vendor/mc/main.js"></script>
+<script src="js/vendor/validate.js"></script>
+<script src="js/reservation.js"></script>
 
-    <script src="js/main.js"></script>
+<script src="js/main.js"></script>
 </body>
 
 <!-- Mirrored from demo.web3canvas.com/themeforest/tomato/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Dec 2019 19:30:28 GMT -->
