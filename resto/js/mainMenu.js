@@ -3,6 +3,9 @@ function AjouterMenu() {
     let type = document.getElementById("selectMenu").value;
     let Nom = document.getElementById("Article").value;
     let Prx = document.getElementById("PrixArticle").value;
+    let Pic = document.getElementById("imageMenu").value;
+    let ing = document.getElementById("Ingridiant").value;
+    let desc = document.getElementById("Description").value;
     var idM = Math.floor(Math.random() * 1000) + 1;
     let MenuOwner = loggedResto.idresto;
     if (type === "selectionner") {
@@ -22,13 +25,16 @@ function AjouterMenu() {
     if (list == null) {
         list = []
     }
-    let listM = { idM, type, Nom, Prx, MenuOwner };
+    let listM = { idM, type, Nom, Prx, Pic, ing, desc, MenuOwner };
     list.push(listM);
     console.log(list);
     localStorage.setItem("MenuResteraunt", JSON.stringify(list));
     document.getElementById("selectMenu").value = "";
     document.getElementById("Article").value = "";
     document.getElementById("PrixArticle").value = "";
+    document.getElementById("imageMenu").value = "";
+    document.getElementById("Ingridiant").value = "";
+    document.getElementById("Description").value = "";
 }
 
 function AfficherMenu() {
@@ -49,6 +55,9 @@ function AfficherMenu() {
     <th>Type</th>
     <th>Produit</th>
     <th>Prix</th>
+    <th>Image</th>
+    <th>Ingridiant</th>
+    <th>Description</th>
     <th>Action</th>
     </tr>
     `
@@ -60,8 +69,11 @@ function AfficherMenu() {
             <td> ${list[i].type} </td>
             <td> ${list[i].Nom} </td>
             <td> ${list[i].Prx}</td>
-            <td> <button onclick="del(${list[i].idM})">Delete</button> 
-              <button onclick="Edit(${list[i].idM})">Edit</button>
+            <td> ${list[i].Pic}</td>
+            <td> ${list[i].ing}</td>
+            <td> ${list[i].desc}</td>
+            <td> <button onclick="del(${list[i].idM})" class="btn btn-default">Delete</button> 
+              <button onclick="Edit(${list[i].idM})" class="btn btn-default">Edit</button>
          </td>
             </tr>
             `
@@ -87,7 +99,7 @@ function Edit(idMenu) {
     let list = JSON.parse(localStorage.getItem('MenuResteraunt'))
     for (let i = 0; i < list.length; i++) {
         if (list[i].idM === idMenu) {
-            x=i;
+            x = i;
         }
     }
     let form = "";
@@ -105,8 +117,17 @@ function Edit(idMenu) {
 </select><br><br>
 <input class="Test" type="text" id="editnom" value=" ${list[x].Nom}" }></br><br>
       <input class="Test" type="text" id="editPrx" value=" ${list[x].Prx}" }></br><br> 
-      <button onclick="Apply(${idMenu})">Apply</button> 
-      <button onclick="Cancel()">Cancel</button>`
+      <div class="form-group">
+      <label for="exampleInputFile">Image</label>
+      <input type="file" id="editimageMenu">
+
+  </div>
+        <input class="Test" type="text" id="editIngrimant" value=" ${list[x].ing}" }></br><br> 
+        <label>Description</label><br>
+        <textarea name="description" id="editDescription" cols="45" rows="5"></textarea><br><br>
+
+      <button onclick="Apply(${idMenu})" class="btn btn-default">Apply</button> 
+      <button onclick="Cancel()" class="btn btn-default">Cancel</button>`
     document.getElementById("modifier").innerHTML = form;
 }
 
@@ -117,6 +138,9 @@ function Apply(idmenu) {
             list[i].type = document.getElementById("selectMenuedit").value;
             list[i].Nom = document.getElementById("editnom").value;
             list[i].Prx = document.getElementById("editPrx").value;
+            list[i].Pic = document.getElementById("editimageMenu").value;
+            list[i].ing = document.getElementById("editIngrimant").value;
+            list[i].desc = document.getElementById("editDescription").value;
             localStorage.setItem("MenuResteraunt", JSON.stringify(list));
             AfficherMenu();
         }
