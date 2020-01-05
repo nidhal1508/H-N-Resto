@@ -180,7 +180,7 @@ function user_connected_verif() {
         tab.innerHTML = `
     <li style="margin-right: 10px;margin-top: 20px;" id="connexsection"><button type="submit"
                                     class="btn btn-default" onclick="deconnexUser()"> se déconnecter</button></li>
-                                    
+                                    <li><a href="reservationdetail.html">Reservation</a></li>
                                     <li class="dropdown" id="cartdisplay" >
                 <a class="css-pointer dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-shopping-cart fsc pull-left"></i><span class="cart-number">3</span><span class="caret"></span></a>
                 <div class="cart-content dropdown-menu">
@@ -973,7 +973,7 @@ function AfficherListeRestoHomeClient() {
                         <span class="fa fa-star active"></span>
                     </div>
                     <p>${restodb[i].slogan}</p>
-                    <a href="recipe_detail-image.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto}")>View Details</a>
+                    <a href="recipe_detail-image.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto})">View Details</a>
                 </div>
                 </div>
             `
@@ -1004,7 +1004,7 @@ function AfficherListeRestoHomeClient() {
                         <span class="fa fa-star active"></span>
                     </div>
                     <p>${restodb[i].slogan}</p>
-                    <a href="recipe_detail-image.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto}")>View Details</a>
+                    <a href="recipe_detail-image.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto})">View Details</a>
                   </div>
                   </div>
                   `
@@ -1023,7 +1023,7 @@ function AfficherListeRestoHomeClient() {
                               <span class="fa fa-star active"></span>
                           </div>
                           <p>${restodb[i].slogan}</p>
-                          <a href="recipe_detail-image.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto}")>View Details</a>
+                          <a href="recipe_detail-image.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto})">View Details</a>
                         </div>
                         </div>
                         `
@@ -1042,7 +1042,7 @@ function AfficherListeRestoHomeClient() {
                                   <span class="fa fa-star active"></span>
                               </div>
                               <p>${restodb[i].slogan}</p>
-                              <a href="recipe_detail-image.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto}")>View Details</a>
+                              <a href="recipe_detail-image.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto})">View Details</a>
                             </div>
                             </div>
                             `
@@ -1190,3 +1190,95 @@ function AjouterDetailResto() {
     localStorage.setItem("detailresto", JSON.stringify(restodetail));
     alert('modification ajouter avec succès')
 }
+function ConsulterMenu(indiceMenu) {
+    var MenuREsto = JSON.parse(localStorage.getItem('MenuResteraunt'));
+
+    for (let i = 0; i < MenuREsto.length; i++) {
+        if (MenuREsto[i].idM === indiceMenu) {
+
+            localStorage.setItem('MenuConsulter', JSON.stringify(MenuREsto[i]));
+        }
+    }
+    location.href = 'menu-image.html';
+}
+function ConsulterMenuUser() {
+    var MenuConsult = JSON.parse(localStorage.getItem('MenuConsulter'));
+    image = document.getElementById("imageplats");
+    description = document.getElementById("descripETingidient");
+    image = `
+    <img class="img-responsive" src="../img/${MenuConsult.imgmenu}" alt="">
+    `;
+    description = ` <h3>${MenuConsult.Nom}</h3>
+    <p>${MenuConsult.ingridient}</p>
+
+    <h3 class="heading-bottom-line">Descriptions</h3>
+    <p>${MenuConsult.descrip}</p>
+    <input class="btn btn-default" onclick="AddcartPub(${MenuConsult.idM})" role="button" value="Add to cart">
+
+    `;
+    document.getElementById("imageplats").innerHTML = image;
+    document.getElementById("descripETingidient").innerHTML = description;
+}
+
+function MakeRES(indiceResto) {
+    var logged = JSON.parse(localStorage.getItem('connectedUser'))
+    var ResDB = JSON.parse(localStorage.getItem('reservations'));
+    if (logged === null) {
+        alert('il faut connecter pour reserver');
+
+        return
+    } else {
+        objet = {
+            idReser: Math.floor(Math.random() * 10000) + 1,
+            DateRes: document.getElementById("datepicker").value,
+            NameRes: document.getElementById("name").value,
+            TimeRes: document.getElementById("timepicker").value,
+            EmailRes: document.getElementById("email").value,
+            GuestRes: document.getElementById("guests").value,
+            PhoneRes: document.getElementById("phone").value,
+            idResto: indiceResto,
+            idUser: logged.iduser,
+            status: "En atente",
+        }
+        if (ResDB === null) {
+            ResDB = [];
+        }
+        console.log(objet);
+        ResDB.push(objet);
+
+        localStorage.setItem("reservations", JSON.stringify(ResDB));
+        alert('reservation envoyé avec succès');
+    }
+    document.getElementById("datepicker").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("timepicker").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("guests").value = "";
+    document.getElementById("phone").value = "";
+}
+function DisplayResUser() {
+    var logged = JSON.parse(localStorage.getItem('connectedUser'))
+    var ResDB = JSON.parse(localStorage.getItem('reservations'));
+    var RestoDB = JSON.parse(localStorage.getItem('restos'));
+    let Tabres = document.getElementById("tabreseravtion");
+    Tabres = ``;
+    for (let i = 0; i < ResDB.length; i++) {
+        if (ResDB[i].idUser === logged.iduser) {
+            for (let j = 0; j < RestoDB.length; j++) {
+                if (RestoDB[j].idresto === ResDB[i].idResto) {
+
+                    Tabres += `
+                        <tr>
+                      <td>${ResDB[i].idReser}</td>
+                     <td> ${RestoDB[j].nomresto} </td>
+                     <td> ${ResDB[i].DateRes} </td>
+                     <td> ${ResDB[i].status}</td>
+                        </tr>
+                         `
+                }
+            }
+        }
+    }
+    document.getElementById("tabreseravtion").innerHTML = Tabres;
+}
+
