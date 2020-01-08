@@ -1484,3 +1484,96 @@ function supprimer(idmp) {
     AffichagePannier();
 
 }
+
+function AfficheReservationResto() {
+    var loggedResteraunt = JSON.parse(localStorage.getItem('connectedResto'));
+    var ResDB = JSON.parse(localStorage.getItem('reservations'));
+    let tablerAffReservRest = "";
+    if (loggedResteraunt === null) {
+        alert("connecter vous");
+    } else {
+        tablerAffReservRest = `<thead>
+        <tr>
+            <th>Nom</th>
+            <th>Numéro</th>
+            <th>E-mail</th>
+            <th>Nombre personnes</th>
+            <th>Date</th>
+            <th>Temps</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>`
+        if (ResDB != null) {
+            for (let i = 0; i < ResDB.length; i++) {
+                if (ResDB[i].idResto === loggedResteraunt.idresto) {
+
+                    tablerAffReservRest += `<tbody>
+                <tr>
+                    <td>
+                        ${ResDB[i].NameRes}
+                    </td>
+                    <td>
+                    ${ResDB[i].PhoneRes}
+                    </td>
+                    <td>
+                    ${ResDB[i].EmailRes}
+                    </td>
+                    <td>
+                    ${ResDB[i].GuestRes}
+                    </td>
+                    <td>
+                    ${ResDB[i].DateRes}
+                    </td>
+                    <td>
+                    ${ResDB[i].TimeRes}
+                    </td>
+                    <td>
+                    ${ResDB[i].status}
+                    </td>
+                    <td>
+                        <div class="cart-btn">
+                            <div class="col-md-6">
+                                <button class="btn btn-success" type="submit" onclick="AcceptReservation(${ResDB[i].idReser})">Accepter</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn-success" type="submit" onclick="RefuseReservation(${ResDB[i].idReser})">Refuser</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>`
+                    document.getElementById("tableReservationResto").innerHTML = tablerAffReservRest;
+                }
+            }
+        }
+    }
+}
+
+function AcceptReservation(IDR) {
+    var loggedResteraunt = JSON.parse(localStorage.getItem('connectedResto'));
+    var ResDB = JSON.parse(localStorage.getItem('reservations'));
+    for (let i = 0; i < ResDB.length; i++) {
+        console.log(i)
+        if (ResDB[i].idReser === IDR) {
+            ResDB[i].status = "Accepter";
+            console.log(ResDB[i].status)
+        }
+    }
+    localStorage.setItem("reservations", JSON.stringify(ResDB));
+    AfficheReservationResto();
+}
+
+function RefuseReservation(IDR) {
+    var loggedResteraunt = JSON.parse(localStorage.getItem('connectedResto'));
+    var ResDB = JSON.parse(localStorage.getItem('reservations'));
+    for (let i = 0; i < ResDB.length; i++) {
+        console.log(i)
+        if (ResDB[i].idReser === IDR) {
+            ResDB[i].status = "Refuser";
+            console.log(ResDB[i].status)
+        }
+    }
+    localStorage.setItem("reservations", JSON.stringify(ResDB));
+    AfficheReservationResto();
+}
