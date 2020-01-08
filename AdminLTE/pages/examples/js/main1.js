@@ -944,7 +944,7 @@ function AfficherListeRestoHomeClient() {
             for (let i = 0; i < restodb.length; i++) {
                 listeResto += `
                 <div class="col-md-3">
-                <img src="img/${restodb[i].logo}" alt="" />
+                <img src="../img/${restodb[i].logo}" alt="" />
                 <div class="rc-info">
                     <h4>${restodb[i].nomresto}</h4>
                     <div class="rc-ratings">
@@ -975,7 +975,7 @@ function AfficherListeRestoHomeClient() {
                 if (ville == restodb[i].villeR && CategU == "0") {
                     listeResto += `
                   <div class="col-md-3">
-                  <img src="img/${restodb[i].logo}" alt="" />
+                  <img src="../img/${restodb[i].logo}" alt="" />
                   <div class="rc-info">
                     <h4>${restodb[i].nomresto}</h4>
                     <div class="rc-ratings">
@@ -994,7 +994,7 @@ function AfficherListeRestoHomeClient() {
                     if (ville == "0" && CategU == restodb[i].categoryR) {
                         listeResto += `
                         <div class="col-md-3">
-                        <img src="img/${restodb[i].logo}" alt="" />
+                        <img src="../img/${restodb[i].logo}" alt="" />
                         <div class="rc-info">
                           <h4>${restodb[i].nomresto}</h4>
                           <div class="rc-ratings">
@@ -1013,7 +1013,7 @@ function AfficherListeRestoHomeClient() {
                         if (ville == restodb[i].villeR && CategU == restodb[i].categoryR) {
                             listeResto += `
                             <div class="col-md-3">
-                            <img src="img/${restodb[i].logo}" alt="" />
+                            <img src="../img/${restodb[i].logo}" alt="" />
                             <div class="rc-info">
                               <h4>${restodb[i].nomresto}</h4>
                               <div class="rc-ratings">
@@ -1433,7 +1433,11 @@ function AddCart(IndiceMenu) {
     var MenuPannier = JSON.parse(localStorage.getItem('MenuCPannier'));
     let quantite = document.getElementById("QuantitéMenu").value;
     let DmdeSpecial = document.getElementById("DemandeSpeciale").value;
-
+if (LoggedUser===null) {
+    console.log("0");
+    alert('Il faut Connecter');
+    return;
+}
     if (MenuPannier != null) {
         for (let i = 0; i < MenuPannier.length; i++) {
             if (IndiceMenu === MenuPannier[i].idMenu && MenuPannier[i].IdUser === LoggedUser.iduser && MenuPannier[i].status === "En Atente") {
@@ -1489,6 +1493,11 @@ function DisplayCart() {
     CartDropNum = ``;
     let compteur = 0;
     let Total1 = 0;
+    if (LoggedUser===null) {
+        console.log("0");
+        
+        return;
+    }
     for (let i = 0; i < MenuPannier.length; i++) {
         if (MenuPannier[i].IdUser === LoggedUser.iduser && MenuPannier[i].status === "En Atente") {
             compteur = compteur + 1;
@@ -1538,6 +1547,7 @@ function DisplayCartPage() {
     TotalTab = ``;
     let Total1 = 0;
     let TotalCmd = 0;
+    
     for (let i = 0; i < MenuPannier.length; i++) {
         if (MenuPannier[i].IdUser === LoggedUser.iduser && MenuPannier[i].status === "En Atente")
             for (let j = 0; j < Menu.length; j++) {
@@ -2026,4 +2036,106 @@ function RefuseReservation(IDR) {
     }
     localStorage.setItem("reservations", JSON.stringify(ResDB));
     AfficheReservationResto();
+}
+function AfficheCommandeResto() {
+    var loggedResteraunt = JSON.parse(localStorage.getItem('connectedResto'));
+    var Menu = JSON.parse(localStorage.getItem('MenuResteraunt'));
+    var Commande = JSON.parse(localStorage.getItem('MenuCPannier'));
+    var AdresseCmd = JSON.parse(localStorage.getItem('AdresseLiv'));
+    var UserDB = JSON.parse(localStorage.getItem('users'));
+    let TabCmdResto = document.getElementById("tabCommandeResto");
+    TabCmdResto = ``;
+
+    for (let i = 0; i < Commande.length; i++) {
+        console.log("00");
+        for (let l = 0; l < UserDB.length; l++) {
+            console.log("0");
+            if (Commande[i].IdUser === UserDB[l].iduser) {
+                console.log("1");
+                for (let j = 0; j < Menu.length; j++) {
+                    if (Commande[i].idMenu === Menu[j].idM && Menu[j].MenuOwner === loggedResteraunt.idresto) {
+                        console.log("2");
+                        for (let k = 0; k < AdresseCmd.length; k++) {
+                            if (AdresseCmd[k].idCmd === Commande[i].id) {
+                                TabCmdResto += `
+                                  
+                    <tr>
+                    <td>${Commande[i].id}</td>
+                      <td> ${UserDB[l].tel} </td>
+                     <td> ${AdresseCmd[k].AdresseLiv} </td>
+                     <td> ${Menu[j].Nom}</td>
+                     <td> ${Commande[i].Quantity}</td>
+                     <td> ${Commande[i].DmdeSpecial}</td>
+                     <td id="ConCmdStatus"> ${Commande[i].status}</td>
+                     <td id="ConCmdBtn1">  <button class="btn btn-info btn-flat" style="margin-bottom: 5px;" id="ConCmdBtn" onclick="ConfirmerCmdResto(${Commande[i].id})">Confirmer</button>
+                     <button class="btn btn-info btn-flat" id="AnnulCmdBtn" style="margin-bottom: 5px;" onclick="AnnulerCmdResto(${Commande[i].id})">Annuler</button>
+                     <button class="btn btn-info btn-flat" id="AnnulCmdBtn"  onclick="Delivred(${Commande[i].id})">Delivred</button>
+                     </td>
+                     </tr>
+                    `
+                
+                    
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        
+    }
+    console.log(TabCmdResto);
+    document.getElementById("tabCommandeResto").innerHTML = TabCmdResto;
+    
+}
+
+function ConfirmerCmdResto(idCmd) {
+    var Commande = JSON.parse(localStorage.getItem('MenuCPannier'));
+    
+  
+    for (let i = 0; i < Commande.length; i++) {
+        if (Commande[i].id===idCmd && Commande[i].status==="Envoyé" ) {
+
+            Commande[i].status="Confimé";
+            
+        }
+        
+    }
+    localStorage.setItem("MenuCPannier", JSON.stringify(Commande));
+    AfficheCommandeResto() ;
+    
+}
+function AnnulerCmdResto(idCmd) {
+    var Commande = JSON.parse(localStorage.getItem('MenuCPannier'));
+   
+    for (let i = 0; i < Commande.length; i++) {
+        if (Commande[i].id===idCmd && Commande[i].status==="Envoyé") {
+            Commande[i].status="Annulé";
+            
+        }
+        
+    }
+    localStorage.setItem("MenuCPannier", JSON.stringify(Commande));
+    AfficheCommandeResto() ;
+    
+}
+function Delivred(indice) {
+    var Commande = JSON.parse(localStorage.getItem('MenuCPannier'));
+  
+    for (let i = 0; i < Commande.length; i++) {
+        if (Commande[i].id===indice) {
+            Commande[i].status="Delivred";
+            
+        }
+        
+    }
+    localStorage.setItem("MenuCPannier", JSON.stringify(Commande));
+    AfficheCommandeResto() ;
+    
 }
