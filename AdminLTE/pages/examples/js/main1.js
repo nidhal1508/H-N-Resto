@@ -1433,11 +1433,11 @@ function AddCart(IndiceMenu) {
     var MenuPannier = JSON.parse(localStorage.getItem('MenuCPannier'));
     let quantite = document.getElementById("QuantitéMenu").value;
     let DmdeSpecial = document.getElementById("DemandeSpeciale").value;
-if (LoggedUser===null) {
-    console.log("0");
-    alert('Il faut Connecter');
-    return;
-}
+    if (LoggedUser === null) {
+        console.log("0");
+        alert('Il faut Connecter');
+        return;
+    }
     if (MenuPannier != null) {
         for (let i = 0; i < MenuPannier.length; i++) {
             if (IndiceMenu === MenuPannier[i].idMenu && MenuPannier[i].IdUser === LoggedUser.iduser && MenuPannier[i].status === "En Atente") {
@@ -1493,9 +1493,9 @@ function DisplayCart() {
     CartDropNum = ``;
     let compteur = 0;
     let Total1 = 0;
-    if (LoggedUser===null) {
+    if (LoggedUser === null) {
         console.log("0");
-        
+
         return;
     }
     for (let i = 0; i < MenuPannier.length; i++) {
@@ -1547,7 +1547,7 @@ function DisplayCartPage() {
     TotalTab = ``;
     let Total1 = 0;
     let TotalCmd = 0;
-    
+
     for (let i = 0; i < MenuPannier.length; i++) {
         if (MenuPannier[i].IdUser === LoggedUser.iduser && MenuPannier[i].status === "En Atente")
             for (let j = 0; j < Menu.length; j++) {
@@ -2073,8 +2073,8 @@ function AfficheCommandeResto() {
                      </td>
                      </tr>
                     `
-                
-                    
+
+
 
                             }
 
@@ -2088,54 +2088,102 @@ function AfficheCommandeResto() {
 
         }
 
-        
+
     }
     console.log(TabCmdResto);
     document.getElementById("tabCommandeResto").innerHTML = TabCmdResto;
-    
+
 }
 
 function ConfirmerCmdResto(idCmd) {
     var Commande = JSON.parse(localStorage.getItem('MenuCPannier'));
-    
-  
-    for (let i = 0; i < Commande.length; i++) {
-        if (Commande[i].id===idCmd && Commande[i].status==="Envoyé" ) {
 
-            Commande[i].status="Confimé";
-            
+
+    for (let i = 0; i < Commande.length; i++) {
+        if (Commande[i].id === idCmd && Commande[i].status === "Envoyé") {
+
+            Commande[i].status = "Confimé";
+
         }
-        
+
     }
     localStorage.setItem("MenuCPannier", JSON.stringify(Commande));
-    AfficheCommandeResto() ;
-    
+    AfficheCommandeResto();
+
 }
 function AnnulerCmdResto(idCmd) {
     var Commande = JSON.parse(localStorage.getItem('MenuCPannier'));
-   
+
     for (let i = 0; i < Commande.length; i++) {
-        if (Commande[i].id===idCmd && Commande[i].status==="Envoyé") {
-            Commande[i].status="Annulé";
-            
+        if (Commande[i].id === idCmd && Commande[i].status === "Envoyé") {
+            Commande[i].status = "Annulé";
+
         }
-        
+
     }
     localStorage.setItem("MenuCPannier", JSON.stringify(Commande));
-    AfficheCommandeResto() ;
-    
+    AfficheCommandeResto();
+
 }
 function Delivred(indice) {
     var Commande = JSON.parse(localStorage.getItem('MenuCPannier'));
-  
+
     for (let i = 0; i < Commande.length; i++) {
-        if (Commande[i].id===indice) {
-            Commande[i].status="Delivred";
-            
+        if (Commande[i].id === indice) {
+            Commande[i].status = "Delivred";
+
         }
-        
+
     }
     localStorage.setItem("MenuCPannier", JSON.stringify(Commande));
-    AfficheCommandeResto() ;
-    
+    AfficheCommandeResto();
+
+}
+function AfficheOrdersAdmin() {
+    var Commande = JSON.parse(localStorage.getItem('MenuCPannier'));
+    var Menu = JSON.parse(localStorage.getItem('MenuResteraunt'));
+    var RestoDB = JSON.parse(localStorage.getItem('restos'));
+    let TableauOrders = document.getElementById("TabOrdersAdmin");
+    TableauOrders = ``;
+    let total = 0;
+    console.log("0");
+    for (let i = 0; i < Commande.length; i++) {
+        if (Commande[i].status === "Confimé" || Commande[i].status === "Delivred") {
+            console.log("1");
+
+            for (let j = 0; j < Menu.length; j++) {
+                if (Commande[i].idMenu === Menu[j].idM) {
+                    console.log("2");
+                    total = Commande[i].Quantity * Menu[j].Prx;
+                    for (let k = 0; k < RestoDB.length; k++) {
+                        if (Menu[j].MenuOwner === RestoDB[k].idresto) {
+                            console.log("30");
+
+                            TableauOrders += `<tr>
+                   <td onclick="inVoice(${Commande[i].id})">${Commande[i].id}</td>
+                                            <td>${RestoDB[k].nomresto}
+                                            </td>
+                                            <td>${Commande[i].IdUser}</td>
+                                            <td>${Menu[j].Nom}</td>
+
+                                            
+                                            <td>${Commande[i].Quantity}</td>
+                                            <td>${total}</td>
+                                            <td>${Commande[i].status}</td>
+                                            </tr>
+                    
+                    `
+
+
+                        }
+
+                    }
+
+                }
+
+            }
+        }
+    }
+    console.log(TableauOrders);
+    document.getElementById("TabOrdersAdmin").innerHTML = TableauOrders;
 }
