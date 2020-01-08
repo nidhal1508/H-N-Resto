@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<!-- Mirrored from adminlte.io/themes/AdminLTE/index2.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Dec 2019 19:28:41 GMT -->
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-<!-- /Added by HTTrack -->
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
@@ -38,7 +25,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini" onload="admin_connected_verif() ">
+<body class="hold-transition skin-blue sidebar-mini" onload="admin_connected_verif();DisplayIndexAdmin() ">
     <div class="wrapper">
 
         <header class="main-header">
@@ -189,9 +176,8 @@
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="info-box">
                             <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
-                            <div class="info-box-content">
-                                <span class="info-box-text">New Resto</span>
-                                <span class="info-box-number">2,000</span>
+                            <div class="info-box-content" id="NombreREsto">
+                                
                             </div>
 
                             <!-- /.info-box-content -->
@@ -209,9 +195,8 @@
                         <div class="info-box">
                             <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
 
-                            <div class="info-box-content">
-                                <span class="info-box-text">Sales</span>
-                                <span class="info-box-number">760</span>
+                            <div class="info-box-content" id="nombreSales">
+                                
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -222,9 +207,8 @@
                         <div class="info-box">
                             <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
-                            <div class="info-box-content">
-                                <span class="info-box-text">New Members</span>
-                                <span class="info-box-number">2,000</span>
+                            <div class="info-box-content" id="nombreUser">
+                              
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -258,53 +242,21 @@
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body no-padding">
-                                <ul class="users-list clearfix">
-                                    <li>
-                                        <img src="dist/img/user1-128x128.jpg" alt="User Image">
-                                        <a class="users-list-name" href="#">Alexander Pierce</a>
-                                        <span class="users-list-date">Today</span>
-                                    </li>
-                                    <li>
-                                        <img src="dist/img/user8-128x128.jpg" alt="User Image">
-                                        <a class="users-list-name" href="#">Norman</a>
-                                        <span class="users-list-date">Yesterday</span>
-                                    </li>
-                                    <li>
-                                        <img src="dist/img/user7-128x128.jpg" alt="User Image">
-                                        <a class="users-list-name" href="#">Jane</a>
-                                        <span class="users-list-date">12 Jan</span>
-                                    </li>
-                                    <li>
-                                        <img src="dist/img/user6-128x128.jpg" alt="User Image">
-                                        <a class="users-list-name" href="#">John</a>
-                                        <span class="users-list-date">12 Jan</span>
-                                    </li>
-                                    <li>
-                                        <img src="dist/img/user2-160x160.jpg" alt="User Image">
-                                        <a class="users-list-name" href="#">Alexander</a>
-                                        <span class="users-list-date">13 Jan</span>
-                                    </li>
-                                    <li>
-                                        <img src="dist/img/user5-128x128.jpg" alt="User Image">
-                                        <a class="users-list-name" href="#">Sarah</a>
-                                        <span class="users-list-date">14 Jan</span>
-                                    </li>
-                                    <li>
-                                        <img src="dist/img/user4-128x128.jpg" alt="User Image">
-                                        <a class="users-list-name" href="#">Nora</a>
-                                        <span class="users-list-date">15 Jan</span>
-                                    </li>
-                                    <li>
-                                        <img src="dist/img/user3-128x128.jpg" alt="User Image">
-                                        <a class="users-list-name" href="#">Nadia</a>
-                                        <span class="users-list-date">15 Jan</span>
-                                    </li>
+                                <ul class="users-list clearfix" id="latestResto"> 
+                                    
+                                    
+                                    
+                                   
+                                    
+                                    
+                                   
+                                    
                                 </ul>
                                 <!-- /.users-list -->
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer text-center">
-                                <a href="javascript:void(0)" class="uppercase">View All Users</a>
+                                <a href="./pages/examples/gestion-cpt.html" class="uppercase">View All Resto</a>
                             </div>
                             <!-- /.box-footer -->
                         </div>
@@ -328,53 +280,19 @@
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body no-padding">
-                                <ul class="users-list clearfix">
-                                    <li>
-                                        <img src="dist/img/user1-128x128.jpg" alt="User Image">
-                                        <a class="users-list-name" href="#">Alexander Pierce</a>
-                                        <span class="users-list-date">Today</span>
-                                    </li>
-                                    <li>
-                                        <img src="dist/img/user8-128x128.jpg" alt="User Image">
-                                        <a class="users-list-name" href="#">Norman</a>
-                                        <span class="users-list-date">Yesterday</span>
-                                    </li>
-                                    <li>
-                                        <img src="dist/img/user7-128x128.jpg" alt="User Image">
-                                        <a class="users-list-name" href="#">Jane</a>
-                                        <span class="users-list-date">12 Jan</span>
-                                    </li>
-                                    <li>
-                                        <img src="dist/img/user6-128x128.jpg" alt="User Image">
-                                        <a class="users-list-name" href="#">John</a>
-                                        <span class="users-list-date">12 Jan</span>
-                                    </li>
-                                    <li>
-                                        <img src="dist/img/user2-160x160.jpg" alt="User Image">
-                                        <a class="users-list-name" href="#">Alexander</a>
-                                        <span class="users-list-date">13 Jan</span>
-                                    </li>
-                                    <li>
-                                        <img src="dist/img/user5-128x128.jpg" alt="User Image">
-                                        <a class="users-list-name" href="#">Sarah</a>
-                                        <span class="users-list-date">14 Jan</span>
-                                    </li>
-                                    <li>
-                                        <img src="dist/img/user4-128x128.jpg" alt="User Image">
-                                        <a class="users-list-name" href="#">Nora</a>
-                                        <span class="users-list-date">15 Jan</span>
-                                    </li>
-                                    <li>
-                                        <img src="dist/img/user3-128x128.jpg" alt="User Image">
-                                        <a class="users-list-name" href="#">Nadia</a>
-                                        <span class="users-list-date">15 Jan</span>
-                                    </li>
+                                <ul class="users-list clearfix" id="latestUser">
+                                   
+                                    
+                                
+                                    
+                                  
+                                   
                                 </ul>
                                 <!-- /.users-list -->
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer text-center">
-                                <a href="javascript:void(0)" class="uppercase">View All Users</a>
+                                <a href="./pages/examples/gestion-client.html" class="uppercase">View All Users</a>
                             </div>
                             <!-- /.box-footer -->
                         </div>
@@ -407,49 +325,14 @@
 
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                        <td>Call of Duty IV</td>
-                                        <td><span class="label label-success">Shipped</span></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                        <td>Samsung Smart TV</td>
-                                        <td><span class="label label-warning">Pending</span></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                        <td>iPhone 6 Plus</td>
-                                        <td><span class="label label-danger">Delivered</span></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                        <td>Samsung Smart TV</td>
-                                        <td><span class="label label-info">Processing</span></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                        <td>Samsung Smart TV</td>
-                                        <td><span class="label label-warning">Pending</span></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                        <td>iPhone 6 Plus</td>
-                                        <td><span class="label label-danger">Delivered</span></td>
-
-                                    </tr>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                        <td>Call of Duty IV</td>
-                                        <td><span class="label label-success">Shipped</span></td>
-
-                                    </tr>
+                                <tbody id="CommandeTable">
+                                   
+                                 
+                                    
+                                  
+                                  
+                                  
+                                   
                                 </tbody>
                             </table>
                         </div>
@@ -458,7 +341,7 @@
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
 
-                        <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+                        <a href="./pages/examples/gestion-orders.html" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
                     </div>
                     <!-- /.box-footer -->
                 </div>

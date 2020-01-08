@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from demo.web3canvas.com/themeforest/tomato/recipe_4col.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Dec 2019 19:30:49 GMT -->
+<!-- Mirrored from demo.web3canvas.com/themeforest/tomato/shop_account_detail.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Dec 2019 19:31:11 GMT -->
 
 <head>
     <meta charset="utf-8">
     <title>Tomato Responsive Restaurant HTML5 Template</title>
     <meta name="author" content="Surjith S M">
+    <script src="..\AdminLTE\pages\examples\js\main1.js"></script>
 
     <meta name="description" content="Tomato is a Responsive HTML5 Template for Restaurants and food related services.">
     <meta name="keywords" content="tomato, responsive, html5, restaurant, template, food, reservation">
 
     <script src="../../cdn-cgi/apps/head/-mEFVS8y7qx5pVzWHQTCQu5gnVM.js"></script>
     <link rel="shortcut icon" href="img/favicon.ico">
-    <script src="..\AdminLTE\pages\examples\js\main1.js"></script>
+
     <meta name="viewport" content="width=device-width">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -25,8 +26,8 @@
         <![endif]-->
 </head>
 
-<body onload="user_connected_verif();AfficherCatInscri();DisplayCartRefresh()">
-        <!--[if lt IE 8]>
+<body onload="user_connected_verif();DisplayCmdUser();DisplayCartRefresh()">
+    <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
@@ -42,7 +43,7 @@
                 <div class="container">
                     <div class="navbar-header">
 
-                        <a class="navbar-brand" href="index-2.html">
+                        <a class="navbar-brand" href="home.html">
                             <img src="img/nav-logo.png" alt="nav-logo">
                         </a>
 
@@ -60,56 +61,42 @@
 
             </nav>
 
-
-            <section class="home">
-                <div class="overlay"></div>
-                <div class="tittle-block">
-                    <div class="logo">
-                        <a href="home.html">
-                            <img src="img/logo.png" alt="logo">
-                        </a>
+            <section class="page_header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h2 class="text-uppercase">Your Commande</h2>
+                            <p>Connecter Commander C'est Facile</p>
+                        </div>
                     </div>
-                    <h1>DELICIOUS Food</h1>
-                    <h2>Tomato is a delitious restaurant website template</h2>
                 </div>
-
             </section>
 
-            <section class="recipie-content">
+            <section class="shop-content">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <center>
-                                <h1>Commandez de délicieux repas en ligne</h1>
-                                <h3> Découvrez les restaurants locaux qui livrent à votre porte</h3>
-                                <h3>Réservez-vous</h3>
-                            </center>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
+                            <h3>Your Commande</h3>
+                            <br>
+                            <table class="cart-table account-table table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Commande</th>
+                                        <th>Restaurant</th>
+                                        <th>item</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabCommande">
+                                   
 
-                            <select class="form-control" style="margin-top: 10px;margin-bottom: 20px;" id="villeUser">
-                                <option value="0">selectionner votre ville</option>
-                                <option value="Tunis">Tunis</option>
-                                <option value="Ariana">Ariana</option>
-                                <option value="Ben Arous">Ben Arous</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <select class="form-control" style="margin-top: 10px;margin-bottom: 20px;" id="selectcategory">
-                                <option value="0">selectionner votre categorie</option>
-                               
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <button type="button" class="btn btn-primary" style="margin-top: 10px;margin-bottom: 20px;" onclick="AfficherListeRestoHomeClient()">Trouvez!</button>
+                                </tbody>
+                            </table>
+                            <br>
+                            <br>
+                            <br>
 
                         </div>
-                        <br>
-                    </div>
-                    <div class="row" id="AfiicheListeResto">
-
                     </div>
                 </div>
             </section>
@@ -121,7 +108,9 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <h1>About us</h1>
-                            <p>Duis leo justo, condimentum at purus eu,Aenean sed dolor sem. Etiam massa libero, auctor vitae egestas et, accumsan quis nunc.Duis leo justo, condimentum at purus eu, posuere pretium tellus.</p>
+                            <p>Duis leo justo, condimentum at purus eu,Aenean sed dolor sem. Etiam massa libero, auctor
+                                vitae egestas et, accumsan quis nunc.Duis leo justo, condimentum at purus eu, posuere
+                                pretium tellus.</p>
                             <a href="about.html">Read more &rarr;</a>
                         </div>
 
@@ -153,7 +142,10 @@
                             <div class="footer-address">
                                 <p><i class="fa fa-map-marker"></i>28 Lac 2 Ariana, Tunisia, 10014</p>
                                 <p><i class="fa fa-phone"></i>Phone: (216) 24 658 683</p>
-                                <p><i class="fa fa-envelope-o"></i><a href="https://demo.web3canvas.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="582b2d2828372a2c182a3d2b2c392d2a39362c763b3735">[email&#160;protected]</a>
+                                <p><i class="fa fa-envelope-o"></i><a
+                                        href="https://demo.web3canvas.com/cdn-cgi/l/email-protection"
+                                        class="__cf_email__"
+                                        data-cfemail="582b2d2828372a2c182a3d2b2c392d2a39362c763b3735">[email&#160;protected]</a>
                                 </p>
                             </div>
                         </div>
@@ -164,7 +156,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <p><i class="fa fa-copyright"></i> 2019.H&N.All rights reserved. Designed with <i class="fa fa-heart primary-color"></i> by FivePoints Talent</p>
+                                <p><i class="fa fa-copyright"></i> 2019.H&N.All rights reserved. Designed with <i
+                                        class="fa fa-heart primary-color"></i> by FivePoints Talent</p>
                             </div>
                         </div>
                     </div>
@@ -234,11 +227,14 @@
     <script src="js/vendor/vegas/vegas.min.js"></script>
     <script src="js/vendor/jquery.mb.YTPlayer.js"></script>
     <script src="js/vendor/jquery.stellar.js"></script>
-    <script src="js/main.js"></script>
     <script src="js/vendor/mc/jquery.ketchup.all.min.js"></script>
     <script src="js/vendor/mc/main.js"></script>
+    <script src="js/vendor/validate.js"></script>
+    <script src="js/reservation.js"></script>
+
+    <script src="js/main.js"></script>
 </body>
 
-<!-- Mirrored from demo.web3canvas.com/themeforest/tomato/recipe_4col.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Dec 2019 19:30:49 GMT -->
+<!-- Mirrored from demo.web3canvas.com/themeforest/tomato/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Dec 2019 19:30:28 GMT -->
 
 </html>

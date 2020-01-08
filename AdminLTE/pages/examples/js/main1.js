@@ -164,7 +164,7 @@ function user_connected_verif() {
         <div class="form-group"> Password
             <input type="password" class="form-control" id="UserPassword"
                 placeholder="Password">
-                <a href="shop_account.html" style="color: white;">S'inscrire</a>
+                <a href="inscription.html" style="color: white;">S'inscrire</a>
             </div>
     </li>
 
@@ -178,45 +178,27 @@ function user_connected_verif() {
     } else {
 
         tab.innerHTML = `
-    <li style="margin-right: 10px;margin-top: 20px;" id="connexsection"><button type="submit"
-                                    class="btn btn-default" onclick="deconnexUser()"> se déconnecter</button></li>
+    
                                     <li><a href="reservationdetail.html">Reservation</a></li>
+                                    <li><a href="commandedetail.html">Commande</a></li>
                                     <li class="dropdown" id="cartdisplay" >
-                <a class="css-pointer dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-shopping-cart fsc pull-left"></i><span class="cart-number">3</span><span class="caret"></span></a>
+                <a class="css-pointer dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-shopping-cart fsc pull-left"></i><span class="cart-number" id="NombreItemPannier">0</span><span class="caret"></span></a>
                 <div class="cart-content dropdown-menu">
                 <div class="cart-title">
                 <h4>Shopping Cart</h4>
                 </div>
-                <div class="cart-items">
-                <div class="cart-item clearfix">
-                <div class="cart-item-image">
-                <a href="shop_single_full.html"><img src="img/cart-img1.jpg" alt="Breakfast with coffee"></a>
+                <div class="cart-items" id="PannierHeader" style="max-height: 300px;
+                overflow: auto;">
+                
+
+                
                 </div>
-                <div class="cart-item-desc">
-                <a href="shop_single_full.html">Breakfast with coffee</a>
-                <span class="cart-item-price">$19.99</span>
-                <span class="cart-item-quantity">x 2</span>
-                <i class="fa fa-times ci-close"></i>
-                </div>
-                </div>
-                <div class="cart-item clearfix">
-                <div class="cart-item-image">
-                <a href="shop_single_full.html"><img src="img/cart-img2.jpg" alt="Chicken stew"></a>
-                </div>
-                <div class="cart-item-desc">
-                <a href="shop_single_full.html">Chicken stew</a>
-                <span class="cart-item-price">$24.99</span>
-                <span class="cart-item-quantity">x 3</span>
-                 <i class="fa fa-times ci-close"></i>
-                </div>
-                </div>
-                </div>
-                <div class="cart-action clearfix">
-                <span class="pull-left checkout-price">$ 114.95</span>
-                <a class="btn btn-default pull-right" href="shop_cart.html">View Cart</a>
-                </div>
+                <div class="cart-action clearfix" id="PannierHeader1">	               
+                
                 </div>
                 </li>
+                <li style="margin-right: 10px;margin-top: 20px;" id="connexsection"><button type="submit"
+                                    class="btn btn-default" onclick="deconnexUser()"> se déconnecter</button></li>
   `
     }
 }
@@ -1281,4 +1263,451 @@ function DisplayResUser() {
     }
     document.getElementById("tabreseravtion").innerHTML = Tabres;
 }
+function DisplayMenuFilter(filter) {
+    var restoid = JSON.parse(localStorage.getItem('restoIdUser'));
+    var Menudb = JSON.parse(localStorage.getItem('MenuResteraunt'));
+    let MenuResto = document.getElementById("Menu");
+    let restoindice = restoid.restoID;
+    MenuResto = ``;
+    for (let i = 0; i < Menudb.length; i++) {
+        if (filter === "All") {
+            if (Menudb[i].MenuOwner === restoindice) {
+
+                MenuResto += `
+            <div class="${Menudb[i].type} menu-item col-sm-6 col-xs-12   ">
+            <div class="clearfix menu-wrapper">
+            <input class="btn btn-default" style="width: 65px;" onclick="AddcartMenu(${Menudb[i].idM})"  value="Add">
+                <a class="css-pointer dropdown-toggle" onclick="ConsulterMenu(${Menudb[i].idM})"  role="button" aria-haspopup="true" aria-expanded="false">
+                <h4>          
+                ${Menudb[i].Nom}</h4>
+                </a>
+                <span class="price">${Menudb[i].Prx}DT</span>
+                <div class="dotted-bg"></div>
+             </div>
+    
+              </div>
+            `
+            }
+        } else if (Menudb[i].MenuOwner === restoindice && Menudb[i].type === filter) {
+
+            MenuResto += `
+        <div class="${Menudb[i].type} menu-item col-sm-6 col-xs-12">
+
+        <div class="clearfix menu-wrapper">
+        <input class="btn btn-default" style="width: 65px;" onclick="AddcartMenu(${Menudb[i].idM})"  value="Add">
+            <a class="css-pointer dropdown-toggle" onclick="ConsulterMenu(${Menudb[i].idM})"  role="button" aria-haspopup="true" aria-expanded="false">
+            <h4>        
+            ${Menudb[i].Nom}</h4>
+            </a>
+
+            <span class="price">${Menudb[i].Prx}DT</span>
+
+            <div class="dotted-bg"></div>
+        </div>
+
+    </div>
+        `
+        }
+
+    }
+    document.getElementById("Menu").innerHTML = MenuResto;
+
+}
+function DisplayIndexAdmin() {
+    var Menu = JSON.parse(localStorage.getItem('MenuResteraunt'));
+    var MenuPannier = JSON.parse(localStorage.getItem('MenuCPannier'));
+    var Restodb = JSON.parse(localStorage.getItem('restos'));
+    var Userdb = JSON.parse(localStorage.getItem('users'));
+    var Reservationdb = JSON.parse(localStorage.getItem('reservations'));
+    let NumResto = document.getElementById("NombreREsto");
+    let NumUser = document.getElementById("nombreUser");
+    let NumRes = document.getElementById("nombreSales");
+    let LatestResto = document.getElementById("latestResto");
+    let LatestUser = document.getElementById("latestUser");
+    let ResTab = document.getElementById("CommandeTable");
+    NumResto = ``;
+    NumUser = ``;
+    NumRes = ``;
+    LatestResto = ``;
+    LatestUser = ``;
+    ResTab = ``;
+    NumResto = `<span class="info-box-text">Number Resto</span>
+    <span class="info-box-number">${Restodb.length}</span>`
+    console.log(NumResto)
+    NumUser = `  <span class="info-box-text">New Members</span>
+    <span class="info-box-number">${Userdb.length}</span>
+    `
+    NumRes = `<span class="info-box-text">Sales</span>
+    <span class="info-box-number">${MenuPannier.length}</span>
+    `;
+    document.getElementById("NombreREsto").innerHTML = NumResto;
+    document.getElementById("nombreUser").innerHTML = NumUser;
+    NumRes = document.getElementById("nombreSales").innerHTML = NumRes;
+    for (let i = (Restodb.length - 8); i < Restodb.length; i++) {
+        LatestResto += `
+        <li onclick="EditerRestoA(${Restodb[i].idresto})">
+        <img src="../img/${Restodb[i].logo}" alt="User Image"  type="input">                          
+     <a class="users-list-name" >${Restodb[i].nomresto}</a>
+  
+   </li>
+        `
+
+    }
+    document.getElementById("latestResto").innerHTML = LatestResto;
+    for (let i = (Userdb.length - 8); i < Userdb.length; i++) {
+        LatestUser += `
+        <li>
+                                 
+     <a class="users-list-name" href="./pages/examples/gestion-client.html">${Userdb[i].nom} ${Userdb[i].prenom}</a>
+  
+   </li>
+        `
+
+    }
+    document.getElementById("latestUser").innerHTML = LatestUser;
+    for (let i = (MenuPannier.length - 5); i < MenuPannier.length; i++) {
+        for (let j = 0; j < Menu.length; j++) {
+            if (MenuPannier[i].idMenu === Menu[j].idM) {
+
+                ResTab += `
+             <tr>
+             <td><a href="pages/examples/gestion-orders.html">${MenuPannier[i].id}</a></td>
+             <td>${Menu[j].Nom}</td>
+             <td><span class="label label-success">${MenuPannier[i].status}</span></td>
+
+              </tr>
+      
+              `
+            }
+        }
+    }
+
+    document.getElementById("CommandeTable").innerHTML = ResTab;
+}
+
+function AddcartMenu(IndiceMenu) {
+    let AddCartDrop = document.getElementById("CmdDropdown");
+    AddCartDrop = `  <div class="form-group">
+    <div class="col-md-4" style="margin-bottom: 20px;">
+  <label for="exampleInputPassword1">Quantité</label>
+  
+  <input type="number"  value="1" min="1" max="30" class="form-control"id="QuantitéMenu">
+  </div>
+  <div class="col-md-6">
+  <label for="exampleInputPassword1">Demande Speciale</label>
+  <input type="text" class="form-control" maxlength="150" id="DemandeSpeciale">
+  
+  
+    </div>
+    <br>
+  <br>
+  <button id="applyPub" class="btn btn-default" style="margin-bottom: 20px;" onclick="AddCart(${IndiceMenu})"> ADD To Cart </button>
+  <button id="applyPub" class="btn btn-default" style="margin-bottom: 20px;" onclick="CancelCart()"> Cancel </button>
+  
+    
+    </div>
+    `
+
+    document.getElementById("CmdDropdown").innerHTML = AddCartDrop;
+    document.getElementById("CmdDropdown").style.display = "block";
+    document.getElementById("Menu").style.display = "none";
+    document.getElementById("menutype").style.display = "none"
+
+
+}
+function CancelCart() {
+    document.getElementById("CmdDropdown").style.display = "none";
+    document.getElementById("Menu").style.display = "block";
+    document.getElementById("menutype").style.display = "block"
+}
+function AddCart(IndiceMenu) {
+    var Menu = JSON.parse(localStorage.getItem('MenuResteraunt'));
+    var LoggedUser = JSON.parse(localStorage.getItem('connectedUser'));
+    var MenuPannier = JSON.parse(localStorage.getItem('MenuCPannier'));
+    let quantite = document.getElementById("QuantitéMenu").value;
+    let DmdeSpecial = document.getElementById("DemandeSpeciale").value;
+
+    if (MenuPannier != null) {
+        for (let i = 0; i < MenuPannier.length; i++) {
+            if (IndiceMenu === MenuPannier[i].idMenu && MenuPannier[i].IdUser === LoggedUser.iduser && MenuPannier[i].status === "En Atente") {
+
+
+                MenuPannier[i].Quantity = parseInt(MenuPannier[i].Quantity) + parseInt(quantite);
+                console.log(MenuPannier[i].Quantity);
+                localStorage.setItem("MenuCPannier", JSON.stringify(MenuPannier));
+                alert('Demande Effectue')
+                document.getElementById("CmdDropdown").style.display = "none";
+                document.getElementById("Menu").style.display = "block";
+                document.getElementById("menutype").style.display = "block"
+                return
+            }
+        }
+    }
+    let objet = {
+        id: Math.floor(Math.random() * 1000) + 1,
+        idMenu: IndiceMenu,
+        IdUser: LoggedUser.iduser,
+        Quantity: quantite,
+        DmdeSpecial: DmdeSpecial,
+        status: "En Atente",
+    }
+    if (MenuPannier === null) {
+        MenuPannier = [];
+    }
+    MenuPannier.push(objet);
+
+
+    localStorage.setItem("MenuCPannier", JSON.stringify(MenuPannier));
+
+    alert('Demande Effectue')
+    document.getElementById("CmdDropdown").style.display = "none";
+    document.getElementById("Menu").style.display = "block";
+    document.getElementById("menutype").style.display = "block"
+}
+function DisplayCartRefresh() {
+
+    refresh = setInterval(DisplayCart, 1000);
+
+
+}
+function DisplayCart() {
+    var MenuPannier = JSON.parse(localStorage.getItem('MenuCPannier'));
+    var LoggedUser = JSON.parse(localStorage.getItem('connectedUser'));
+    var Menu = JSON.parse(localStorage.getItem('MenuResteraunt'));
+    let CartDrop = document.getElementById("PannierHeader");
+    let CartDropNum = document.getElementById("NombreItemPannier");
+    let CartDropBtn = document.getElementById("PannierHeader1");
+    CartDrop = ``;
+    CartDropBtn = ``;
+    CartDropNum = ``;
+    let compteur = 0;
+    let Total1 = 0;
+    for (let i = 0; i < MenuPannier.length; i++) {
+        if (MenuPannier[i].IdUser === LoggedUser.iduser && MenuPannier[i].status === "En Atente") {
+            compteur = compteur + 1;
+
+            for (let j = 0; j < Menu.length; j++) {
+                if (MenuPannier[i].idMenu === Menu[j].idM) {
+                    Total1 = Total1 + (parseFloat(Menu[j].Prx) * parseInt(MenuPannier[i].Quantity));
+                    let Total = Total1.toFixed(1)
+                    CartDrop += `
+             <div class="cart-item clearfix">	
+                <div class="cart-item-image">	
+                <a href="shop_single_full.html"><img src="../img/${Menu[j].imgmenu}" style="width: 50px; height: 50px;" alt="Breakfast with coffee"></a>	
+                </div>	
+                <div class="cart-item-desc">	
+                <a href="shop_single_full.html">${Menu[j].Nom}</a>	
+                <span class="cart-item-price">${Menu[j].Prx}</span>	
+                <span class="cart-item-quantity">x ${MenuPannier[i].Quantity}</span>	
+                <i class="fa fa-times ci-close"  onclick="Delete(${MenuPannier[i].id})"></i>	
+                </div>	
+                </div>
+             `
+
+                    CartDropBtn = `<div class="cart-action clearfix">	               
+             <span class="pull-left checkout-price">${Total} TND</span>	
+             <a class="btn btn-default pull-right" href="shop_cart.html">View Cart</a>	
+             </div>
+             `
+                }
+            }
+        }
+    }
+
+
+
+    CartDropNum = `${compteur}`;
+    document.getElementById("NombreItemPannier").innerHTML = CartDropNum;
+    document.getElementById("PannierHeader").innerHTML = CartDrop;
+    document.getElementById("PannierHeader1").innerHTML = CartDropBtn;
+}
+function DisplayCartPage() {
+    var MenuPannier = JSON.parse(localStorage.getItem('MenuCPannier'));
+    var LoggedUser = JSON.parse(localStorage.getItem('connectedUser'));
+    var Menu = JSON.parse(localStorage.getItem('MenuResteraunt'));
+    let CartDropTab = document.getElementById("CartTab");
+    let TotalTab = document.getElementById("TabDelivrer");
+    CartDropTab = ``;
+    TotalTab = ``;
+    let Total1 = 0;
+    let TotalCmd = 0;
+    for (let i = 0; i < MenuPannier.length; i++) {
+        if (MenuPannier[i].IdUser === LoggedUser.iduser && MenuPannier[i].status === "En Atente")
+            for (let j = 0; j < Menu.length; j++) {
+                if (MenuPannier[i].idMenu === Menu[j].idM) {
+                    Total1 = (parseFloat(Menu[j].Prx) * parseInt(MenuPannier[i].Quantity));
+                    let Total = Total1.toFixed(1);
+                    TotalCmd = TotalCmd + (parseFloat(Menu[j].Prx) * parseInt(MenuPannier[i].Quantity));
+                    TotalCmd1 = TotalCmd + 5;
+                    CartDropTab += `
+            <tr>
+            <td>
+                <a href="#" class="remove" onclick="Delete(${MenuPannier[i].id})"><i class="fa fa-times" ></i></a>
+            </td>
+            <td>
+                <a href="shop_single_full.html"><img src="../img/${Menu[j].imgmenu}" alt="" height="90" width="90"></a>
+            </td>
+            <td>
+                <a href="shop_single_full.html">${Menu[j].Nom}</a>
+            </td>
+            <td>
+                <span class="amount">${Menu[j].Prx}</span>
+            </td>
+            <td>
+                <div class="quantity">${MenuPannier[i].Quantity}</div>
+            </td>
+            <td>
+                <span class="amount">${Total}</span>
+            </td>
+        </tr>
+            `
+                }
+
+            }
+
+    }
+    console.log(CartDropTab);
+    CartDropTab += `
+    <tr>
+                                        <td colspan="6" class="actions">
+                                            <div class="col-md-6">
+                                               <p></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="cart-btn">
+                                                    
+                                                    <button class="btn btn-success" type="submit" onclick="ConfirmerCmd()">Confirmer</button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+    `
+    TotalTab = `
+    <tr>
+    <th>Total Cart</th>
+    <td><span class="amount">${TotalCmd} TND</span></td>
+</tr>
+<tr>
+    <th>Shipping and Handling</th>
+    <td>
+        5 TND
+    </td>
+</tr>
+<tr>
+    <th> Total Commande </th>
+    <td><strong><span class="amount">${TotalCmd1} TND</span></strong> </td>
+</tr>
+    `
+    document.getElementById("CartTab").innerHTML = CartDropTab;
+    document.getElementById("TabDelivrer").innerHTML = TotalTab;
+
+}
+
+function Delete(IndiceCmd) {
+    console.log(IndiceCmd);
+    var MenuPannier = JSON.parse(localStorage.getItem('MenuCPannier'));
+
+    for (i = 0; i < MenuPannier.length; i++) {
+
+        if (MenuPannier[i].id == IndiceCmd) {
+
+            MenuPannier.splice(i, 1);
+        }
+    }
+    localStorage.setItem("MenuCPannier", JSON.stringify(MenuPannier));
+    DisplayCartPage();
+}
+
+function ConfirmerCmd() {
+
+    let DropTabConf = document.getElementById("ConfirmeCmdDropdown");
+    let TabCartPage = document.getElementById("TabConfirmerCart");
+    DropTabConf = `  <div class="form-group">
+    <div class="col-md-6" style="margin-bottom: 20px;">
+  <label for="exampleInputPassword1" >Adresse Livraison</label>
+  
+  <input type="text" style="width: 300px; height: 50px;" class="form-control" id="AdresseLiv">
+  </div>
+  <div class="col-md-6">
+   
+    <br>
+  <br>
+  <button  class="btn btn-default" style="margin-left: 20px;" onclick="ConfirmerCmdPlus()"> Confimer </button>
+  <button  class="btn btn-default" style="margin-left: 20px;" onclick="CancelCmdPlus()"> Cancel </button>
+  </div>
+    
+    </div>
+    `
+    document.getElementById("ConfirmeCmdDropdown").innerHTML = DropTabConf;
+    document.getElementById("TabConfirmerCart").style.display = "none";
+    document.getElementById("ConfirmeCmdDropdown").style.display = "block";
+
+
+}
+function CancelCmdPlus() {
+    document.getElementById("TabConfirmerCart").style.display = "block";
+    document.getElementById("ConfirmeCmdDropdown").style.display = "none";
+}
+function ConfirmerCmdPlus() {
+    var Cmddetail = JSON.parse(localStorage.getItem('AdresseLiv'));
+    var MenuPannier = JSON.parse(localStorage.getItem('MenuCPannier'));
+    var LoggedUser = JSON.parse(localStorage.getItem('connectedUser'));
+
+    if (Cmddetail === null) {
+        Cmddetail = [];
+    }
+    for (i = 0; i < MenuPannier.length; i++) {
+
+        if (MenuPannier[i].IdUser == LoggedUser.iduser && MenuPannier[i].status === "En Atente") {
+
+            MenuPannier[i].status = "Envoyé";
+            let objet = {
+                id: Math.floor(Math.random() * 1000) + 1,
+                idCmd: MenuPannier[i].id,
+                AdresseLiv: document.getElementById("AdresseLiv").value,
+            }
+            Cmddetail.push(objet);
+            localStorage.setItem("AdresseLiv", JSON.stringify(Cmddetail));
+        }
+    }
+    localStorage.setItem("MenuCPannier", JSON.stringify(MenuPannier));
+    alert('Commande Envoyé ')
+    location.href = 'commandedetail.html';
+}
+function DisplayCmdUser() {
+    var MenuPannier = JSON.parse(localStorage.getItem('MenuCPannier'));
+    var Menu = JSON.parse(localStorage.getItem('MenuResteraunt'));
+    var LoggedUser = JSON.parse(localStorage.getItem('connectedUser'));
+    var restodb = JSON.parse(localStorage.getItem('restos'));
+    let TabCmd = document.getElementById("tabCommande");
+    TabCmd = ``;
+    for (let i = 0; i < MenuPannier.length; i++) {
+        if (MenuPannier[i].IdUser == LoggedUser.iduser && MenuPannier[i].status != "En Atente") {
+            for (let j = 0; j < Menu.length; j++) {
+                if (MenuPannier[i].idMenu === Menu[j].idM) {
+                    for (let k = 0; k < restodb.length; k++) {
+                        if (restodb[k].idresto == Menu[j].MenuOwner) {
+
+                            TabCmd += `
+                              <tr>
+                             <td>${MenuPannier[i].id}</td>
+                               <td> ${restodb[k].nomresto} </td>
+                              <td> ${Menu[j].Nom} </td>
+                              <td> ${MenuPannier[i].status}</td>
+                              </tr>
+             
+                             `
+                        }
+                    }
+                }
+
+            }
+
+
+        }
+
+    }
+    document.getElementById("tabCommande").innerHTML = TabCmd;
+}
+
 

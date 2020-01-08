@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <title>Tomato Responsive Restaurant HTML5 Template</title>
     <meta name="author" content="Surjith S M">
+    <link rel="stylesheet" href="../style1.css">
 
     <meta name="description" content="Tomato is a Responsive HTML5 Template for Restaurants and food related services.">
     <meta name="keywords" content="tomato, responsive, html5, restaurant, template, food, reservation">
@@ -25,8 +26,8 @@
         <![endif]-->
 </head>
 
-<body onload="user_connected_verif();ConsulterMenuUser() ">
-    <!--[if lt IE 8]>
+<body onload="user_connected_verif();ConsulterMenuUser();DisplayCartRefresh() ">
+        <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
@@ -72,7 +73,7 @@
 
             <section class="recipie-single single-recipe">
                 <div class="container">
-                    <div class="row">
+                        <div class="row" id="Menu">
                         <div class="col-md-6">
                             <div class="single-recipe-image" id="imageplats">
                                 
@@ -86,6 +87,16 @@
                             
                         </div>
                     </div>
+                    <div class="row">
+                            <div class="col-md-12">
+                                <div class="dropdown">
+                                    <div id="CmdDropdown" class="dropdown-content">
+
+                                    </div>
+    
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </section>
 
