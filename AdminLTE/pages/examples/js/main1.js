@@ -955,7 +955,7 @@ function AfficherListeRestoHomeClient() {
                         <span class="fa fa-star active"></span>
                     </div>
                     <p>${restodb[i].slogan}</p>
-                    <a href="recipe_detail-image.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto})">View Details</a>
+                    <a href="resto.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto})">View Details</a>
                 </div>
                 </div>
             `
@@ -986,7 +986,7 @@ function AfficherListeRestoHomeClient() {
                         <span class="fa fa-star active"></span>
                     </div>
                     <p>${restodb[i].slogan}</p>
-                    <a href="recipe_detail-image.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto})">View Details</a>
+                    <a href="resto.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto})">View Details</a>
                   </div>
                   </div>
                   `
@@ -1005,7 +1005,7 @@ function AfficherListeRestoHomeClient() {
                               <span class="fa fa-star active"></span>
                           </div>
                           <p>${restodb[i].slogan}</p>
-                          <a href="recipe_detail-image.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto})">View Details</a>
+                          <a href="resto.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto})">View Details</a>
                         </div>
                         </div>
                         `
@@ -1024,7 +1024,7 @@ function AfficherListeRestoHomeClient() {
                                   <span class="fa fa-star active"></span>
                               </div>
                               <p>${restodb[i].slogan}</p>
-                              <a href="recipe_detail-image.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto})">View Details</a>
+                              <a href="resto.html" class="btn btn-default" onclick="ViewResto(${restodb[i].idresto})">View Details</a>
                             </div>
                             </div>
                             `
@@ -1038,6 +1038,7 @@ function AfficherListeRestoHomeClient() {
 
     }
 }
+
 function ViewResto(indiceRestaurant) {
     let objet = {
         restoID: indiceRestaurant,
@@ -1046,6 +1047,7 @@ function ViewResto(indiceRestaurant) {
     console.log(objet);
     location.href = 'resto.html';
 }
+
 function ViewRestoUser() {
     var restoid = JSON.parse(localStorage.getItem('restoIdUser'));
     var restodb = JSON.parse(localStorage.getItem('restos'));
@@ -1075,7 +1077,7 @@ function ViewRestoUser() {
     }
     console.log(cpt1);
     if (cpt1 === 0) {
-       
+
         alert('Restaurant inactive');
         Location.href = 'home.html';
         return;
@@ -1102,11 +1104,11 @@ function ViewRestoUser() {
 
     }
     let compteur = 0;
-   PubItem= ``;
+    PubItem = ``;
     for (let i = 0; i < Publicationdb.length; i++) {
         if (Publicationdb[i].pubowner === indice) {
-          compteur = compteur + 1;
-        PubItem += ` 
+            compteur = compteur + 1;
+            PubItem += ` 
             <li>
            <div class="slider-img">
                 <img src="../img/${Publicationdb[i].img}" alt="" />
@@ -1121,18 +1123,18 @@ function ViewRestoUser() {
             </li>
           
             `
-          
+
         }
     }
     document.getElementById("publicationItem").innerHTML = PubItem;
 
-   if (compteur === 0) {
-     document.getElementById("publication").style.display = "block";
-  }
-  MenuResto=``;
-  for (let i = 0; i < Menudb.length; i++) {
-      if (Menudb[i].MenuOwner===indice) {
-        MenuResto +=`
+    if (compteur === 0) {
+        document.getElementById("publication").style.display = "block";
+    }
+    MenuResto = ``;
+    for (let i = 0; i < Menudb.length; i++) {
+        if (Menudb[i].MenuOwner === indice) {
+            MenuResto += `
         <div class="${Menudb[i].type} menu-item col-sm-6 col-xs-12   ">
         <div class="clearfix menu-wrapper">
             <a class="css-pointer dropdown-toggle" onclick="ConsulterMenu(${Menudb[i].idM})"  role="button" aria-haspopup="true" aria-expanded="false">
@@ -1140,15 +1142,15 @@ function ViewRestoUser() {
             </a>
             <span class="price">${Menudb[i].Prx}DT</span>
             <div class="dotted-bg"></div>
-         <input class="btn btn-default" style="width: 80px;" onclick="AddcartMenu(${Menudb[i].idM})"  value="Add">
+         <input class="btn btn-default" style="width: 80px;" onclick="AddcartPubM(${Menudb[i].idM});AffichagePannier()"  value="Add">
         </div>
 
     </div>
-        ` 
-      }
-      
-  }
-  document.getElementById("Menu").innerHTML =  MenuResto;
+        `
+        }
+
+    }
+    document.getElementById("Menu").innerHTML = MenuResto;
 }
 
 function AjouterDetailResto() {
@@ -1172,6 +1174,7 @@ function AjouterDetailResto() {
     localStorage.setItem("detailresto", JSON.stringify(restodetail));
     alert('modification ajouter avec succès')
 }
+
 function ConsulterMenu(indiceMenu) {
     var MenuREsto = JSON.parse(localStorage.getItem('MenuResteraunt'));
 
@@ -1183,19 +1186,22 @@ function ConsulterMenu(indiceMenu) {
     }
     location.href = 'menu-image.html';
 }
+
 function ConsulterMenuUser() {
     var MenuConsult = JSON.parse(localStorage.getItem('MenuConsulter'));
+    let idU = JSON.parse(localStorage.getItem('connecteduser'));
     image = document.getElementById("imageplats");
     description = document.getElementById("descripETingidient");
     image = `
-    <img class="img-responsive" src="../img/${MenuConsult.imgmenu}" alt="">
+    <img class="img-responsive" src="img/${MenuConsult.Pic}" alt="">
     `;
     description = ` <h3>${MenuConsult.Nom}</h3>
-    <p>${MenuConsult.ingridient}</p>
+    <p>${MenuConsult.ing}</p>
 
     <h3 class="heading-bottom-line">Descriptions</h3>
-    <p>${MenuConsult.descrip}</p>
-    <input class="btn btn-default" onclick="AddcartPub(${MenuConsult.idM})" role="button" value="Add to cart">
+    <p>${MenuConsult.desc}</p>
+    <input type="text" name="quantite" id="quantité" value="1"><br><br>
+    <input class="btn btn-default" onclick="AddcartPub(${MenuConsult.idM});AffichagePannier()" role="button" value="Add to cart">
 
     `;
     document.getElementById("imageplats").innerHTML = image;
@@ -1238,6 +1244,7 @@ function MakeRES(indiceResto) {
     document.getElementById("guests").value = "";
     document.getElementById("phone").value = "";
 }
+
 function DisplayResUser() {
     var logged = JSON.parse(localStorage.getItem('connectedUser'))
     var ResDB = JSON.parse(localStorage.getItem('reservations'));
@@ -1711,3 +1718,312 @@ function DisplayCmdUser() {
 }
 
 
+function AddcartPub(IDMenu) {
+    var MenuConsult = JSON.parse(localStorage.getItem('MenuConsulter'));
+    let idU = JSON.parse(localStorage.getItem('connectedUser'));
+    console.log(idU.iduser);
+    var MenuPannier = JSON.parse(localStorage.getItem('MenuCPannier'));
+    let quantite = document.getElementById("quantité").value;
+    let Nbocurence = 0;
+    for (let i = 0; i < MenuPannier.length; i++) {
+        if (IDMenu === MenuPannier[i].IDMenu && MenuPannier[i].IdUse === idU.iduser) {
+            Nbocurence = Nbocurence + 1;
+            MenuPannier[i].quantite = parseInt(MenuPannier[i].quantite) + parseInt(quantite);
+            MenuPannier[i].Prix = MenuConsult.Prx * MenuPannier[i].quantite;
+            console.log(MenuPannier[i].quantite);
+            localStorage.setItem("MenuCPannier", JSON.stringify(MenuPannier));
+        }
+    }
+    let idMP = Math.floor(Math.random() * 1000) + 1;
+    let imageArticle = MenuConsult.Pic;
+    let nomArticle = MenuConsult.Nom;
+    let ingArticle = MenuConsult.ing;
+    let PrxArticle = MenuConsult.Prx;
+    let Prix = MenuConsult.Prx * quantite;
+    let idResto = MenuConsult.MenuOwner;
+    let IdUse = idU.iduser;
+    let MenuP = { IDMenu, idMP, imageArticle, nomArticle, ingArticle, PrxArticle, Prix, IdUse, quantite, idResto };
+    if (MenuPannier === null) {
+        MenuPannier = [];
+    }
+    MenuPannier.push(MenuP);
+    console.log(Nbocurence);
+    if (Nbocurence === 0) {
+        localStorage.setItem("MenuCPannier", JSON.stringify(MenuPannier));
+    }
+}
+
+function AffichagePannier() {
+    var MenuPannier = JSON.parse(localStorage.getItem('MenuCPannier'));
+    var idU = JSON.parse(localStorage.getItem('connectedUser'));
+    var Menurest = JSON.parse(localStorage.getItem('MenuResteraunt'));
+    var MenuConsult = JSON.parse(localStorage.getItem('MenuConsulter'));
+    let IdUse = idU.iduser;
+    let cmpt = 0
+    let prixTotal = 0;
+    let liste = '';
+    let liste2 = '';
+    for (let i = 0; i < MenuPannier.length; i++) {
+        if (IdUse === MenuPannier[i].IdUse) {
+            prixTotal = prixTotal + MenuPannier[i].Prix;
+            cmpt = cmpt + 1;
+            liste += `
+            
+                <div class="cart-items">
+                                    <div class="cart-item clearfix">
+                                    <div class="cart-item-image">
+                                    <a href="menu-image.html"><img src="img/${MenuPannier[i].imageArticle}"" alt="${MenuPannier[i].ingArticle}"></a>
+                                    </div>
+                                    <div class="cart-item-desc">
+                                    <a href="menu-image.html">${MenuPannier[i].nomArticle}</a>
+                                    <span class="cart-item-price">${MenuPannier[i].PrxArticle}</span>
+                                    <span class="cart-item-quantity">x ${MenuPannier[i].quantite}</span>
+                                    <i class="fa fa-times ci-close"></i>
+                                    </div>
+                                    </div>
+                                    </div>
+                `
+        }
+
+    }
+    liste2 = `             <div class="cart-action clearfix">
+        <span class="pull-left checkout-price">${prixTotal} TND</span>
+        <a class="btn btn-default pull-right" href="shop_cart.html" onclick="addshopCart(${MenuPannier.IdUse})">View Cart</a>
+        </div>`
+
+    document.getElementById("Pannier").innerHTML = liste;
+    document.getElementById("pannier2").innerHTML = liste2;
+    document.getElementById("nombreProduits").innerHTML = cmpt;
+}
+
+function AddcartPubM(IDMenu) {
+    var MenuConsult = JSON.parse(localStorage.getItem('MenuConsulter'));
+    let idU = JSON.parse(localStorage.getItem('connectedUser'));
+    console.log(idU.iduser);
+    var MenuPannier = JSON.parse(localStorage.getItem('MenuCPannier'));
+    let quantite = 1
+    let Nbocurence = 0;
+    if (MenuConsult != null) {
+        for (let i = 0; i < MenuPannier.length; i++) {
+            if (IDMenu === MenuPannier[i].IDMenu && MenuPannier[i].IdUse === idU.iduser) {
+                Nbocurence = Nbocurence + 1;
+                MenuPannier[i].quantite = parseInt(MenuPannier[i].quantite) + parseInt(quantite);
+                MenuPannier[i].Prix = MenuConsult.Prx * MenuPannier[i].quantite;
+                console.log(MenuPannier[i].quantite);
+                localStorage.setItem("MenuCPannier", JSON.stringify(MenuPannier));
+            }
+        }
+    }
+
+    let idMP = Math.floor(Math.random() * 1000) + 1;
+    let imageArticle = MenuConsult.Pic;
+    let nomArticle = MenuConsult.Nom;
+    let ingArticle = MenuConsult.ing;
+    let PrxArticle = MenuConsult.Prx;
+    let Prix = MenuConsult.Prx * quantite;
+    let idResto = MenuConsult.MenuOwner;
+    let IdUse = idU.iduser;
+    let MenuP = { IDMenu, idMP, imageArticle, nomArticle, ingArticle, PrxArticle, Prix, IdUse, quantite, idResto };
+    if (MenuPannier === null) {
+        MenuPannier = [];
+    }
+    MenuPannier.push(MenuP);
+    console.log(Nbocurence);
+    if (Nbocurence === 0) {
+        localStorage.setItem("MenuCPannier", JSON.stringify(MenuPannier));
+    }
+}
+
+
+function addshopCart() {
+    var MenuPannier = JSON.parse(localStorage.getItem('MenuCPannier'));
+    let idU = JSON.parse(localStorage.getItem('connectedUser'));
+    let prixTotal = 0;
+    let tableShop = "";
+    tableShop = `<thead>
+        <tr>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+    </thead>`
+    for (let i = 0; i < MenuPannier.length; i++) {
+        if (idU.iduser === MenuPannier[i].IdUse) {
+            prixTotal = prixTotal + MenuPannier[i].Prix;
+            tableShop += `
+    <tbody>
+        <tr>
+            <td>
+                <a href="#" class="remove" onclick="supprimer(${MenuPannier[i].idMP})"><i class="fa fa-times"></i></a>
+            </td>
+            <td>
+                <a href="shop_single_full.html"><img  src="img/${MenuPannier[i].imageArticle}" alt="" height="90" width="90"></a>
+            </td>
+            <td>
+                <a href="shop_single_full.html">${MenuPannier[i].nomArticle}</a>
+            </td>
+            <td>
+                <span class="amount">${MenuPannier[i].PrxArticle}</span>
+            </td>
+            <td>
+                <div class="quantity">${MenuPannier[i].quantite}</div>
+            </td>
+            <td>
+                <span class="amount">${MenuPannier[i].Prix}</span>
+            </td>
+        </tr>
+        </tbody>`
+        }
+    }
+    tableShop += ` <tr>
+    <td colspan="6" class="actions">
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-6">
+            <div class="cart-btn">
+                <button class="btn btn-success" type="submit" onclick="window.open('shop_checkout.html', '_self')">Checkout</button>
+            </div>
+        </div>
+    </td>
+</tr>
+    `
+
+
+
+    document.getElementById("tableShopcart").innerHTML = tableShop;
+    let tableFin = "";
+    tableFin = `
+    <tbody>
+    <tr>
+        <th>Cart Subtotal</th>
+        <td><span class="amount">${prixTotal}</span></td>
+    </tr>
+    <tr>
+        <th>Shipping and Handling</th>
+        <td>
+            Free Shipping
+        </td>
+    </tr>
+    <tr>
+        <th>Order Total</th>
+        <td><strong><span class="amount">${prixTotal}</span></strong> </td>
+    </tr>
+</tbody>
+    `
+    document.getElementById("tableFinal").innerHTML = tableFin;
+
+}
+
+function supprimer(idmp) {
+    console.log(idmp);
+    var MenuPannier = JSON.parse(localStorage.getItem('MenuCPannier'));
+    for (let i = 0; i < MenuPannier.length; i++) {
+        if (idmp === MenuPannier[i].idMP) {
+            MenuPannier.splice(i, 1);
+        }
+
+    }
+
+    console.log(MenuPannier)
+    localStorage.setItem("MenuCPannier", JSON.stringify(MenuPannier));
+    addshopCart();
+    AffichagePannier();
+
+}
+
+function AfficheReservationResto() {
+    var loggedResteraunt = JSON.parse(localStorage.getItem('connectedResto'));
+    var ResDB = JSON.parse(localStorage.getItem('reservations'));
+    let tablerAffReservRest = "";
+    if (loggedResteraunt === null) {
+        alert("connecter vous");
+    } else {
+        tablerAffReservRest = `<thead>
+        <tr>
+            <th>Nom</th>
+            <th>Numéro</th>
+            <th>E-mail</th>
+            <th>Nombre personnes</th>
+            <th>Date</th>
+            <th>Temps</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>`
+        if (ResDB != null) {
+            for (let i = 0; i < ResDB.length; i++) {
+                if (ResDB[i].idResto === loggedResteraunt.idresto) {
+
+                    tablerAffReservRest += `<tbody>
+                <tr>
+                    <td>
+                        ${ResDB[i].NameRes}
+                    </td>
+                    <td>
+                    ${ResDB[i].PhoneRes}
+                    </td>
+                    <td>
+                    ${ResDB[i].EmailRes}
+                    </td>
+                    <td>
+                    ${ResDB[i].GuestRes}
+                    </td>
+                    <td>
+                    ${ResDB[i].DateRes}
+                    </td>
+                    <td>
+                    ${ResDB[i].TimeRes}
+                    </td>
+                    <td>
+                    ${ResDB[i].status}
+                    </td>
+                    <td>
+                        <div class="cart-btn">
+                            <div class="col-md-6">
+                                <button class="btn btn-success" type="submit" onclick="AcceptReservation(${ResDB[i].idReser})">Accepter</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn-success" type="submit" onclick="RefuseReservation(${ResDB[i].idReser})">Refuser</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>`
+                    document.getElementById("tableReservationResto").innerHTML = tablerAffReservRest;
+                }
+            }
+        }
+    }
+}
+
+function AcceptReservation(IDR) {
+    var loggedResteraunt = JSON.parse(localStorage.getItem('connectedResto'));
+    var ResDB = JSON.parse(localStorage.getItem('reservations'));
+    for (let i = 0; i < ResDB.length; i++) {
+        console.log(i)
+        if (ResDB[i].idReser === IDR) {
+            ResDB[i].status = "Accepter";
+            console.log(ResDB[i].status)
+        }
+    }
+    localStorage.setItem("reservations", JSON.stringify(ResDB));
+    AfficheReservationResto();
+}
+
+function RefuseReservation(IDR) {
+    var loggedResteraunt = JSON.parse(localStorage.getItem('connectedResto'));
+    var ResDB = JSON.parse(localStorage.getItem('reservations'));
+    for (let i = 0; i < ResDB.length; i++) {
+        console.log(i)
+        if (ResDB[i].idReser === IDR) {
+            ResDB[i].status = "Refuser";
+            console.log(ResDB[i].status)
+        }
+    }
+    localStorage.setItem("reservations", JSON.stringify(ResDB));
+    AfficheReservationResto();
+}
